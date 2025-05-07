@@ -1,21 +1,44 @@
 @use './scss/variables' as *;
 @use './scss/typography' as *;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  scrollbar-width: none;
 
+}
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+ul, ol {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+img, picture, svg {
+  max-width: 100%;
+  display: block;
+
+  /* Prevent image dragging without blocking pointer events */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input, button, textarea, select {
+  font: inherit;
 }
 
 button {
     background: none;
 	border: none;
 	padding: 0;
-	font: inherit;
 	cursor: pointer;
 }
 
@@ -24,8 +47,10 @@ button {
 
 body {
     font-family: 'Helixa', sans-serif;
-    background: black;
+    background: #000000;
     color: white;
+    overflow-x: hidden; // Prevent slider content overflowing and making the page wider than it needs to
+
 }
 
 
@@ -33,9 +58,14 @@ body {
     position: fixed;
     inset: -200%;
     background-image: url('../assets/noise.svg');
-    opacity: 10%;
+    opacity: 12%;
     z-index: -10;
     /* No CSS animation here, we'll use GSAP */
+}
+
+
+.color-wrapper {
+  color: $brand-primary;
 }
 
 
@@ -83,7 +113,7 @@ main {
 //LAYOUT CLASSES & RULES
 
 section + section {  /* Default spacing between all sections */
-    margin-top: 10rem;
+    margin-top: $space-8x;
 
   }
 
@@ -105,15 +135,15 @@ section + section {  /* Default spacing between all sections */
 
 .two-col {
     display: grid;
-    grid-template-columns: 1fr 0.5fr;
-    gap: $space-3x;
+    grid-template-columns: 1fr 0.6fr;
+    gap: $space-4x;
     padding-inline: $space-4x;
   }
 
 
  .content-island {
-    background-image: url('/assets/');
-    background-size: cover;
+    background-image: url('/assets/grunge.jpg');
+    background-size: contain;
     background-color: $modal;
     border-radius: $radius;
     padding-inline: $space-4x;
@@ -138,7 +168,8 @@ section + section {  /* Default spacing between all sections */
 // ABOUT
 
    .media-wrapper {
-    max-width: 90%;
+    max-width: 95%;
+  
    }
 
    .about-img {
@@ -254,6 +285,7 @@ section + section {  /* Default spacing between all sections */
 
 .industries {
     padding: $space-4x;
+    
 
 }
 
@@ -270,20 +302,20 @@ section + section {  /* Default spacing between all sections */
 
 .slider-wrapper {
     width: 100%;
-    position: relative;
     overflow: visible; // Let cards be visible outside the wrapper, so they don't get cropped by any padding attributes
-   
   }
 
 
 .card-slider {
     display: flex;
     gap: $space-md;
-    position: relative;
-    left: 0;
     user-select: none;
     width: fit-content;
-    padding-right: $space-4x;
+
+  }
+
+  .is-dragging * { 
+    cursor: grabbing;
   }
 
 
@@ -292,15 +324,14 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    position: relative;
-    width: 420px;
-    aspect-ratio: 4/5;
+    width: 365px;
+    aspect-ratio: 3/4;
     background-image: url('/assets/placeholder--card.png');
     background-size: cover;
     background-position: left center;
 
-    border-radius: $radius;
-    overflow: hidden;
+    border-radius: calc($radius/2);
+
   
     &__bio {
       padding: $space-2x;
@@ -314,16 +345,21 @@ section + section {  /* Default spacing between all sections */
 
 /// --------- TESTIMONIALS --------- \\\\\\
 
+.testimonials {
+  margin-block: $space-12x; //Adding a bit of extra margin for isolation
+}
+
 .testimonial-widget {
     display: flex;
     flex-direction: column;
-    width: 75%;
-    border-radius: 8rem;
+    width: 65%;
+    border-radius: 12rem;
     align-items: center;
     text-align: center;
     background-color: rgb(3, 15, 6);
     margin-inline: auto;
-    padding: $space-4x;
+    padding-block: $space-6x;
+    padding-inline: $space-4x;
     gap: $space-md;
 
         img {
@@ -335,6 +371,26 @@ section + section {  /* Default spacing between all sections */
         }
 }
 
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space-2x;
+  margin-top: $space-3x;
+
+
+.testimonials-logo {
+  width: 12rem;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.testimonials-logo.active {
+  opacity: 1;
+}
+
+}
 
 
 
@@ -369,9 +425,20 @@ section + section {  /* Default spacing between all sections */
       justify-content: space-between;
       width: 100%;
     }
+
+/* When active, rotate to turn faq-btn into an X*/
+&.active .faq-btn::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+&.active .faq-btn::after {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
     
 
   }
+
+  
   
   // Plus/minus button
   .faq-btn {
@@ -390,7 +457,7 @@ section + section {  /* Default spacing between all sections */
       content: '';
       position: absolute;
       transform-origin: center;
-      transition: transform 0.25s linear;
+      transition: transform 0.3s ease;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
@@ -400,13 +467,17 @@ section + section {  /* Default spacing between all sections */
     &::before {
       height: 2px;
       width: 20px;
+      transform: translate(-50%, -50%);
     }
   
     // Vertical line
     &::after {
       height: 20px;
       width: 2px;
+      transform: translate(-50%, -50%);
     }
+
+    
   }
   
   // Answer content
@@ -417,9 +488,9 @@ section + section {  /* Default spacing between all sections */
     
     p {
       margin-top: 1rem;
-      padding-bottom: $space-1x;
+   
       font-size: $size-1;
-      line-height: 1.6;
+      line-height: 1.4;
       color: $text-primary;
     }
   }

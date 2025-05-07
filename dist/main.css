@@ -23,12 +23,12 @@ p {
   max-width: 48ch;
   font-size: clamp(1.05rem, 0.9912rem + 0.28vw, 1.25rem);
   font-weight: 400;
-  color: #c7f4d5;
+  color: #EDFFE0;
 }
 
 .content {
   font-size: 1.5rem;
-  color: #c7f4d5;
+  color: #EDFFE0;
   max-width: 42ch;
   line-height: 1.4;
 }
@@ -44,7 +44,7 @@ h2 {
   font-size: clamp(1.8144rem, 1.63rem + 0.843vw, 2.4414rem);
   line-height: 1.2;
   font-weight: 600;
-  color: #96eaae;
+  color: #CFFFCC;
 }
 
 .card-title,
@@ -69,7 +69,7 @@ h4 {
 /* === OTHER === */
 .eyebrow {
   font-size: clamp(0.875rem, 0.8382rem + 0.1681vw, 1rem);
-  color: #06DB4B;
+  color: #64F764;
 }
 
 cite {
@@ -84,35 +84,63 @@ cite {
   width: 40ch;
 }
 
-*,
-*::before,
-*::after {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
+  scrollbar-width: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+img, picture, svg {
+  max-width: 100%;
+  display: block;
+  /* Prevent image dragging without blocking pointer events */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input, button, textarea, select {
+  font: inherit;
 }
 
 button {
   background: none;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
 }
 
 body {
   font-family: "Helixa", sans-serif;
-  background: black;
+  background: #000000;
   color: white;
+  overflow-x: hidden;
 }
 
 .fuzzy-overlay {
   position: fixed;
   inset: -200%;
   background-image: url("../assets/noise.svg");
-  opacity: 10%;
+  opacity: 12%;
   z-index: -10;
   /* No CSS animation here, we'll use GSAP */
+}
+
+.color-wrapper {
+  color: #64F764;
 }
 
 .hero {
@@ -148,7 +176,7 @@ main {
 }
 
 section + section { /* Default spacing between all sections */
-  margin-top: 10rem;
+  margin-top: 8rem;
 }
 
 .text-measure {
@@ -167,15 +195,15 @@ section + section { /* Default spacing between all sections */
 
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 0.5fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 0.6fr;
+  gap: 4rem;
   padding-inline: 4rem;
 }
 
 .content-island {
-  background-image: url("/assets/");
-  background-size: cover;
-  background-color: #0B0B0B;
+  background-image: url("/assets/grunge.jpg");
+  background-size: contain;
+  background-color: #000100;
   border-radius: 1.5rem;
   padding-inline: 4rem;
   padding-block: 8rem;
@@ -192,7 +220,7 @@ section + section { /* Default spacing between all sections */
 }
 
 .media-wrapper {
-  max-width: 90%;
+  max-width: 95%;
 }
 
 .about-img {
@@ -281,48 +309,51 @@ section + section { /* Default spacing between all sections */
 
 .slider-wrapper {
   width: 100%;
-  position: relative;
   overflow: visible;
 }
 
 .card-slider {
   display: flex;
   gap: 1.5rem;
-  position: relative;
-  left: 0;
   user-select: none;
   width: fit-content;
-  padding-right: 4rem;
+}
+
+.is-dragging * {
+  cursor: grabbing;
 }
 
 .industry-card {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  position: relative;
-  width: 420px;
-  aspect-ratio: 4/5;
+  width: 365px;
+  aspect-ratio: 3/4;
   background-image: url("/assets/placeholder--card.png");
   background-size: cover;
   background-position: left center;
-  border-radius: 1.5rem;
-  overflow: hidden;
+  border-radius: 0.75rem;
 }
 .industry-card__bio {
   padding: 2rem;
   z-index: 2;
 }
 
+.testimonials {
+  margin-block: 12rem;
+}
+
 .testimonial-widget {
   display: flex;
   flex-direction: column;
-  width: 75%;
-  border-radius: 8rem;
+  width: 65%;
+  border-radius: 12rem;
   align-items: center;
   text-align: center;
   background-color: rgb(3, 15, 6);
   margin-inline: auto;
-  padding: 4rem;
+  padding-block: 6rem;
+  padding-inline: 4rem;
   gap: 1.5rem;
 }
 .testimonial-widget img {
@@ -330,6 +361,22 @@ section + section { /* Default spacing between all sections */
 }
 .testimonial-widget blockquote {
   width: 60%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.logo-container .testimonials-logo {
+  width: 12rem;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+.logo-container .testimonials-logo.active {
+  opacity: 1;
 }
 
 .faqs {
@@ -344,19 +391,26 @@ section + section { /* Default spacing between all sections */
   border-bottom: 1px solid rgba(255, 255, 255, 0.75);
   padding-block: 2rem;
   transition: padding 0.3s ease, background-color 0.3s ease;
+  /* When active, rotate to turn faq-btn into an X*/
 }
 .faq-item:first-child {
   border-top: 1px solid rgba(255, 255, 255, 0.75);
 }
 .faq-item .faq-question {
   align-items: center;
-  color: #c7f4d5;
+  color: #EDFFE0;
   cursor: pointer;
   display: flex;
   font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.56rem);
   font-weight: 400;
   justify-content: space-between;
   width: 100%;
+}
+.faq-item.active .faq-btn::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+.faq-item.active .faq-btn::after {
+  transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .faq-btn {
@@ -370,11 +424,11 @@ section + section { /* Default spacing between all sections */
   width: 2.25rem;
 }
 .faq-btn::before, .faq-btn::after {
-  background-color: #c7f4d5;
+  background-color: #EDFFE0;
   content: "";
   position: absolute;
   transform-origin: center;
-  transition: transform 0.25s linear;
+  transition: transform 0.3s ease;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -382,10 +436,12 @@ section + section { /* Default spacing between all sections */
 .faq-btn::before {
   height: 2px;
   width: 20px;
+  transform: translate(-50%, -50%);
 }
 .faq-btn::after {
   height: 20px;
   width: 2px;
+  transform: translate(-50%, -50%);
 }
 
 .faq-answer {
@@ -395,16 +451,15 @@ section + section { /* Default spacing between all sections */
 }
 .faq-answer p {
   margin-top: 1rem;
-  padding-bottom: 1rem;
   font-size: clamp(1.05rem, 0.9912rem + 0.28vw, 1.25rem);
-  line-height: 1.6;
-  color: #c7f4d5;
+  line-height: 1.4;
+  color: #EDFFE0;
 }
 
 .site-footer {
   background-color: rgb(10, 52, 19);
   /* Subtle brightness adjustment to enhance pattern visibility */
-  color: #96eaae;
+  color: #CFFFCC;
   display: flex;
   flex-direction: column;
   margin-inline: auto;
@@ -441,7 +496,7 @@ section + section { /* Default spacing between all sections */
   font-size: 1.1rem;
 }
 .footer-nav a:hover {
-  color: #06DB4B;
+  color: #64F764;
 }
 
 .footer-legal {
