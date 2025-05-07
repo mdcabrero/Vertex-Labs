@@ -1,0 +1,514 @@
+@use './scss/variables' as *;
+@use './scss/typography' as *;
+
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+button {
+    background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+}
+
+
+//MAIN STYLES
+
+body {
+    font-family: 'Helixa', sans-serif;
+    background: black;
+    color: white;
+}
+
+
+.fuzzy-overlay {
+    position: fixed;
+    inset: -200%;
+    background-image: url('../assets/noise.svg');
+    opacity: 10%;
+    z-index: -10;
+    /* No CSS animation here, we'll use GSAP */
+}
+
+
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 110vh;
+    width: 100%;
+    position: relative;
+
+
+
+    &-content {
+        gap: 4em;
+        padding-left: $space-4x;
+        padding-bottom: 10rem;
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/hero_bg.jpg');
+        background-size: cover;
+        background-position: right 90%;
+        opacity: 0.4; /* 60% opacity as decimal */
+        z-index: -1; /* Place behind content */
+        filter: saturate(350%);
+    }
+}
+
+main {
+    margin-block: $space-8x;
+}
+
+
+
+
+
+//LAYOUT CLASSES & RULES
+
+section + section {  /* Default spacing between all sections */
+    margin-top: 10rem;
+
+  }
+
+  .text-measure {
+    max-width: 50%;
+  }
+
+  .vertical-margin {
+    margin-top: $space-4x;
+  }
+
+
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: $space-3q;
+}
+
+.two-col {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    gap: $space-3x;
+    padding-inline: $space-4x;
+  }
+
+
+ .content-island {
+    background-image: url('/assets/');
+    background-size: cover;
+    background-color: $modal;
+    border-radius: $radius;
+    padding-inline: $space-4x;
+    padding-block: $space-8x;
+    z-index: -2;
+    margin-inline: auto;
+    width: calc(100vw - $space-2x);
+
+   }
+
+
+   .content-block {
+    display: flex;
+    flex-direction: column;
+    gap: $space-md;
+    max-width: 85%;
+   }
+
+
+
+
+// ABOUT
+
+   .media-wrapper {
+    max-width: 90%;
+   }
+
+   .about-img {
+    object-fit: contain;
+    opacity: 0.9;
+   }
+
+
+
+
+// SERVICES
+
+.services-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    gap: $space-2x;
+    margin-top: $space-4x;
+
+}
+
+
+
+.service-card--wide {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1a1a1a;
+    border-radius: 1rem;
+    padding: 3rem;
+    grid-column: 1 / -1; /* Spans from first to last column */
+
+
+.service-bio {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lite;
+    max-width: 35%;
+    align-self: end;
+
+
+.service-icon {
+ 
+ svg {
+    margin-bottom: $space-1x;
+    width: 2.5rem;
+}
+
+}
+
+}
+
+.service-visual {
+    width: 20%;
+
+
+        img {
+            max-width: 100%; //These two properties allow us to ensure that the image won't overflow and we only have to worry about the width and height of our 'service-visual' class
+            max-height: 100%;
+            object-fit: contain;
+        }
+}
+
+}
+
+//Vertical card
+
+.service-card--vertical {
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a;
+    border-radius: 1rem;
+    padding: 3rem;
+
+ 
+
+
+.service-bio {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lite;
+    max-width: 90%;
+   
+
+
+.service-icon {
+ 
+ svg {
+    margin-bottom: $space-1x;
+    width: 2.5rem;
+}
+
+}
+
+}
+
+.service-visual {
+    align-self: end;
+    width: 30%;
+    height: 100%; //Even if at first glance this property does nothing, it ensures image won't overflow the card,
+
+
+        img {
+            max-width: 100%; //These two properties allow us to ensure that the image won't overflow and we only have to worry about the width and height of our 'service-visual' class
+            max-height: 100%;
+            object-fit: contain;
+        }
+}
+}
+
+
+/// --------- INDUSTRIES --------- \\\\\\
+
+
+.industries {
+    padding: $space-4x;
+
+}
+
+.separator {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.slider-nav {
+    display: flex;
+    gap: $space-1x;
+}
+
+.slider-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: visible; // Let cards be visible outside the wrapper, so they don't get cropped by any padding attributes
+   
+  }
+
+
+.card-slider {
+    display: flex;
+    gap: $space-md;
+    position: relative;
+    left: 0;
+    user-select: none;
+    width: fit-content;
+    padding-right: $space-4x;
+  }
+
+
+
+  .industry-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    width: 420px;
+    aspect-ratio: 4/5;
+    background-image: url('/assets/placeholder--card.png');
+    background-size: cover;
+    background-position: left center;
+
+    border-radius: $radius;
+    overflow: hidden;
+  
+    &__bio {
+      padding: $space-2x;
+      z-index: 2;
+
+    }
+
+}
+  
+
+
+/// --------- TESTIMONIALS --------- \\\\\\
+
+.testimonial-widget {
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    border-radius: 8rem;
+    align-items: center;
+    text-align: center;
+    background-color: rgb(3, 15, 6);
+    margin-inline: auto;
+    padding: $space-4x;
+    gap: $space-md;
+
+        img {
+            width: 12rem;
+        }
+
+        blockquote {
+            width: 60%;
+        }
+}
+
+
+
+
+/// --------- FAQS --------- \\\\\\
+
+
+.faqs {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: $space-3x;
+    padding-inline: $space-4x;
+}
+
+.faq-item {
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+    padding-block: $space-2x;
+    transition: padding 0.3s ease, background-color 0.3s ease;
+  
+    &:first-child {
+      border-top: 1px solid rgba(255, 255, 255, 0.75);
+    }
+    
+    // Question styling
+    .faq-question {
+      align-items: center;
+      color: $text-primary;
+      cursor: pointer;
+      display: flex;
+      font-size: $size-2;
+      font-weight: $font-regular;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+
+  }
+  
+  // Plus/minus button
+  .faq-btn {
+    align-items: center;
+    border-radius: 4px;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s ease;
+    width: 2.25rem;
+  
+    &::before,
+    &::after {
+      background-color: $text-primary;
+      content: '';
+      position: absolute;
+      transform-origin: center;
+      transition: transform 0.25s linear;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    // Horizontal line
+    &::before {
+      height: 2px;
+      width: 20px;
+    }
+  
+    // Vertical line
+    &::after {
+      height: 20px;
+      width: 2px;
+    }
+  }
+  
+  // Answer content
+  .faq-answer {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.4s ease-out;
+    
+    p {
+      margin-top: 1rem;
+      padding-bottom: $space-1x;
+      font-size: $size-1;
+      line-height: 1.6;
+      color: $text-primary;
+    }
+  }
+
+
+
+
+
+
+  .site-footer {
+    background-color: rgb(10, 52, 19);
+    
+    /* Subtle brightness adjustment to enhance pattern visibility */
+    color: $headline;
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    margin-top: $space-8x;
+    margin-bottom: $space-2x;
+    height: calc(80vh - $space-3x);
+    width: 95%;
+    border-radius: $radius;
+    padding-top: $space-6x;
+    padding-bottom: $space-md;
+    padding-inline: $space-3x;
+  
+  }
+  
+  
+  
+  .footer-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  
+    
+      .footer-logo {
+        width: 100%;
+        justify-self: center;
+        height: auto;
+  
+  
+   
+  
+      }
+  
+  }
+
+
+  
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 0.75rem;
+  
+    
+    a {
+      color: white;
+      font-weight: $font-regular;
+      font-size: 1.1rem;
+  
+      &:hover {
+        color: $brand-primary;
+      }
+    }
+    
+  
+  }
+  
+  
+  
+
+
+  
+  .footer-legal {
+    display: flex;
+    justify-content: space-between;
+    align-items: last baseline;
+    color: rgb(206, 206, 206);
+    margin-top: auto;
+    font-size: $size-0;
+  
+      a {
+        margin-right: $space-3x;
+      }
+  
+      small{
+        font-size: 0.8rem;
+      }
+  }
+  
