@@ -269,9 +269,10 @@ section + section { /* Default spacing between all sections */
   background-color: #1a1a1a;
   border-radius: 1rem;
   height: 66vh;
-  background-image: url("../assets/service-bg3.png");
-  background-position: right 30%;
+  background-image: url("../assets/service-bg.png");
+  background-position: left 50%;
   background-size: cover;
+  background-repeat: no-repeat;
   padding: 3rem;
   grid-column: 1/-1; /* Spans from first to last column */
 }
@@ -298,10 +299,25 @@ section + section { /* Default spacing between all sections */
 .service-card--vertical {
   display: flex;
   flex-direction: column;
-  background-color: #1a1a1a;
+  background-color: #000000;
   border-radius: 1rem;
+  justify-content: end;
   padding: 3rem;
   height: 66vh;
+  position: relative;
+  overflow: hidden;
+}
+.service-card--vertical::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 0%;
+  background-image: url("../assets/card-shape3.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 120%;
+  height: 100%;
+  pointer-events: none;
 }
 .service-card--vertical .service-bio {
   display: flex;
@@ -361,14 +377,55 @@ section + section { /* Default spacing between all sections */
   justify-content: flex-end;
   width: 365px;
   aspect-ratio: 3/4;
-  background-image: url("/assets/industry-card.png");
   background-size: cover;
   background-position: right center;
   border-radius: 0.75rem;
 }
+.industry-card[data-industry=media] {
+  background-image: url("../assets/media.png");
+}
+.industry-card[data-industry=manufacturing] {
+  background-image: url("../assets/manufacturing.png");
+}
+.industry-card[data-industry=healthcare] {
+  background-image: url("../assets/healthcare.png");
+}
+.industry-card[data-industry=finance] {
+  background-image: url("../assets/finance.png");
+}
+.industry-card[data-industry=aviation] {
+  background-image: url("../assets/aviation.png");
+}
+.industry-card[data-industry=technology] {
+  background-image: url("../assets/technology.png");
+}
+.industry-card[data-industry=supply-chain] {
+  background-image: url("../assets/supply-chain.png");
+}
 .industry-card__bio {
-  padding: 2rem;
-  z-index: 2;
+  position: relative;
+  padding: 1rem;
+}
+.industry-card__bio::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 11;
+  background-color: rgba(0, 6, 4, 0.1882352941);
+  width: 100%;
+  height: 125%;
+  -webkit-filter: blur(8px);
+  filter: blur(8px);
+  transform: translateY(0.25rem);
+}
+.industry-card__bio h3 {
+  font-size: clamp(1.512rem, 1.3823rem + 0.5931vw, 1.9531rem);
+  color: rgb(186, 234, 231);
+  font-weight: 400;
+  position: relative;
+  z-index: 11;
+  text-shadow: 1px 1px 0 rgb(31, 40, 43);
 }
 
 .testimonials {
