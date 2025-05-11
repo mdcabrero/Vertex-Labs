@@ -65,7 +65,11 @@ body {
 
 
 .color-wrapper {
-  color: $brand-primary;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(90deg,rgb(41, 228, 41) 0%, rgba(111, 237, 111, 1) 45%, rgba(199, 247, 110, 1) 100%);
 }
 
 
@@ -427,7 +431,8 @@ section + section {  /* Default spacing between all sections */
   
     &__bio {
       position: relative;
-      padding: $space-1x;
+      padding: $space-md;
+
 
 
       &::before {
@@ -446,13 +451,13 @@ section + section {  /* Default spacing between all sections */
   
 
     h3{
-      font-size: $size-3;
+      font-size: 2.2rem;
 
-      color: rgb(186, 234, 231);
+      color: #f2fddb;
       font-weight: $font-regular;
       position: relative;
       z-index: 11; //On top of our overlay
-       text-shadow: 1px 1px 0 rgb(31, 40, 43);
+       text-shadow: 1px 1.5px 0 rgba(0, 0, 0, 0.509);
     }
 
     }
@@ -472,6 +477,8 @@ section + section {  /* Default spacing between all sections */
     flex-direction: column;
     width: 65%;
     border-radius: 12rem;
+    background-image: url('../assets/modal-bg.png');
+    background-size: cover;
     align-items: center;
     text-align: center;
     background-color: rgb(3, 15, 6);
@@ -479,6 +486,18 @@ section + section {  /* Default spacing between all sections */
     padding-block: $space-6x;
     padding-inline: $space-4x;
     gap: $space-md;
+
+       /* 3D effect styles */
+   box-shadow: 
+        8px 8px 16px rgba(0, 0, 0, 0.6),
+        -8px -8px 16px rgba(15, 40, 20, 0.2),
+        inset 1px 1px 2px rgba(20, 60, 30, 0.1),
+        inset -1px -1px 2px rgba(0, 0, 0, 0.2);
+
+
+    
+
+    
 
         img {
             width: 12rem;
@@ -524,12 +543,13 @@ section + section {  /* Default spacing between all sections */
 
 .faq-item {
     position: relative;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+    border-bottom: 1px solid #cfffccba;
     padding-block: $space-2x;
     transition: padding 0.3s ease, background-color 0.3s ease;
   
     &:first-child {
-      border-top: 1px solid rgba(255, 255, 255, 0.75);
+      border-top: 1px solid #cfffccba;
+      
     }
     
     // Question styling
@@ -571,7 +591,7 @@ section + section {  /* Default spacing between all sections */
   
     &::before,
     &::after {
-      background-color: $text-primary;
+      background-color: $brand-primary;
       content: '';
       position: absolute;
       transform-origin: center;
@@ -583,6 +603,7 @@ section + section {  /* Default spacing between all sections */
   
     // Horizontal line
     &::before {
+      
       height: 2px;
       width: 20px;
       transform: translate(-50%, -50%);

@@ -140,7 +140,11 @@ body {
 }
 
 .color-wrapper {
-  color: #64F764;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, rgb(41, 228, 41) 0%, rgb(111, 237, 111) 45%, rgb(199, 247, 110) 100%);
 }
 
 .hero {
@@ -404,7 +408,7 @@ section + section { /* Default spacing between all sections */
 }
 .industry-card__bio {
   position: relative;
-  padding: 1rem;
+  padding: 1.5rem;
 }
 .industry-card__bio::before {
   content: "";
@@ -420,12 +424,12 @@ section + section { /* Default spacing between all sections */
   transform: translateY(0.25rem);
 }
 .industry-card__bio h3 {
-  font-size: clamp(1.512rem, 1.3823rem + 0.5931vw, 1.9531rem);
-  color: rgb(186, 234, 231);
+  font-size: 2.2rem;
+  color: #f2fddb;
   font-weight: 400;
   position: relative;
   z-index: 11;
-  text-shadow: 1px 1px 0 rgb(31, 40, 43);
+  text-shadow: 1px 1.5px 0 rgba(0, 0, 0, 0.509);
 }
 
 .testimonials {
@@ -437,6 +441,8 @@ section + section { /* Default spacing between all sections */
   flex-direction: column;
   width: 65%;
   border-radius: 12rem;
+  background-image: url("../assets/modal-bg.png");
+  background-size: cover;
   align-items: center;
   text-align: center;
   background-color: rgb(3, 15, 6);
@@ -444,6 +450,8 @@ section + section { /* Default spacing between all sections */
   padding-block: 6rem;
   padding-inline: 4rem;
   gap: 1.5rem;
+  /* 3D effect styles */
+  box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.6), -8px -8px 16px rgba(15, 40, 20, 0.2), inset 1px 1px 2px rgba(20, 60, 30, 0.1), inset -1px -1px 2px rgba(0, 0, 0, 0.2);
 }
 .testimonial-widget img {
   width: 12rem;
@@ -477,13 +485,13 @@ section + section { /* Default spacing between all sections */
 
 .faq-item {
   position: relative;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(207, 255, 204, 0.7294117647);
   padding-block: 2rem;
   transition: padding 0.3s ease, background-color 0.3s ease;
   /* When active, rotate to turn faq-btn into an X*/
 }
 .faq-item:first-child {
-  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  border-top: 1px solid rgba(207, 255, 204, 0.7294117647);
 }
 .faq-item .faq-question {
   align-items: center;
@@ -513,7 +521,7 @@ section + section { /* Default spacing between all sections */
   width: 2.25rem;
 }
 .faq-btn::before, .faq-btn::after {
-  background-color: #EDFFE0;
+  background-color: #64F764;
   content: "";
   position: absolute;
   transform-origin: center;
