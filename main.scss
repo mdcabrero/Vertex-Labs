@@ -499,7 +499,7 @@ section + section {  /* Default spacing between all sections */
     
     cite {
 
-        
+
         .person-name {
             color: #fff;
             font-size: $size-2;
@@ -531,8 +531,8 @@ section + section {  /* Default spacing between all sections */
 
 
 .testimonials-logo {
-  width: 11rem;
-  opacity: 0.5;
+  width: 12rem;
+  opacity: 0.35;
   transition: opacity 0.3s ease;
 }
 
@@ -558,19 +558,19 @@ section + section {  /* Default spacing between all sections */
 
 .faq-item {
     position: relative;
-    border-bottom: 1px solid #cfffccba;
+    border-bottom: 1px solid #d6fad3;
     padding-block: $space-2x;
     transition: padding 0.3s ease, background-color 0.3s ease;
   
     &:first-child {
-      border-top: 1px solid #cfffccba;
+      border-top: 1px solid #d6fad3;
       
     }
     
     // Question styling
     .faq-question {
       align-items: center;
-      color: $text-primary;
+      color: #bbebb6;
       cursor: pointer;
       display: flex;
       font-size: $size-2;
@@ -601,12 +601,12 @@ section + section {  /* Default spacing between all sections */
     flex-shrink: 0;
     justify-content: center;
     position: relative;
-    transition: background-color 0.3s ease;
-    width: 2.25rem;
+
+    width: 2rem;
   
     &::before,
     &::after {
-      background-color: $brand-primary;
+      background-color: #89e780;
       content: '';
       position: absolute;
       transform-origin: center;
@@ -655,8 +655,8 @@ section + section {  /* Default spacing between all sections */
 
 
   .site-footer {
-    background-color: rgb(10, 52, 19);
-    
+    background-color: rgb(0, 0, 0);
+    background-image: url('/assets/noise-bg.svg');
     /* Subtle brightness adjustment to enhance pattern visibility */
     color: $headline;
     display: flex;
@@ -664,12 +664,13 @@ section + section {  /* Default spacing between all sections */
     margin-inline: auto;
  
     margin-bottom: $space-4x;
-    height: calc(85vh - $space-3x);
+    height: calc(85vh - $space-4x);
     width: 95%;
     border-radius: $radius;
     padding-top: 4.5rem;
     padding-bottom: $space-md;
     padding-inline: $space-3x;
+    border: 1px solid $brand-primary;
   
   }
   
@@ -679,6 +680,7 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    padding-right: $space-6x;
   
     
       .footer-logo {
@@ -696,57 +698,57 @@ section + section {  /* Default spacing between all sections */
 .footer-right {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 30%;
   gap: $space-md;
 
   h2 {
-    font-size: $size-3;
-    font-weight: 400;
+    font-size: $size-2;
+    font-weight: 500;
     letter-spacing: -0.5px;
     color: $headline;
   }
 
   .description {
-    font-size: $size-1;
+    font-size: 1.1rem;
     line-height: 1.5;
-
     opacity: 0.9;
+    margin-bottom: $space-1x;
   }
 
   .email-form {
     position: relative;
     margin-bottom: $space-3x;
-    width: 75%;
-    
-    .email-label {
-      color: #B06C40;
-      font-size: 14px;
-      display: block;
-      margin-bottom: 8px;
-    }
+    width: 100%;
     
     .email-input {
       width: 100%;
       background: transparent;
       border: none;
-      border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
-      padding: 8px 50px 8px 0;
+      border-bottom: 1px dashed rgba(66, 168, 2, 0.7);
+      padding-bottom: 1rem;
+      letter-spacing: 1.5px;
       color: $headline;
-      font-size: 16px;
+      font-size: 14px;
       outline: none;
       
+      &::placeholder {
+        color: $brand-primary;
+        font-size: 0.8rem;
+        font-weight: $font-bold;
+  
+      }
+      
       &:focus {
-        border-bottom: 1px solid rgba(64, 192, 5, 0.5);
+        border-bottom: 1px solid rgba(66, 168, 2, 1);
       }
     }
     
     .submit-btn {
       position: absolute;
       right: 0;
-      bottom: 8px;
+      bottom: 6px;
       background-color: transparent;
-      border: 1px solid #B06C40;
-      color: #B06C40;
+      color: $brand-primary;
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -757,59 +759,63 @@ section + section {  /* Default spacing between all sections */
       transition: all 0.2s ease;
       
       &:hover {
-        background-color: rgba(176, 108, 64, 0.1);
+        background-color: rgba(100, 247, 100, 0.1);
       }
       
       svg {
         width: 16px;
         height: 16px;
+        stroke: $brand-primary;
       }
     }
   }
 
-  .socials {
-    margin-top: auto;
+    .socials {
+
     
     &-title {
-      color: #777;
-      font-size: 14px;
-      margin-bottom: $space-md;
-      font-weight: 400;
+      color: #abb2ab;
+      opacity: 1;
+      font-size: 0.85rem;
+      letter-spacing: 1.5px;
+      margin-bottom: $space-1x;
+      font-weight: $font-bold;
       text-transform: uppercase;
     }
     
     .social-links {
-      display: flex;
-      flex-wrap: wrap;
-
+      display: grid;
+      grid-template-columns: repeat(2, 120px);
+      grid-gap: $space-1x;
+ 
       
       a {
-        color: $headline;
+        color: $text-primary;
         text-decoration: none;
-        font-size: 14px;
+        font-weight: $font-bold;
+        font-size: 0.85rem;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         opacity: 0.9;
         transition: opacity 0.2s ease;
-        display: flex;
+        display: inline-flex;
         align-items: center;
         gap: 6px;
+        white-space: nowrap;
         
         &:hover {
           opacity: 1;
         }
         
         svg {
-          width: 16px;
-          height: 16px;
+          margin-bottom: 1px;
+          width: 1.3rem;
+          height: 1.3rem;
         }
       }
-      
-
     }
   }
 }
-
 
 
   
