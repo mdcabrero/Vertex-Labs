@@ -469,56 +469,69 @@ section + section {  /* Default spacing between all sections */
 /// --------- TESTIMONIALS --------- \\\\\\
 
 .testimonials {
-  margin-block: $space-12x; //Adding a bit of extra margin for isolation
+  padding-inline: $space-6x;
 }
 
-.testimonial-widget {
+.testimonial-body {
     display: flex;
     flex-direction: column;
-    width: 65%;
-    border-radius: 12rem;
-    background-image: url('../assets/modal-bg.png');
-    background-size: cover;
-    align-items: center;
-    text-align: center;
-    background-color: rgb(3, 15, 6);
-    margin-inline: auto;
-    padding-block: $space-6x;
-    padding-inline: $space-4x;
-    gap: $space-md;
-
-       /* 3D effect styles */
-   box-shadow: 
-        8px 8px 16px rgba(0, 0, 0, 0.6),
-        -8px -8px 16px rgba(15, 40, 20, 0.2),
-        inset 1px 1px 2px rgba(20, 60, 30, 0.1),
-        inset -1px -1px 2px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    margin-top: $space-3x;
+    gap: $space-3x;
 
 
-    
-
-    
-
-        img {
-            width: 12rem;
+ blockquote {
+        font-size: $size-6;
+        line-height: 1.2;
+        font-weight: $font-regular;
+        background: linear-gradient(90deg, #3abb9b 0%, #7deb69 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        position: relative;
+        
+        &::before {
+            content: '"';
+            position: absolute;
+            left: -1rem;
         }
+    }
+    
+    cite {
 
-        blockquote {
-            width: 60%;
+        
+        .person-name {
+            color: #fff;
+            font-size: $size-2;
+            font-weight: $font-regular;
+            color: $text-primary;
+   
+            
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 0.75rem;
+                height: 0.75rem;
+                background-color: #4de8c2;
+                border-radius: 50%;
+                margin-right: 0.75rem;
+            }
         }
+      
+    }
 }
 
 
 .logo-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+   justify-content: flex-start;
   gap: $space-2x;
-  margin-top: $space-3x;
+
 
 
 .testimonials-logo {
-  width: 12rem;
+  width: 11rem;
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
@@ -539,6 +552,8 @@ section + section {  /* Default spacing between all sections */
     grid-template-columns: 1fr 1.25fr;
     gap: $space-3x;
     padding-inline: $space-4x;
+    margin-top: $space-16x; //Adding a bit of extra margin for isolation
+
 }
 
 .faq-item {
@@ -647,12 +662,12 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     margin-inline: auto;
-    margin-top: $space-8x;
-    margin-bottom: $space-2x;
-    height: calc(80vh - $space-3x);
+ 
+    margin-bottom: $space-4x;
+    height: calc(85vh - $space-3x);
     width: 95%;
     border-radius: $radius;
-    padding-top: $space-6x;
+    padding-top: 4.5rem;
     padding-bottom: $space-md;
     padding-inline: $space-3x;
   
@@ -672,35 +687,133 @@ section + section {  /* Default spacing between all sections */
         height: auto;
   
   
-   
-  
       }
-  
+
+
+
+// SCSS for footer-right section
+
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: $space-md;
+
+  h2 {
+    font-size: $size-3;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+    color: $headline;
   }
 
+  .description {
+    font-size: $size-1;
+    line-height: 1.5;
 
-  
-  .footer-nav {
-    display: flex;
-    justify-content: center;
-    gap: 1.25rem;
-    margin-top: 0.75rem;
-  
+    opacity: 0.9;
+  }
+
+  .email-form {
+    position: relative;
+    margin-bottom: $space-3x;
+    width: 75%;
     
-    a {
-      color: white;
-      font-weight: $font-regular;
-      font-size: 1.1rem;
-  
-      &:hover {
-        color: $brand-primary;
+    .email-label {
+      color: #B06C40;
+      font-size: 14px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .email-input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.3);
+      padding: 8px 50px 8px 0;
+      color: $headline;
+      font-size: 16px;
+      outline: none;
+      
+      &:focus {
+        border-bottom: 1px solid rgba(64, 192, 5, 0.5);
       }
     }
     
+    .submit-btn {
+      position: absolute;
+      right: 0;
+      bottom: 8px;
+      background-color: transparent;
+      border: 1px solid #B06C40;
+      color: #B06C40;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: rgba(176, 108, 64, 0.1);
+      }
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+
+  .socials {
+    margin-top: auto;
+    
+    &-title {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: $space-md;
+      font-weight: 400;
+      text-transform: uppercase;
+    }
+    
+    .social-links {
+      display: flex;
+      flex-wrap: wrap;
+
+      
+      a {
+        color: $headline;
+        text-decoration: none;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        opacity: 0.9;
+        transition: opacity 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        
+        &:hover {
+          opacity: 1;
+        }
+        
+        svg {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      
+
+    }
+  }
+}
+
+
+
   
   }
-  
-  
   
 
 
@@ -709,16 +822,20 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     justify-content: space-between;
     align-items: last baseline;
+    text-transform: uppercase;
     color: rgb(206, 206, 206);
     margin-top: auto;
-    font-size: $size-0;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    font-weight: $font-bold;
+    opacity: 0.75;
   
       a {
-        margin-right: $space-3x;
+        margin-right: $space-2x;
       }
   
       small{
-        font-size: 0.8rem;
+        font-size: 0.75rem;
       }
   }
   

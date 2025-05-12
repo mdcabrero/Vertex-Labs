@@ -202,123 +202,172 @@ function initSliders() {
 
 // Sample testimonial data
 const testimonials = [
-    {
-      logoImg: "assets/logo.svg",
-      quote: "Back when the video streaming industry started to boom, GLOBL helped us duplicate the size of our engineering in just 18 months.",
-      personName: "Alice Parkinson",
-      personTitle: "Product Management Lead at Netflix"
-    },
-    {
-      logoImg: "assets/logo2.svg",
-      quote: "Incorporating GLOBL talent matching and automated HR workflows has allowed us to identify the right talent for our teams and reduce time to fill vacancies.",
-      personName: "Michael Chen",
-      personTitle: "Head of Talent Acquisition at Shopify"
-    },
-    {
-      logoImg: "assets/logo3.svg",
-      quote: "Seeing skills as the labor market currency allows you to hire faster and better. It allows you to be relevant in the market and to move with pace.",
-      personName: "Sarah Williams",
-      personTitle: "VP of Engineering at Zoom"
-    }
-  ];
+  {
+    logoImg: "assets/logo.svg",
+    quote: "Modal Sandboxes enable us to execute generated code securely and flexibly. We expedited the development of our code interpreter feature integrated into Le Chat.",
+    testimonee: "Wendy Shang, AI Scientist at Mistral AI"
+  },
+  {
+    logoImg: "assets/logo2.svg",
+    quote: "Their data visualization platform transformed how we interpret customer behavior patterns. We've increased our conversion rates by 42% since implementing their analytics suite.",
+    testimonee: "David Huang, CTO at Substack"
+  },
+  {
+    logoImg: "assets/logo3.svg",
+    quote: "The predictive analytics engine helped us identify market trends months before our competitors. This has been instrumental in our strategic planning process.",
+    testimonee: "Jennifer Park, Director of Analytics at Ramp"
+  }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Get testimonial elements
+  const testimonialBody = document.querySelector('.testimonial-body');
+  const quoteElement = document.querySelector('[data-quote]');
+  const testimoneeElement = document.querySelector('[data-person-name]');
   
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get testimonial elements
-    const testimonialWidget = document.querySelector('.testimonial-widget');
-    const companyLogo = document.querySelector('[data-company-logo]');
-    const quoteElement = document.querySelector('[data-quote]');
-    const personNameElement = document.querySelector('[data-person-name]');
-    const personTitleElement = document.querySelector('[data-person-title]');
+  // Get logo container and logo elements
+  const logoContainer = document.querySelector('.logo-container');
+  const logoElements = document.querySelectorAll('.testimonials-logo');
+  
+  let currentIndex = 0;
+  let timer;
+  
+  // Initialize logo images
+  logoElements.forEach((logo, index) => {
+    if (index < testimonials.length) {
+      logo.src = testimonials[index].logoImg;
+      logo.alt = testimonials[index].testimonee + " testimonial";
+      
+      // Add click event to each logo
+      logo.addEventListener('click', () => {
+        clearInterval(timer);
+        updateTestimonial(index);
+        startAutoRotation();
+      });
+    }
+  });
+  
+  /**
+   * Updates the testimonial content with smooth transition
+   * @param {number} index - Index of the testimonial to display
+   */
+  function updateTestimonial(index) {
+    // Store the current index
+    currentIndex = index;
     
-    // Get logo container and logo elements
-    const logoContainer = document.querySelector('.logo-container');
-    const logoElements = document.querySelectorAll('.testimonials-logo');
+    // Fade out
+    testimonialBody.style.opacity = 0;
     
-    let currentIndex = 0;
-    let timer;
+    setTimeout(() => {
+      // Update content
+      quoteElement.textContent = testimonials[index].quote;
+      
+      // Update the testimonee (combined name and title)
+      testimoneeElement.textContent = testimonials[index].testimonee;
+      
+      // Highlight the selected logo
+      logoElements.forEach((logo, i) => {
+        if (i === index) {
+          logo.classList.add('active');
+        } else {
+          logo.classList.remove('active');
+        }
+      });
+      
+      // Fade in
+      testimonialBody.style.opacity = 1;
+    }, 350); // Short delay for fade effect
+  }
+  
+  /**
+   * Starts the automatic rotation of testimonials
+   */
+  function startAutoRotation() {
+    // Clear any existing timer
+    clearInterval(timer);
     
-    // Initialize logo images
-    logoElements.forEach((logo, index) => {
-      if (index < testimonials.length) {
-        logo.src = testimonials[index].logoImg;
-        logo.alt = testimonials[index].personName + " testimonial";
+    // Set a new timer
+    timer = setInterval(() => {
+      // Move to next testimonial
+      const nextIndex = (currentIndex + 1) % testimonials.length;
+      updateTestimonial(nextIndex);
+    }, 10000); // Change every 10 seconds
+  }
+  
+  // Add transition for smooth fade effect
+  testimonialBody.style.transition = 'opacity 0.3s ease';
+  
+  // Initialize with the first testimonial
+  updateTestimonial(0);
+  
+  // Start the automatic rotation
+  startAutoRotation();
+});
+
+/**
+* FAQ Accordion Functionality
+* Allows users to expand/collapse FAQ items with smooth animations
+*/
+function setupAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    const answer = item.querySelector('.faq-answer');
+    
+    // Make sure answer has proper initial state
+    answer.style.height = '0px';
+    answer.style.overflow = 'hidden';
+    answer.style.transition = 'height 0.3s ease-out';
+    
+    // Remove hidden attribute but keep it visually hidden with height
+    if (answer.hasAttribute('hidden')) {
+      answer.removeAttribute('hidden');
+    }
+    
+    question.addEventListener('click', () => {
+      const isExpanded = question.getAttribute('aria-expanded') === 'true';
+      
+      // Close all other accordions
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          const otherQuestion = otherItem.querySelector('.faq-question');
+          const otherAnswer = otherItem.querySelector('.faq-answer');
+          
+          otherItem.classList.remove('active');
+          otherAnswer.style.height = '0px';
+          otherQuestion.setAttribute('aria-expanded', 'false');
+        }
+      });
+      
+      // Toggle current accordion
+      if (!isExpanded) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
         
-        // Add click event to each logo
-        logo.addEventListener('click', () => {
-          clearInterval(timer);
-          updateTestimonial(index);
-          startAutoRotation();
-        });
+        // Animate height
+        const height = answer.scrollHeight;
+        answer.style.height = `${height}px`;
+        
+        // Apply styling to button
+        const faqBtn = question.querySelector('.faq-btn');
+        if (faqBtn) {
+          faqBtn.classList.add('active');
+        }
+      } else {
+        item.classList.remove('active');
+        question.setAttribute('aria-expanded', 'false');
+        answer.style.height = '0px';
+        
+        // Reset button styling
+        const faqBtn = question.querySelector('.faq-btn');
+        if (faqBtn) {
+          faqBtn.classList.remove('active');
+        }
       }
     });
-    
-    /**
-     * Updates the testimonial content with smooth transition
-     * @param {number} index - Index of the testimonial to display
-     */
-    function updateTestimonial(index) {
-      // Store the current index
-      currentIndex = index;
-      
-      // Fade out
-      testimonialWidget.style.opacity = 0;
-      
-      setTimeout(() => {
-        // Update content
-        companyLogo.src = testimonials[index].logoImg;
-        companyLogo.alt = testimonials[index].personName + "'s company";
-        quoteElement.textContent = testimonials[index].quote;
-        
-        // Update the person info - keeping the original structure
-        // This preserves the existing HTML structure while updating the text
-        const nameTextNode = personNameElement.firstChild;
-        if (nameTextNode && nameTextNode.nodeType === Node.TEXT_NODE) {
-          nameTextNode.nodeValue = testimonials[index].personName;
-        } else {
-          // Fallback if structure is different
-          personNameElement.textContent = testimonials[index].personName;
-        }
-        
-        personTitleElement.textContent = testimonials[index].personTitle;
-        
-        // Highlight the selected logo
-        logoElements.forEach((logo, i) => {
-          if (i === index) {
-            logo.classList.add('active');
-          } else {
-            logo.classList.remove('active');
-          }
-        });
-        
-        // Fade in
-        testimonialWidget.style.opacity = 1;
-      }, 350); // Short delay for fade effect
-    }
-    
-    /**
-     * Starts the automatic rotation of testimonials
-     */
-    function startAutoRotation() {
-      // Clear any existing timer
-      clearInterval(timer);
-      
-      // Set a new timer
-      timer = setInterval(() => {
-        // Move to next testimonial
-        const nextIndex = (currentIndex + 1) % testimonials.length;
-        updateTestimonial(nextIndex);
-      }, 10000); // Change every 10 seconds
-    }
-    
-    // Add transition for smooth fade effect
-    testimonialWidget.style.transition = 'opacity 0.3s ease';
-    
-    // Initialize with the first testimonial
-    updateTestimonial(0);
-    
-    // Start the automatic rotation
-    startAutoRotation();
   });
+}
 
 
 
