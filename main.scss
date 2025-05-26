@@ -58,7 +58,7 @@ body {
     position: fixed;
     inset: -200%;
     background-image: url('../assets/noise.svg');
-    opacity: 12%;
+    opacity: 12.5%;
     z-index: -10;
     /* No CSS animation here, we'll use GSAP */
 }
@@ -99,10 +99,10 @@ body {
         height: 100%;
         background-image: url('../assets/hero_bg.jpg');
         background-size: cover;
-        background-position: right 90%;
-        opacity: 0.4; /* 60% opacity as decimal */
+        background-position: right 100%;
+        opacity: 0.4; 
         z-index: -1; /* Place behind content */
-        filter: saturate(350%);
+        filter: saturate(250%);
     }
 }
 
@@ -139,7 +139,7 @@ section + section {  /* Default spacing between all sections */
 
 .two-col {
     display: grid;
-    grid-template-columns: 1fr 0.7fr;
+    grid-template-columns: 1fr 0.75fr;
     gap: $space-4x;
     padding-inline: $space-4x;
   }
@@ -202,7 +202,7 @@ section + section {  /* Default spacing between all sections */
 
   /* This makes black transparent */
   mix-blend-mode: lighten;
-  filter: contrast(1.5) brightness(0.8);
+  filter: contrast(1.5) brightness(1.5);
 
    /* Add vertical gradient mask (more visible at top, fades at bottom) */
    -webkit-mask-image: linear-gradient(to bottom, 
@@ -392,8 +392,9 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 365px;
-    aspect-ratio: 3/4;
+    width: 375px;
+    aspect-ratio: 4/5;
+    border: 1px solid green;
  
     background-size: cover;
     background-position: right center;
@@ -401,10 +402,12 @@ section + section {  /* Default spacing between all sections */
 
      &[data-industry="media"] {
         background-image: url('../assets/media.png');
+
     }
     
     &[data-industry="manufacturing"] {
-        background-image: url('../assets/manufacturing.png');
+        background-image: url('../assets/manufacturing2.png');
+
     }
     
     &[data-industry="healthcare"] {
@@ -424,7 +427,7 @@ section + section {  /* Default spacing between all sections */
     }
     
     &[data-industry="supply-chain"] {
-        background-image: url('../assets/supply-chain.png');
+        background-image: url('../assets/supply-chain2.png');
     }
 
 
@@ -445,7 +448,7 @@ section + section {  /* Default spacing between all sections */
         width: 100%;
         height: 125%;
          -webkit-filter: blur(8px);
-        filter: blur(8px);
+        filter: blur(10px);
         transform: translateY(0.25rem);
       }
   
