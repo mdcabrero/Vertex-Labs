@@ -139,7 +139,7 @@ section + section {  /* Default spacing between all sections */
 
 .two-col {
     display: grid;
-    grid-template-columns: 1fr 0.75fr;
+    grid-template-columns: 1fr 0.6fr;
     gap: $space-4x;
     padding-inline: $space-4x;
   }
@@ -157,8 +157,7 @@ section + section {  /* Default spacing between all sections */
     margin-inline: auto;
     width: calc(100vw - $space-2x);
   /* Drop Shadow with glossy effect */
-  box-shadow: 0px 0px 8px 0 rgba(2, 96, 51, 0.25), /* Subtle light from top-left */
-              6px 6px 15px 0 rgba(2, 5, 3, 0.6); /* Strong shadow from bottom-right */
+  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2), /* Subtle light from top-left */
 
    }
 
@@ -171,7 +170,7 @@ section + section {  /* Default spacing between all sections */
     bottom: 0;
     pointer-events: none;
     border-radius: $radius;
-    box-shadow:  inset 6px 6px 7px 0 rgba(42, 54, 47, 0.2); /* Inner shadow */
+    box-shadow:  inset 3px 6px 10px 0 rgba(2, 34, 15, 0.2); /* Inner shadow */
   }
 
 
@@ -180,7 +179,7 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     gap: $space-md;
-    max-width: 85%;
+    max-width: 80%;
    }
 
 
@@ -189,20 +188,18 @@ section + section {  /* Default spacing between all sections */
 // ABOUT
 
    .media-wrapper {
-    width: 100%;
-
-  
+    width: 90%;
    }
 
    #cube-video {
-    object-fit: cover;
+    object-fit: contain;
     width: 100%;
     height: 100%;
 
 
   /* This makes black transparent */
   mix-blend-mode: lighten;
-  filter: contrast(1.5) brightness(1.5);
+  filter: contrast(1.25) saturate(75%);
 
    /* Add vertical gradient mask (more visible at top, fades at bottom) */
    -webkit-mask-image: linear-gradient(to bottom, 
@@ -226,126 +223,128 @@ section + section {  /* Default spacing between all sections */
 // SERVICES
 
 .services-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto;
-    gap: $space-md;
-    margin-top: $space-4x;
-
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto auto;
+  gap: $space-md;
+  margin-top: $space-4x;
 }
 
-
-
 .service-card--wide {
-    display: flex;
-    justify-content: space-between;
-    background-color: #1a1a1a;
-    border-radius: 1rem;
-    height: 66vh;
-    background-image: url('../assets/service-bg.png');
-    background-position: left 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 3rem;
-    grid-column: 1 / -1; /* Spans from first to last column */
+  display: flex;
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  border-radius: 1rem;
+  height: 66vh;
+  background-image: url('../assets/service-bg.png');
+  background-position: left 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 3rem;
+  grid-column: 1 / -1; /* Spans from first to last column */
+   box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.6),
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                0 2px 8px rgba(9, 74, 35, 0.25),
+                inset 0 1px 0 rgba(0, 201, 67, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 
 
-.service-bio {
+
+  &[data-service="data-consulting"] {
+    background-image: url('../assets/service-bg3.png');
+    background-position: left 30%;
+  }
+
+  .service-bio {
     display: flex;
     flex-direction: column;
     gap: $space-lite;
     max-width: 33%;
     align-self: end;
 
-
-.service-icon {
- 
- svg {
-    margin-bottom: $space-1x;
-    width: 2.5rem;
-}
-
-}
-
-}
-
-.service-visual {
-    width: 20%;
-
-
-        img {
-            max-width: 100%; //These two properties allow us to ensure that the image won't overflow and we only have to worry about the width and height of our 'service-visual' class
-            max-height: 100%;
-            object-fit: contain;
-        }
-}
-
-}
-
-//Vertical card
-
-.service-card--vertical {
-    display: flex;
-    flex-direction: column;
-    background-color: #000000;
-    border-radius: 1rem;
-    justify-content: end;
-    padding: 3rem;
-    height: 66vh;
-    position: relative;
-    overflow: hidden; // Important to allow the pseudo-element to exceed boundaries but be clipped
-
-
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: -20%; // Negative value moves it below the container
-        left: 0%; // Negative value moves it beyond the right edge
-        background-image: url('../assets/card-shape3.svg');
-        background-repeat: no-repeat;
-        background-position: center; // Or bottom right, etc.
-        width: 120%;
-        height: 100%;
-        pointer-events: none;
-
+    .service-icon {
+      svg {
+        margin-bottom: $space-1x;
+        width: 2.5rem;
+      }
     }
+  }
 
- 
+  
+}
+
+// Vertical card
+.service-card--vertical {
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  border-radius: 1rem;
+  justify-content: end;
+  padding: 3rem;
+  height: 66vh;
+
+  position: relative;
+  overflow: hidden; // Important to allow the pseudo-element to exceed boundaries but be clipped
+   box-shadow: 
+                0 12px 40px rgba(0, 0, 0, 0.6),
+                0 6px 20px rgba(0, 0, 0, 0.4),
+                0 2px 8px rgba(9, 74, 35, 0.25),
+                inset 0 1px 0 rgba(0, 201, 67, 0.1),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 
 
-.service-bio {
+
+  &[data-service="machine-learning"] {
+    &::before {
+      content: '';
+      position: absolute;
+      top: -15%; // Negative value moves it below the container
+      left: 0%; // Negative value moves it beyond the right edge
+      background-image: url('../assets/card-shape3.svg');
+      background-repeat: no-repeat;
+      background-position: center; // Or bottom right, etc.
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+
+  &[data-service="data-management"] {
+    &::before {
+      content: '';
+      position: absolute;
+      top: -20%; // Negative value moves it below the container
+      left: 25%; // Negative value moves it beyond the right edge
+      background-image: url('../assets/card-shape2.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center; // Or bottom right, etc.
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  }
+
+  .service-bio {
     display: flex;
     flex-direction: column;
     gap: $space-lite;
     max-width: 70%;
-   
 
-
-.service-icon {
- 
- svg {
-    margin-bottom: $space-1x;
-    width: 2.5rem;
+    .service-icon {
+      svg {
+        margin-bottom: $space-1x;
+        width: 2.5rem;
+      }
+    }
+  }
 }
 
-}
-
-}
-
-.service-visual {
-    align-self: end;
-    width: 30%;
-    height: 100%; //Even if at first glance this property does nothing, it ensures image won't overflow the card,
 
 
-        img {
-            max-width: 100%; //These two properties allow us to ensure that the image won't overflow and we only have to worry about the width and height of our 'service-visual' class
-            max-height: 100%;
-            object-fit: contain;
-        }
-}
-}
 
 
 /// --------- INDUSTRIES --------- \\\\\\
@@ -394,7 +393,7 @@ section + section {  /* Default spacing between all sections */
     justify-content: flex-end;
     width: 375px;
     aspect-ratio: 4/5;
-    border: 1px solid green;
+    border: 1px solid rgb(55, 128, 0);
  
     background-size: cover;
     background-position: right center;
@@ -410,9 +409,7 @@ section + section {  /* Default spacing between all sections */
 
     }
     
-    &[data-industry="healthcare"] {
-        background-image: url('../assets/healthcare.png');
-    }
+
     
     &[data-industry="finance"] {
         background-image: url('../assets/finance.png');
@@ -423,7 +420,7 @@ section + section {  /* Default spacing between all sections */
     }
     
     &[data-industry="technology"] {
-        background-image: url('../assets/technology.png');
+        background-image: url('../assets/retail.png');
     }
     
     &[data-industry="supply-chain"] {
@@ -573,7 +570,7 @@ section + section {  /* Default spacing between all sections */
     // Question styling
     .faq-question {
       align-items: center;
-      color: #bbebb6;
+      color: #afe7a9;
       cursor: pointer;
       display: flex;
       font-size: $size-2;

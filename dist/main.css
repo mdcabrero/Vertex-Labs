@@ -199,7 +199,7 @@ section + section { /* Default spacing between all sections */
 
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 0.75fr;
+  grid-template-columns: 1fr 0.6fr;
   gap: 4rem;
   padding-inline: 4rem;
 }
@@ -216,7 +216,7 @@ section + section { /* Default spacing between all sections */
   margin-inline: auto;
   width: calc(100vw - 2rem);
   /* Drop Shadow with glossy effect */
-  box-shadow: 0px 0px 8px 0 rgba(2, 96, 51, 0.25), 6px 6px 15px 0 rgba(2, 5, 3, 0.6); /* Strong shadow from bottom-right */
+  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2);
 }
 
 .content-island::after {
@@ -228,27 +228,27 @@ section + section { /* Default spacing between all sections */
   bottom: 0;
   pointer-events: none;
   border-radius: 1.5rem;
-  box-shadow: inset 6px 6px 7px 0 rgba(42, 54, 47, 0.2); /* Inner shadow */
+  box-shadow: inset 3px 6px 10px 0 rgba(2, 34, 15, 0.2); /* Inner shadow */
 }
 
 .content-block {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  max-width: 85%;
+  max-width: 80%;
 }
 
 .media-wrapper {
-  width: 100%;
+  width: 90%;
 }
 
 #cube-video {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: 100%;
   /* This makes black transparent */
   mix-blend-mode: lighten;
-  filter: contrast(1.5) brightness(1.5);
+  filter: contrast(1.25) saturate(75%);
   /* Add vertical gradient mask (more visible at top, fades at bottom) */
   -webkit-mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0));
   mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0));
@@ -279,6 +279,12 @@ section + section { /* Default spacing between all sections */
   background-repeat: no-repeat;
   padding: 3rem;
   grid-column: 1/-1; /* Spans from first to last column */
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.service-card--wide[data-service=data-consulting] {
+  background-image: url("../assets/service-bg3.png");
+  background-position: left 30%;
 }
 .service-card--wide .service-bio {
   display: flex;
@@ -291,14 +297,6 @@ section + section { /* Default spacing between all sections */
   margin-bottom: 1rem;
   width: 2.5rem;
 }
-.service-card--wide .service-visual {
-  width: 20%;
-}
-.service-card--wide .service-visual img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
 
 .service-card--vertical {
   display: flex;
@@ -310,16 +308,31 @@ section + section { /* Default spacing between all sections */
   height: 66vh;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
-.service-card--vertical::before {
+.service-card--vertical[data-service=machine-learning]::before {
   content: "";
   position: absolute;
-  top: -20%;
+  top: -15%;
   left: 0%;
   background-image: url("../assets/card-shape3.svg");
   background-repeat: no-repeat;
   background-position: center;
-  width: 120%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.service-card--vertical[data-service=data-management]::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 25%;
+  background-image: url("../assets/card-shape2.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
   height: 100%;
   pointer-events: none;
 }
@@ -332,16 +345,6 @@ section + section { /* Default spacing between all sections */
 .service-card--vertical .service-bio .service-icon svg {
   margin-bottom: 1rem;
   width: 2.5rem;
-}
-.service-card--vertical .service-visual {
-  align-self: end;
-  width: 30%;
-  height: 100%;
-}
-.service-card--vertical .service-visual img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
 }
 
 .industries {
@@ -381,7 +384,7 @@ section + section { /* Default spacing between all sections */
   justify-content: flex-end;
   width: 375px;
   aspect-ratio: 4/5;
-  border: 1px solid green;
+  border: 1px solid rgb(55, 128, 0);
   background-size: cover;
   background-position: right center;
   border-radius: 0.75rem;
@@ -392,9 +395,6 @@ section + section { /* Default spacing between all sections */
 .industry-card[data-industry=manufacturing] {
   background-image: url("../assets/manufacturing2.png");
 }
-.industry-card[data-industry=healthcare] {
-  background-image: url("../assets/healthcare.png");
-}
 .industry-card[data-industry=finance] {
   background-image: url("../assets/finance.png");
 }
@@ -402,7 +402,7 @@ section + section { /* Default spacing between all sections */
   background-image: url("../assets/aviation.png");
 }
 .industry-card[data-industry=technology] {
-  background-image: url("../assets/technology.png");
+  background-image: url("../assets/retail.png");
 }
 .industry-card[data-industry=supply-chain] {
   background-image: url("../assets/supply-chain2.png");
@@ -510,7 +510,7 @@ section + section { /* Default spacing between all sections */
 }
 .faq-item .faq-question {
   align-items: center;
-  color: #bbebb6;
+  color: #afe7a9;
   cursor: pointer;
   display: flex;
   font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.56rem);
