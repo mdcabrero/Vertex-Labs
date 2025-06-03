@@ -34,6 +34,10 @@ p {
   color: $text-primary;
 }
 
+.service-description {
+  font-size: 1.3rem;
+}
+
 
 .content {
   font-size: 1.5rem;
@@ -63,9 +67,10 @@ h2 {
 .card-title,
 h3 {
     // Title styling for card elements and other UI component
-    font-size: $size-card;
-    font-weight: $font-regular;
+    font-size: 1.8rem;
+    font-weight: $font-semibold;
     line-height: 1.3;
+    letter-spacing: 0.5px;
   }
 
 

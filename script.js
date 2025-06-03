@@ -204,18 +204,18 @@ function initSliders() {
 const testimonials = [
   {
     logoImg: "assets/logo.svg",
-    quote: "Modal Sandboxes enable us to execute generated code securely and flexibly. We expedited the development of our code interpreter feature integrated into Le Chat.",
-    testimonee: "Wendy Shang, AI Scientist at Mistral AI"
+    quote: "Rubik Labs helped us consolidate disperse customer data from all our selling outlets. Their predictive models increased our inventory accuracy by 34% and reduced stockouts during peak seasons.",
+    testimonee: "Sarah Martinez, VP of Sales at Target"
   },
   {
     logoImg: "assets/logo2.svg",
-    quote: "Their data visualization platform transformed how we interpret customer behavior patterns. We've increased our conversion rates by 42% since implementing their analytics suite.",
-    testimonee: "David Huang, CTO at Substack"
+    quote: "Their machine learning algorithms transformed our fraud detection capabilities. We now identify suspicious transactions 3x faster while reducing false positives by 28%, saving millions in potential losses.",
+    testimonee: "James Chen, Risk Manager at Prudential"
   },
   {
     logoImg: "assets/logo3.svg",
-    quote: "The predictive analytics engine helped us identify market trends months before our competitors. This has been instrumental in our strategic planning process.",
-    testimonee: "Jennifer Park, Director of Analytics at Ramp"
+    quote: "Rubik Labs' supply chain analytics helped us optimize our delivery networks across 50+ distribution centers. We reduced logistics costs by $12M annually while improving delivery times by 18%.",
+    testimonee: "Jakub Musial, Regional Manager at Amazon Logistics"
   }
 ];
 

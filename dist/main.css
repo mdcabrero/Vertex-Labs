@@ -26,6 +26,10 @@ p {
   color: #EDFFE0;
 }
 
+.service-description {
+  font-size: 1.3rem;
+}
+
 .content {
   font-size: 1.5rem;
   color: #EDFFE0;
@@ -49,9 +53,10 @@ h2 {
 
 .card-title,
 h3 {
-  font-size: clamp(1rem, 1.12rem + 0.3589vw, 1.5rem);
-  font-weight: 400;
+  font-size: 1.8rem;
+  font-weight: 600;
   line-height: 1.3;
+  letter-spacing: 0.5px;
 }
 
 .card-title--v2,
@@ -151,14 +156,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  height: 110vh;
+  height: 115vh;
   width: 100%;
   position: relative;
 }
 .hero-content {
   gap: 4em;
   padding-left: 4rem;
-  padding-bottom: 10rem;
+  padding-bottom: 12rem;
 }
 .hero::before {
   content: "";
@@ -170,9 +175,9 @@ body {
   background-image: url("../assets/hero_bg.jpg");
   background-size: cover;
   background-position: right 100%;
-  opacity: 0.4;
+  opacity: 0.75;
   z-index: -1; /* Place behind content */
-  filter: saturate(250%);
+  filter: saturate(200%);
 }
 
 main {
@@ -180,11 +185,11 @@ main {
 }
 
 section + section { /* Default spacing between all sections */
-  margin-top: 8rem;
+  margin-top: 10rem;
 }
 
 .text-measure {
-  max-width: 50%;
+  max-width: 60%;
 }
 
 .vertical-margin {
@@ -290,7 +295,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-width: 33%;
+  max-width: 35%;
   align-self: end;
 }
 .service-card--wide .service-bio .service-icon svg {
@@ -305,7 +310,7 @@ section + section { /* Default spacing between all sections */
   border-radius: 1rem;
   justify-content: end;
   padding: 3rem;
-  height: 66vh;
+  height: 75vh;
   position: relative;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
@@ -340,7 +345,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  max-width: 70%;
+  max-width: 75%;
 }
 .service-card--vertical .service-bio .service-icon svg {
   margin-bottom: 1rem;
@@ -461,7 +466,7 @@ section + section { /* Default spacing between all sections */
 }
 .testimonial-body cite .person-name {
   color: #fff;
-  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.56rem);
+  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
   font-weight: 400;
   color: #EDFFE0;
 }
@@ -513,7 +518,7 @@ section + section { /* Default spacing between all sections */
   color: #afe7a9;
   cursor: pointer;
   display: flex;
-  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.56rem);
+  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
   font-weight: 400;
   justify-content: space-between;
   width: 100%;
@@ -575,8 +580,9 @@ section + section { /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   margin-inline: auto;
+  margin-top: 10rem;
   margin-bottom: 4rem;
-  height: calc(85vh - 4rem);
+  height: calc(87.5vh - 4rem);
   width: 95%;
   border-radius: 1.5rem;
   padding-top: 4.5rem;
@@ -589,7 +595,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-right: 6rem;
+  padding-right: 4rem;
 }
 .footer-main .footer-logo {
   width: 100%;
@@ -603,9 +609,8 @@ section + section { /* Default spacing between all sections */
   gap: 1.5rem;
 }
 .footer-main .footer-right h2 {
-  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.56rem);
+  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
   font-weight: 500;
-  letter-spacing: -0.5px;
   color: #CFFFCC;
 }
 .footer-main .footer-right .description {
@@ -617,7 +622,7 @@ section + section { /* Default spacing between all sections */
 .footer-main .footer-right .email-form {
   position: relative;
   margin-bottom: 3rem;
-  width: 100%;
+  width: 90%;
 }
 .footer-main .footer-right .email-form .email-input {
   width: 100%;
