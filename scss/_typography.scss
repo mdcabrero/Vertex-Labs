@@ -36,14 +36,30 @@ p {
 
 .service-description {
   font-size: 1.3rem;
-}
+  @include hide-on-mobile;
+
+  }
+
 
 
 .content {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: $text-primary;
-  max-width: 42ch;
-  line-height: 1.4;
+  max-width: 100%;
+  line-height: 1.4; 
+
+    @include tablet {
+    font-size: 1.25rem;
+    max-width: 90%;
+    
+  }
+
+   @include mobile {
+    max-width: 100%; 
+
+  }
+
+
 }
 
 

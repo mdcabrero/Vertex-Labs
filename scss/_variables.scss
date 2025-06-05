@@ -14,7 +14,6 @@ $modal:#000100;     // Main background
 $bg-dark: #010005;       // Darker blue background
 $bg-light: #FBFBFB;
 
-// UI Colors
 
 
 // Font Weights
@@ -37,24 +36,83 @@ $size-7: clamp(3.1353rem, 2.655rem + 2.1957vw, 4.7684rem);
 $size-8: clamp(3.7623rem, 3.1158rem + 2.9555vw, 5.9605rem);
 
 // Spacing System
-// Lite Spaces (Components & UI Elements)
-$space-micro: 0.25rem;
-$space-lite: 0.5rem;
-$space-3q: 0.75rem;
+
+//The difference between 1rem and 1vw in your current viewport (1536px wide) is 0.64px
+//Current adjustment: 0.64px ÷ 15.36px = 4.1667% of deviation from rems per vw unit 
+//This has to be taken into account and added up per each spacing unit if we want vw units to be translated to rems precisely
+
+$vw-adjustment: 0.041667;
+
+@function vw-to-rem($vw-amount) {
+  @return #{$vw-amount + ($vw-amount * $vw-adjustment)}vw;
+}
+
+
+$space-micro: clamp(0.083rem, #{vw-to-rem(0.25)}, 0.288rem);  // 0.25rem base
+$space-lite: clamp(0.167rem, #{vw-to-rem(0.5)}, 0.575rem);    // 0.5rem base
+$space-3q: clamp(0.25rem, #{vw-to-rem(0.75)}, 0.863rem);      // 0.75rem base
 
 // Regular Spaces
-$space-1x: 1rem;
-$space-md: 1.5rem;
-$space-2x: 2rem;
-$space-3x: 3rem;
-$space-4x: 4rem;
-$space-6x: 6rem;
-$space-8x: 8rem;
-$space-12x: 12rem;
-$space-16x: 16rem;
+$space-1x: clamp(0.35rem, #{vw-to-rem(1)}, 1.15rem);         // 1rem base
+$space-md: clamp(0.5rem, #{vw-to-rem(1.5)}, 1.725rem);        // 1.5rem base
+$space-2x: clamp(0.75rem, #{vw-to-rem(2)}, 2.3rem);          // 2rem base
+$space-3x: clamp(1rem, #{vw-to-rem(3)}, 3.45rem);             // 3rem base
+$space-4x: clamp(2rem, #{vw-to-rem(4)}, 4.6rem);          // 4rem base
+$space-6x: clamp(2.5rem, #{vw-to-rem(6)}, 6.9rem);              // 6rem base
+$space-8x: clamp(3rem, #{vw-to-rem(8)}, 9.2rem);          // 8rem base
+$space-12x: clamp(4rem, #{vw-to-rem(12)}, 13.8rem);           // 12rem base
+$space-16x: clamp(5.5rem, #{vw-to-rem(16)}, 18.4rem);       // 16rem base
 
 // Radius and gap
 $radius: 1.5rem;
 $gap-section: 4rem;
 
 
+//MEDIA QUERY MIXINS 
+
+
+@mixin desktop {
+  @media (max-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 890px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: 490px) { 
+    @content;
+  }
+}
+
+
+@mixin hide-on-desktop {
+  @include desktop {
+    display: none !important;
+  }
+}
+
+
+@mixin hide-on-tablet {
+  @include tablet {
+    display: none !important;
+  }
+}
+
+@mixin hide-on-mobile {
+  @include mobile {
+    display: none !important;
+  }
+}
+
+
+// UTILITIES
+
+.adjust-vertical {
+    //Reduces gap between text elements
+    margin-top: -0.5rem;
+}

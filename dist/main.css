@@ -1,3 +1,7 @@
+.adjust-vertical {
+  margin-top: -0.5rem;
+}
+
 @font-face {
   font-family: "Helixa";
   src: url("../assets/fonts/Helixa-Regular.woff") format("woff");
@@ -29,12 +33,28 @@ p {
 .service-description {
   font-size: 1.3rem;
 }
+@media (max-width: 490px) {
+  .service-description {
+    display: none !important;
+  }
+}
 
 .content {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   color: #EDFFE0;
-  max-width: 42ch;
+  max-width: 100%;
   line-height: 1.4;
+}
+@media (max-width: 890px) {
+  .content {
+    font-size: 1.25rem;
+    max-width: 90%;
+  }
+}
+@media (max-width: 490px) {
+  .content {
+    max-width: 100%;
+  }
 }
 
 h1 {
@@ -162,7 +182,7 @@ body {
 }
 .hero-content {
   gap: 4em;
-  padding-left: 4rem;
+  padding-left: clamp(2rem, 4.166668vw, 4.6rem);
   padding-bottom: 12rem;
 }
 .hero::before {
@@ -181,11 +201,16 @@ body {
 }
 
 main {
-  margin-block: 8rem;
+  margin-block: clamp(3rem, 8.333336vw, 9.2rem);
 }
 
 section + section { /* Default spacing between all sections */
   margin-top: 10rem;
+}
+@media (max-width: 490px) {
+  section + section {
+    margin-top: 5rem;
+  }
 }
 
 .text-measure {
@@ -193,20 +218,36 @@ section + section { /* Default spacing between all sections */
 }
 
 .vertical-margin {
-  margin-top: 4rem;
+  margin-top: clamp(2rem, 4.166668vw, 4.6rem);
 }
 
 .section-header {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: clamp(0.25rem, 0.78125025vw, 0.863rem);
+}
+@media (max-width: 890px) {
+  .section-header {
+    max-width: 85%;
+  }
+}
+@media (max-width: 490px) {
+  .section-header {
+    max-width: 100%;
+  }
 }
 
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 0.6fr;
-  gap: 4rem;
-  padding-inline: 4rem;
+  grid-template-columns: 1fr 0.65fr;
+  gap: clamp(1rem, 3.125001vw, 3.45rem);
+  padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
+}
+@media (max-width: 890px) {
+  .two-col {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .content-island {
@@ -214,14 +255,14 @@ section + section { /* Default spacing between all sections */
   background-size: contain;
   background-color: #000100;
   border-radius: 1.5rem;
-  padding-inline: 4rem;
-  padding-block: 8rem;
+  padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
+  padding-block: clamp(3rem, 8.333336vw, 9.2rem);
   position: relative;
   z-index: -2;
   margin-inline: auto;
-  width: calc(100vw - 2rem);
+  width: calc(100vw - clamp(0.75rem, 2.083334vw, 2.3rem));
   /* Drop Shadow with glossy effect */
-  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2);
+  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2); /* Subtle light from top-left */
 }
 
 .content-island::after {
@@ -239,18 +280,35 @@ section + section { /* Default spacing between all sections */
 .content-block {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
   max-width: 80%;
+}
+@media (max-width: 890px) {
+  .content-block {
+    max-width: 90%;
+    gap: 1.5rem;
+  }
+}
+@media (max-width: 490px) {
+  .content-block {
+    max-width: 100%;
+    gap: 1.5rem;
+  }
 }
 
 .media-wrapper {
-  width: 90%;
+  width: 100%;
+}
+@media (max-width: 890px) {
+  .media-wrapper {
+    display: none !important;
+  }
 }
 
 #cube-video {
   object-fit: contain;
   width: 100%;
-  height: 100%;
+  height: auto;
   /* This makes black transparent */
   mix-blend-mode: lighten;
   filter: contrast(1.25) saturate(75%);
@@ -259,17 +317,17 @@ section + section { /* Default spacing between all sections */
   mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 70%, rgba(0, 0, 0, 0));
 }
 
-.about-img {
-  object-fit: contain;
-  opacity: 0.9;
-}
-
 .services-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto auto;
-  gap: 1.5rem;
-  margin-top: 4rem;
+  gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
+  margin-top: clamp(2rem, 4.166668vw, 4.6rem);
+}
+@media (max-width: 890px) {
+  .services-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .service-card--wide {
@@ -282,25 +340,42 @@ section + section { /* Default spacing between all sections */
   background-position: left 50%;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 3rem;
+  padding: clamp(1rem, 3.125001vw, 3.45rem);
   grid-column: 1/-1; /* Spans from first to last column */
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 .service-card--wide[data-service=data-consulting] {
   background-image: url("../assets/service-bg3.png");
-  background-position: left 30%;
+  background-position: left 20%;
 }
 .service-card--wide .service-bio {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: clamp(0.167rem, 0.5208335vw, 0.575rem);
   max-width: 35%;
   align-self: end;
 }
 .service-card--wide .service-bio .service-icon svg {
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
   width: 2.5rem;
+}
+@media (max-width: 890px) {
+  .service-card--wide .service-bio {
+    max-width: 66%;
+  }
+}
+@media (max-width: 890px) {
+  .service-card--wide {
+    height: 40vh;
+    padding: 2rem;
+  }
+}
+@media (max-width: 490px) {
+  .service-card--wide {
+    height: 35vh;
+    padding: 1.5rem;
+  }
 }
 
 .service-card--vertical {
@@ -309,8 +384,9 @@ section + section { /* Default spacing between all sections */
   background-color: #000000;
   border-radius: 1rem;
   justify-content: end;
-  padding: 3rem;
+  padding: clamp(1rem, 3.125001vw, 3.45rem);
   height: 75vh;
+  grid-column: span 1;
   position: relative;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
@@ -344,16 +420,28 @@ section + section { /* Default spacing between all sections */
 .service-card--vertical .service-bio {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: clamp(0.167rem, 0.5208335vw, 0.575rem);
   max-width: 75%;
 }
 .service-card--vertical .service-bio .service-icon svg {
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
   width: 2.5rem;
+}
+@media (max-width: 890px) {
+  .service-card--vertical {
+    height: 40vh;
+    padding: 2rem;
+  }
+}
+@media (max-width: 490px) {
+  .service-card--vertical {
+    height: 30vh;
+    padding: 1.5rem;
+  }
 }
 
 .industries {
-  padding: 4rem;
+  padding: clamp(2rem, 4.166668vw, 4.6rem);
 }
 
 .separator {
@@ -364,7 +452,12 @@ section + section { /* Default spacing between all sections */
 
 .slider-nav {
   display: flex;
-  gap: 1rem;
+  gap: clamp(0.35rem, 1.041667vw, 1.15rem);
+}
+@media (max-width: 890px) {
+  .slider-nav {
+    display: none;
+  }
 }
 
 .slider-wrapper {
@@ -374,7 +467,7 @@ section + section { /* Default spacing between all sections */
 
 .card-slider {
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
   user-select: none;
   width: fit-content;
 }
@@ -414,7 +507,7 @@ section + section { /* Default spacing between all sections */
 }
 .industry-card__bio {
   position: relative;
-  padding: 1.5rem;
+  padding: clamp(0.5rem, 1.5625005vw, 1.725rem);
 }
 .industry-card__bio::before {
   content: "";
@@ -437,17 +530,32 @@ section + section { /* Default spacing between all sections */
   z-index: 11;
   text-shadow: 1px 1.5px 0 rgba(0, 0, 0, 0.509);
 }
+@media (max-width: 890px) {
+  .industry-card__bio {
+    padding: 1.5rem;
+  }
+}
+@media (max-width: 890px) {
+  .industry-card {
+    max-width: 350px;
+  }
+}
+@media (max-width: 490px) {
+  .industry-card {
+    max-width: 300px;
+  }
+}
 
 .testimonials {
-  padding-inline: 6rem;
+  padding-inline: clamp(2.5rem, 6.250002vw, 6.9rem);
 }
 
 .testimonial-body {
   display: flex;
   flex-direction: column;
   width: 90%;
-  margin-top: 3rem;
-  gap: 3rem;
+  margin-top: clamp(1rem, 3.125001vw, 3.45rem);
+  gap: clamp(1rem, 3.125001vw, 3.45rem);
 }
 .testimonial-body blockquote {
   font-size: clamp(2.6127rem, 2.2592rem + 1.6161vw, 3.8147rem);
@@ -464,10 +572,20 @@ section + section { /* Default spacing between all sections */
   position: absolute;
   left: -1rem;
 }
+@media (max-width: 890px) {
+  .testimonial-body blockquote {
+    font-size: clamp(2.1773rem, 1.9201rem + 1.1758vw, 3.0518rem);
+  }
+}
+@media (max-width: 490px) {
+  .testimonial-body blockquote {
+    font-size: clamp(1.8144rem, 1.63rem + 0.843vw, 2.4414rem);
+  }
+}
 .testimonial-body cite .person-name {
   color: #fff;
   font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
-  font-weight: 400;
+  font-weight: 600;
   color: #EDFFE0;
 }
 .testimonial-body cite .person-name::before {
@@ -479,17 +597,32 @@ section + section { /* Default spacing between all sections */
   border-radius: 50%;
   margin-right: 0.75rem;
 }
+@media (max-width: 490px) {
+  .testimonial-body {
+    width: 100%;
+  }
+}
 
 .logo-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: clamp(0.75rem, 2.083334vw, 2.3rem);
+}
+@media (max-width: 490px) {
+  .logo-container {
+    flex-wrap: wrap;
+  }
 }
 .logo-container .testimonials-logo {
   width: 12rem;
   opacity: 0.35;
   transition: opacity 0.3s ease;
+}
+@media (max-width: 490px) {
+  .logo-container .testimonials-logo {
+    display: none;
+  }
 }
 .logo-container .testimonials-logo.active {
   opacity: 1;
@@ -497,16 +630,21 @@ section + section { /* Default spacing between all sections */
 
 .faqs {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 3rem;
-  padding-inline: 4rem;
-  margin-top: 16rem;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: clamp(1rem, 3.125001vw, 3.45rem);
+  padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
+  margin-top: clamp(5.5rem, 16.666672vw, 18.4rem);
+}
+@media (max-width: 490px) {
+  .faqs {
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  }
 }
 
 .faq-item {
   position: relative;
   border-bottom: 1px solid #d6fad3;
-  padding-block: 2rem;
+  padding-block: clamp(0.75rem, 2.083334vw, 2.3rem);
   transition: padding 0.3s ease, background-color 0.3s ease;
   /* When active, rotate to turn faq-btn into an X*/
 }
@@ -581,13 +719,13 @@ section + section { /* Default spacing between all sections */
   flex-direction: column;
   margin-inline: auto;
   margin-top: 10rem;
-  margin-bottom: 4rem;
-  height: calc(87.5vh - 4rem);
+  margin-bottom: clamp(2rem, 4.166668vw, 4.6rem);
+  height: calc(87.5vh - clamp(2rem, 4.166668vw, 4.6rem));
   width: 95%;
   border-radius: 1.5rem;
   padding-top: 4.5rem;
-  padding-bottom: 1.5rem;
-  padding-inline: 3rem;
+  padding-bottom: clamp(0.5rem, 1.5625005vw, 1.725rem);
+  padding-inline: clamp(1rem, 3.125001vw, 3.45rem);
   border: 1px solid #64F764;
 }
 
@@ -595,7 +733,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding-right: 4rem;
+  padding-right: clamp(2rem, 4.166668vw, 4.6rem);
 }
 .footer-main .footer-logo {
   width: 100%;
@@ -606,7 +744,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   width: 30%;
-  gap: 1.5rem;
+  gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
 }
 .footer-main .footer-right h2 {
   font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
@@ -617,11 +755,11 @@ section + section { /* Default spacing between all sections */
   font-size: 1.1rem;
   line-height: 1.5;
   opacity: 0.9;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
 }
 .footer-main .footer-right .email-form {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(1rem, 3.125001vw, 3.45rem);
   width: 90%;
 }
 .footer-main .footer-right .email-form .email-input {
@@ -671,14 +809,14 @@ section + section { /* Default spacing between all sections */
   opacity: 1;
   font-size: 0.85rem;
   letter-spacing: 1.5px;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
   font-weight: 600;
   text-transform: uppercase;
 }
 .footer-main .footer-right .socials .social-links {
   display: grid;
   grid-template-columns: repeat(2, 120px);
-  grid-gap: 1rem;
+  grid-gap: clamp(0.35rem, 1.041667vw, 1.15rem);
 }
 .footer-main .footer-right .socials .social-links a {
   color: #EDFFE0;
@@ -716,7 +854,7 @@ section + section { /* Default spacing between all sections */
   opacity: 0.75;
 }
 .footer-legal a {
-  margin-right: 2rem;
+  margin-right: clamp(0.75rem, 2.083334vw, 2.3rem);
 }
 .footer-legal small {
   font-size: 0.75rem;

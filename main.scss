@@ -119,10 +119,15 @@ main {
 section + section {  /* Default spacing between all sections */
     margin-top: 10rem;
 
+  @include mobile {
+   margin-top: 5rem;
+}    
+
   }
 
   .text-measure {
     max-width: 60%;
+  
   }
 
   .vertical-margin {
@@ -135,14 +140,28 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     gap: $space-3q;
+
+    @include tablet {
+    max-width: 85%;
+  }
+
+    @include mobile {
+    max-width: 100%;
+  }
 }
 
 .two-col {
     display: grid;
-    grid-template-columns: 1fr 0.6fr;
-    gap: $space-4x;
+    grid-template-columns: 1fr 0.65fr;
+    gap: $space-3x;
     padding-inline: $space-4x;
+
+    @include tablet {
+    display: flex;
+    flex-direction: column;
   }
+
+}
 
 
  .content-island {
@@ -157,7 +176,8 @@ section + section {  /* Default spacing between all sections */
     margin-inline: auto;
     width: calc(100vw - $space-2x);
   /* Drop Shadow with glossy effect */
-  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2), /* Subtle light from top-left */
+  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2); /* Subtle light from top-left */
+
 
    }
 
@@ -180,6 +200,16 @@ section + section {  /* Default spacing between all sections */
     flex-direction: column;
     gap: $space-md;
     max-width: 80%;
+
+    @include tablet {
+    max-width: 90%;
+    gap: 1.5rem;
+  }
+
+   @include mobile {
+    max-width: 100%;
+    gap: 1.5rem;
+  }
    }
 
 
@@ -188,13 +218,14 @@ section + section {  /* Default spacing between all sections */
 // ABOUT
 
    .media-wrapper {
-    width: 90%;
+    width: 100%;
+    @include hide-on-tablet
    }
 
    #cube-video {
     object-fit: contain;
     width: 100%;
-    height: 100%;
+    height: auto;
 
 
   /* This makes black transparent */
@@ -210,24 +241,23 @@ section + section {  /* Default spacing between all sections */
     rgba(0,0,0,0));
 }
 
-   
-
-   .about-img {
-    object-fit: contain;
-    opacity: 0.9;
-   }
-
-
-
+  
 
 // SERVICES
 
 .services-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto auto;
   gap: $space-md;
   margin-top: $space-4x;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+
+  }
+
+
 }
 
 .service-card--wide {
@@ -240,7 +270,7 @@ section + section {  /* Default spacing between all sections */
   background-position: left 50%;
   background-size: cover;
   background-repeat: no-repeat;
-  padding: 3rem;
+  padding: $space-3x;
   grid-column: 1 / -1; /* Spans from first to last column */
    box-shadow: 
                 0 12px 40px rgba(0, 0, 0, 0.6),
@@ -254,7 +284,8 @@ section + section {  /* Default spacing between all sections */
 
   &[data-service="data-consulting"] {
     background-image: url('../assets/service-bg3.png');
-    background-position: left 30%;
+    background-position: left 20%;
+
   }
 
   .service-bio {
@@ -270,6 +301,21 @@ section + section {  /* Default spacing between all sections */
         width: 2.5rem;
       }
     }
+
+    @include tablet {
+    max-width: 66%;
+  }
+
+  }
+
+  @include tablet {
+    height: 40vh;
+     padding: 2rem;
+  }
+
+  @include mobile {
+    height: 35vh;
+    padding: 1.5rem;
   }
 
   
@@ -282,8 +328,9 @@ section + section {  /* Default spacing between all sections */
   background-color: #000000;
   border-radius: 1rem;
   justify-content: end;
-  padding: 3rem;
+  padding: $space-3x;
   height: 75vh;
+  grid-column: span 1;
 
   position: relative;
   overflow: hidden; // Important to allow the pseudo-element to exceed boundaries but be clipped
@@ -341,6 +388,18 @@ section + section {  /* Default spacing between all sections */
       }
     }
   }
+
+
+   @include tablet {
+    height: 40vh;
+    padding: 2rem;
+  }
+
+    @include mobile {
+    height: 30vh;
+    padding: 1.5rem;
+  }
+
 }
 
 
@@ -365,6 +424,10 @@ section + section {  /* Default spacing between all sections */
 .slider-nav {
     display: flex;
     gap: $space-1x;
+
+    @include tablet {
+     display: none;
+    }
 }
 
 .slider-wrapper {
@@ -460,7 +523,21 @@ section + section {  /* Default spacing between all sections */
        text-shadow: 1px 1.5px 0 rgba(0, 0, 0, 0.509);
     }
 
+     @include tablet {
+   padding: 1.5rem;
+  }
+
     }
+
+
+    @include tablet {
+    max-width: 350px;
+  }
+
+    @include mobile {
+    max-width: 300px;
+  
+  }
 
 }
   
@@ -470,6 +547,7 @@ section + section {  /* Default spacing between all sections */
 
 .testimonials {
   padding-inline: $space-6x;
+
 }
 
 .testimonial-body {
@@ -495,6 +573,14 @@ section + section {  /* Default spacing between all sections */
             position: absolute;
             left: -1rem;
         }
+
+          @include tablet {
+           font-size: $size-5;
+}
+
+        @include mobile {
+           font-size: $size-4;
+}
     }
     
     cite {
@@ -503,7 +589,7 @@ section + section {  /* Default spacing between all sections */
         .person-name {
             color: #fff;
             font-size: $size-2;
-            font-weight: $font-regular;
+            font-weight: $font-semibold;
             color: $text-primary;
    
             
@@ -519,6 +605,13 @@ section + section {  /* Default spacing between all sections */
         }
       
     }
+
+
+@include mobile {
+   width: 100%;
+}
+
+    
 }
 
 
@@ -528,12 +621,21 @@ section + section {  /* Default spacing between all sections */
    justify-content: flex-start;
   gap: $space-2x;
 
+  @include mobile {
+   flex-wrap: wrap;
+}
+
 
 
 .testimonials-logo {
   width: 12rem;
   opacity: 0.35;
   transition: opacity 0.3s ease;
+
+  @include mobile {
+    display: none;
+  }
+
 }
 
 .testimonials-logo.active {
@@ -549,11 +651,15 @@ section + section {  /* Default spacing between all sections */
 
 .faqs {
     display: grid;
-    grid-template-columns: 1fr 1.25fr;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     gap: $space-3x;
     padding-inline: $space-4x;
     margin-top: $space-16x; //Adding a bit of extra margin for isolation
 
+
+    @include mobile {
+      grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+    }
 }
 
 .faq-item {
