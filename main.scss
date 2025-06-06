@@ -827,6 +827,7 @@ section + section {  /* Default spacing between all sections */
       }
 
       @include tablet {
+        padding-right: $space-2x;
         flex-direction: column;
         gap: 3rem;
       }
