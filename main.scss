@@ -132,6 +132,10 @@ section + section {  /* Default spacing between all sections */
 
   .vertical-margin {
     margin-top: $space-4x;
+
+    @include tablet {
+      margin-top: 2.5rem;
+    }
   }
 
 
@@ -309,12 +313,12 @@ section + section {  /* Default spacing between all sections */
   }
 
   @include tablet {
-    height: 40vh;
+    height: 38vh;
      padding: 2rem;
   }
 
   @include mobile {
-    height: 35vh;
+    height: 30vh;
     padding: 1.5rem;
   }
 
@@ -329,7 +333,7 @@ section + section {  /* Default spacing between all sections */
   border-radius: 1rem;
   justify-content: end;
   padding: $space-3x;
-  height: 75vh;
+  height: 66vh;
   grid-column: span 1;
 
   position: relative;
@@ -391,7 +395,7 @@ section + section {  /* Default spacing between all sections */
 
 
    @include tablet {
-    height: 40vh;
+    height: 38vh;
     padding: 2rem;
   }
 
@@ -419,6 +423,10 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     justify-content: space-between;
     align-items: end;
+
+    @include mobile {
+      justify-content: flex-start;
+    }
 }
 
 .slider-nav {
@@ -438,7 +446,7 @@ section + section {  /* Default spacing between all sections */
 
 .card-slider {
     display: flex;
-    gap: $space-md;
+    gap: $space-1x;
     user-select: none;
     width: fit-content;
 
@@ -454,7 +462,7 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 375px;
+    width: 370px;
     aspect-ratio: 4/5;
     border: 1px solid rgb(55, 128, 0);
  
@@ -521,6 +529,14 @@ section + section {  /* Default spacing between all sections */
       position: relative;
       z-index: 11; //On top of our overlay
        text-shadow: 1px 1.5px 0 rgba(0, 0, 0, 0.509);
+
+    @include tablet {
+    font-size: 2rem;
+  }
+
+    @include mobile {
+    font-size: 1.65rem;
+  }
     }
 
      @include tablet {
@@ -531,11 +547,11 @@ section + section {  /* Default spacing between all sections */
 
 
     @include tablet {
-    max-width: 350px;
+    max-width: 320px;
   }
 
     @include mobile {
-    max-width: 300px;
+    max-width: 250px;
   
   }
 
@@ -554,7 +570,7 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     width: 90%;
-    margin-top: $space-3x;
+    margin-top: $space-4x;
     gap: $space-3x;
 
 
@@ -567,6 +583,8 @@ section + section {  /* Default spacing between all sections */
         background-clip: text;
         -webkit-text-fill-color: transparent;
         position: relative;
+        
+
         
         &::before {
             content: '"';
@@ -606,6 +624,10 @@ section + section {  /* Default spacing between all sections */
       
     }
 
+@include tablet {
+    gap: $space-4x;
+}    
+
 
 @include mobile {
    width: 100%;
@@ -621,16 +643,17 @@ section + section {  /* Default spacing between all sections */
    justify-content: flex-start;
   gap: $space-2x;
 
-  @include mobile {
-   flex-wrap: wrap;
-}
 
 
 
 .testimonials-logo {
-  width: 12rem;
+  width: 12.5rem;
   opacity: 0.35;
   transition: opacity 0.3s ease;
+
+    @include tablet {
+    width: 10rem;
+  }
 
   @include mobile {
     display: none;
@@ -771,13 +794,19 @@ section + section {  /* Default spacing between all sections */
     margin-top: 10rem; 
  
     margin-bottom: $space-4x;
-    height: calc(87.5vh - $space-4x);
+    height: auto;
     width: 95%;
     border-radius: $radius;
     padding-top: 4.5rem;
     padding-bottom: $space-md;
     padding-inline: $space-3x;
     border: 1px solid $brand-primary;
+
+       @include tablet {
+        padding-top: 3rem;
+        padding-inline: 2rem;
+        padding-bottom: 1rem;
+      }
   
   }
   
@@ -795,9 +824,13 @@ section + section {  /* Default spacing between all sections */
         justify-self: center;
         height: auto;
   
-  
       }
 
+      @include tablet {
+        flex-direction: column;
+        gap: 3rem;
+      }
+    }
 
 
 // SCSS for footer-right section
@@ -806,7 +839,7 @@ section + section {  /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   width: 30%;
-  gap: $space-md;
+  gap: $space-1x;
 
   h2 {
     font-size: $size-2;
@@ -818,8 +851,24 @@ section + section {  /* Default spacing between all sections */
     font-size: 1.1rem;
     line-height: 1.5;
     opacity: 0.9;
-    margin-bottom: $space-1x;
+    margin-bottom: $space-md;
+
+    @include tablet {
+    margin-bottom: $space-3x;
   }
+  }
+
+  @include tablet {
+    width: 90%;
+  }
+
+   @include mobile {
+    width: 100%;
+    gap: $space-2x;
+  }
+}
+
+
 
   .email-form {
     position: relative;
@@ -847,6 +896,9 @@ section + section {  /* Default spacing between all sections */
       &:focus {
         border-bottom: 1px solid rgba(66, 168, 2, 1);
       }
+
+
+
     }
     
     .submit-btn {
@@ -874,10 +926,16 @@ section + section {  /* Default spacing between all sections */
         stroke: $brand-primary;
       }
     }
+
+@include tablet {
+  margin-bottom: $space-4x;
+}
+
   }
 
-    .socials {
 
+.socials {
+  margin-bottom: 4rem;
     
     &-title {
       color: #abb2ab;
@@ -892,7 +950,7 @@ section + section {  /* Default spacing between all sections */
     .social-links {
       display: grid;
       grid-template-columns: repeat(2, 120px);
-      grid-gap: $space-1x;
+      grid-gap: $space-3q;
  
       
       a {
@@ -914,18 +972,20 @@ section + section {  /* Default spacing between all sections */
         }
         
         svg {
-          margin-bottom: 1px;
-          width: 1.3rem;
-          height: 1.3rem;
+          margin-bottom: 2.5px;
+          width: 1.25rem;
+          height: 1.25rem;
         }
       }
     }
+
+   
   }
-}
+
 
 
   
-  }
+  
   
 
 
@@ -937,7 +997,7 @@ section + section {  /* Default spacing between all sections */
     text-transform: uppercase;
     color: rgb(206, 206, 206);
     margin-top: auto;
-    font-size: 0.75rem;
+    font-size: $size-minus;
     letter-spacing: 1px;
     font-weight: $font-bold;
     opacity: 0.75;
@@ -947,7 +1007,7 @@ section + section {  /* Default spacing between all sections */
       }
   
       small{
-        font-size: 0.75rem;
+        font-size: $size-minus;
       }
   }
   
