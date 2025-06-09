@@ -41,10 +41,15 @@ p {
   max-width: 100%;
   line-height: 1.4;
 }
-@media (max-width: 890px) {
+@media (max-width: 1220px) {
+  .content {
+    max-width: 95%;
+  }
+}
+@media (max-width: 900px) {
   .content {
     font-size: 1.25rem;
-    max-width: 85%;
+    max-width: 90%;
   }
 }
 @media (max-width: 501px) {
@@ -241,7 +246,7 @@ section + section { /* Default spacing between all sections */
 .vertical-margin {
   margin-top: clamp(2rem, 4.166668vw, 4.6rem);
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .vertical-margin {
     margin-top: 2.5rem;
   }
@@ -252,7 +257,12 @@ section + section { /* Default spacing between all sections */
   flex-direction: column;
   gap: clamp(0.25rem, 0.78125025vw, 0.863rem);
 }
-@media (max-width: 890px) {
+@media (max-width: 1220px) {
+  .section-header {
+    max-width: 75%;
+  }
+}
+@media (max-width: 900px) {
   .section-header {
     max-width: 85%;
   }
@@ -265,11 +275,16 @@ section + section { /* Default spacing between all sections */
 
 .two-col {
   display: grid;
-  grid-template-columns: 1fr 0.65fr;
+  grid-template-columns: 1fr 0.6fr;
   gap: clamp(1rem, 3.125001vw, 3.45rem);
   padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
 }
-@media (max-width: 890px) {
+@media (max-width: 1220px) {
+  .two-col {
+    grid-template-columns: 1fr 0.2fr;
+  }
+}
+@media (max-width: 900px) {
   .two-col {
     display: flex;
     flex-direction: column;
@@ -309,9 +324,9 @@ section + section { /* Default spacing between all sections */
   gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
   max-width: 80%;
 }
-@media (max-width: 890px) {
+@media (max-width: 1220px) {
   .content-block {
-    max-width: 90%;
+    max-width: 95%;
     gap: 1.5rem;
   }
 }
@@ -324,8 +339,9 @@ section + section { /* Default spacing between all sections */
 
 .media-wrapper {
   width: 100%;
+  margin-top: 1rem;
 }
-@media (max-width: 890px) {
+@media (max-width: 1220px) {
   .media-wrapper {
     display: none !important;
   }
@@ -350,9 +366,10 @@ section + section { /* Default spacing between all sections */
   gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
   margin-top: clamp(2rem, 4.166668vw, 4.6rem);
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .services-container {
     grid-template-columns: 1fr;
+    gap: clamp(0.75rem, 2.083334vw, 2.3rem);
   }
 }
 
@@ -386,12 +403,12 @@ section + section { /* Default spacing between all sections */
   margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
   width: 2.5rem;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .service-card--wide .service-bio {
     max-width: 66%;
   }
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .service-card--wide {
     height: 38vh;
     padding: 2rem;
@@ -453,15 +470,15 @@ section + section { /* Default spacing between all sections */
   margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
   width: 2.5rem;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .service-card--vertical {
-    height: 38vh;
+    height: 300px;
     padding: 2rem;
   }
 }
 @media (max-width: 501px) {
   .service-card--vertical {
-    height: 30vh;
+    height: 35vh;
     padding: 1.5rem;
   }
 }
@@ -485,7 +502,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   gap: clamp(0.35rem, 1.041667vw, 1.15rem);
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .slider-nav {
     display: none;
   }
@@ -561,7 +578,7 @@ section + section { /* Default spacing between all sections */
   z-index: 11;
   text-shadow: 1px 1.5px 0 rgba(0, 0, 0, 0.509);
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .industry-card__bio h3 {
     font-size: 2rem;
   }
@@ -571,12 +588,12 @@ section + section { /* Default spacing between all sections */
     font-size: 1.65rem;
   }
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .industry-card__bio {
     padding: 1.5rem;
   }
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .industry-card {
     max-width: 320px;
   }
@@ -613,7 +630,7 @@ section + section { /* Default spacing between all sections */
   position: absolute;
   left: -1rem;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .testimonial-body blockquote {
     font-size: clamp(2.1773rem, 1.9201rem + 1.1758vw, 3.0518rem);
   }
@@ -625,7 +642,7 @@ section + section { /* Default spacing between all sections */
 }
 .testimonial-body cite .person-name {
   color: #fff;
-  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
+  font-size: clamp(1.26rem, 1.171rem + 0.4567vw, 1.75rem);
   font-weight: 600;
   color: #EDFFE0;
 }
@@ -638,7 +655,7 @@ section + section { /* Default spacing between all sections */
   border-radius: 50%;
   margin-right: 0.75rem;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .testimonial-body {
     gap: clamp(2rem, 4.166668vw, 4.6rem);
   }
@@ -660,7 +677,7 @@ section + section { /* Default spacing between all sections */
   opacity: 0.35;
   transition: opacity 0.3s ease;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .logo-container .testimonials-logo {
     width: 10rem;
   }
@@ -677,9 +694,13 @@ section + section { /* Default spacing between all sections */
 .faqs {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-  gap: clamp(1rem, 3.125001vw, 3.45rem);
   padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
   margin-top: clamp(5.5rem, 16.666672vw, 18.4rem);
+}
+@media (max-width: 1220px) {
+  .faqs {
+    gap: 2rem;
+  }
 }
 @media (max-width: 501px) {
   .faqs {
@@ -698,11 +719,12 @@ section + section { /* Default spacing between all sections */
   border-top: 1px solid #d6fad3;
 }
 .faq-item .faq-question {
+  display: flex;
   align-items: center;
   color: #afe7a9;
   cursor: pointer;
-  display: flex;
-  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
+  gap: 2rem;
+  font-size: clamp(1.26rem, 1.171rem + 0.4567vw, 1.75rem);
   font-weight: 400;
   justify-content: space-between;
   width: 100%;
@@ -712,6 +734,16 @@ section + section { /* Default spacing between all sections */
 }
 .faq-item.active .faq-btn::after {
   transform: translate(-50%, -50%) rotate(45deg);
+}
+@media (max-width: 900px) {
+  .faq-item {
+    padding-block: 2rem;
+  }
+}
+@media (max-width: 501px) {
+  .faq-item {
+    padding-block: 1.25rem;
+  }
 }
 
 .faq-btn {
@@ -751,7 +783,7 @@ section + section { /* Default spacing between all sections */
 }
 .faq-answer p {
   margin-top: 1rem;
-  font-size: clamp(1.05rem, 0.9912rem + 0.28vw, 1.25rem);
+  font-size: 1.35rem;
   line-height: 1.4;
   color: #EDFFE0;
 }
@@ -774,7 +806,7 @@ section + section { /* Default spacing between all sections */
   padding-inline: clamp(1rem, 3.125001vw, 3.45rem);
   border: 1px solid #64F764;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .site-footer {
     padding-top: 3rem;
     padding-inline: 2rem;
@@ -793,8 +825,9 @@ section + section { /* Default spacing between all sections */
   justify-self: center;
   height: auto;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .footer-main {
+    padding-right: clamp(0.75rem, 2.083334vw, 2.3rem);
     flex-direction: column;
     gap: 3rem;
   }
@@ -807,7 +840,7 @@ section + section { /* Default spacing between all sections */
   gap: clamp(0.35rem, 1.041667vw, 1.15rem);
 }
 .footer-right h2 {
-  font-size: clamp(1.26rem, 1.171rem + 0.4067vw, 1.6rem);
+  font-size: clamp(1.26rem, 1.171rem + 0.4567vw, 1.75rem);
   font-weight: 500;
   color: #CFFFCC;
 }
@@ -817,12 +850,12 @@ section + section { /* Default spacing between all sections */
   opacity: 0.9;
   margin-bottom: clamp(0.5rem, 1.5625005vw, 1.725rem);
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .footer-right .description {
     margin-bottom: clamp(1rem, 3.125001vw, 3.45rem);
   }
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .footer-right {
     width: 90%;
   }
@@ -881,7 +914,7 @@ section + section { /* Default spacing between all sections */
   height: 16px;
   stroke: #64F764;
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
   .email-form {
     margin-bottom: clamp(2rem, 4.166668vw, 4.6rem);
   }

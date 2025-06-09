@@ -48,10 +48,14 @@ p {
   max-width: 100%;
   line-height: 1.4; 
 
+  @include desktop {
+    max-width: 95%;
+  }
+
 
     @include tablet {
     font-size: 1.25rem;
-    max-width: 85%;
+    max-width: 90%;
     
   }
 

@@ -145,7 +145,12 @@ section + section {  /* Default spacing between all sections */
     flex-direction: column;
     gap: $space-3q;
 
-    @include tablet {
+
+    @include desktop {
+    max-width: 75%;
+  }
+
+  @include tablet {
     max-width: 85%;
   }
 
@@ -156,9 +161,13 @@ section + section {  /* Default spacing between all sections */
 
 .two-col {
     display: grid;
-    grid-template-columns: 1fr 0.65fr;
+    grid-template-columns: 1fr 0.6fr;
     gap: $space-3x;
     padding-inline: $space-4x;
+
+    @include desktop {
+      grid-template-columns: 1fr 0.2fr;
+    }
 
     @include tablet {
     display: flex;
@@ -205,8 +214,8 @@ section + section {  /* Default spacing between all sections */
     gap: $space-md;
     max-width: 80%;
 
-    @include tablet {
-    max-width: 90%;
+    @include desktop {
+    max-width: 95%;
     gap: 1.5rem;
   }
 
@@ -223,7 +232,8 @@ section + section {  /* Default spacing between all sections */
 
    .media-wrapper {
     width: 100%;
-    @include hide-on-tablet
+    margin-top: 1rem;
+    @include hide-on-desktop;
    }
 
    #cube-video {
@@ -258,6 +268,7 @@ section + section {  /* Default spacing between all sections */
 
   @include tablet {
     grid-template-columns: 1fr;
+    gap: $space-2x;
 
   }
 
@@ -395,12 +406,12 @@ section + section {  /* Default spacing between all sections */
 
 
    @include tablet {
-    height: 38vh;
+    height: 300px;
     padding: 2rem;
   }
 
     @include mobile {
-    height: 30vh;
+    height: 35vh;
     padding: 1.5rem;
   }
 
@@ -675,15 +686,21 @@ section + section {  /* Default spacing between all sections */
 .faqs {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    gap: $space-3x;
     padding-inline: $space-4x;
     margin-top: $space-16x; //Adding a bit of extra margin for isolation
 
+
+    @include desktop {
+      gap: 2rem;
+    }
 
     @include mobile {
       grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     }
 }
+
+
+
 
 .faq-item {
     position: relative;
@@ -698,10 +715,11 @@ section + section {  /* Default spacing between all sections */
     
     // Question styling
     .faq-question {
+      display: flex;
       align-items: center;
       color: #afe7a9;
       cursor: pointer;
-      display: flex;
+      gap: 2rem;
       font-size: $size-2;
       font-weight: $font-regular;
       justify-content: space-between;
@@ -715,6 +733,14 @@ section + section {  /* Default spacing between all sections */
 
 &.active .faq-btn::after {
   transform: translate(-50%, -50%) rotate(45deg);
+}
+
+@include tablet {
+  padding-block: 2rem;
+}
+
+@include mobile {
+  padding-block: 1.25rem;
 }
     
 
@@ -772,7 +798,7 @@ section + section {  /* Default spacing between all sections */
     p {
       margin-top: 1rem;
    
-      font-size: $size-1;
+      font-size: 1.35rem;
       line-height: 1.4;
       color: $text-primary;
     }
