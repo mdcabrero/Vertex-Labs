@@ -49,13 +49,13 @@ p {
   line-height: 1.4; 
 
   @include desktop {
-    max-width: 95%;
+    max-width: 90%;
+
   }
 
 
     @include tablet {
     font-size: 1.25rem;
-    max-width: 90%;
     
   }
 

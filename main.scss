@@ -146,12 +146,8 @@ section + section {  /* Default spacing between all sections */
     gap: $space-3q;
 
 
-    @include desktop {
-    max-width: 75%;
-  }
-
   @include tablet {
-    max-width: 85%;
+    max-width: 80%;
   }
 
     @include mobile {
@@ -215,11 +211,11 @@ section + section {  /* Default spacing between all sections */
     max-width: 80%;
 
     @include desktop {
-    max-width: 95%;
+    max-width: 85%;
     gap: 1.5rem;
   }
 
-   @include mobile {
+   @include tablet {
     max-width: 100%;
     gap: 1.5rem;
   }
