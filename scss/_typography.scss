@@ -35,8 +35,20 @@ p {
 }
 
 .service-description {
-  font-size: 1.3rem;
-  @include hide-on-mobile;
+  font-size: 1.5rem;
+
+  @include desktop {
+    color: rgb(243, 249, 235);
+       text-shadow: 
+        0 2px 4px rgba(44, 43, 43, 0.8),
+        0 1px 2px rgba(0, 0, 0, 0.9);
+  }
+
+
+  @media (max-width:600px) {
+    display: none;
+
+  };
 
   }
 

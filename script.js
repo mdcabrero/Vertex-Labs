@@ -203,19 +203,19 @@ function initSliders() {
 // Sample testimonial data
 const testimonials = [
   {
-    logoImg: "assets/logo.svg",
+    logoImg: "assets/icons/kohls-logo.svg",
     quote: "Rubik Labs helped us consolidate disperse customer data from all our selling outlets. Their predictive models increased our inventory accuracy by 34% and reduced stockouts during peak seasons.",
-    testimonee: "Sarah Martinez, VP of Sales at Target"
+    testimonee: "Sarah Martinez, VP of Sales at Kohl's"
   },
   {
-    logoImg: "assets/logo2.svg",
+    logoImg: "assets/icons/prudential-logo.svg",
     quote: "Their machine learning algorithms transformed our fraud detection capabilities. We now identify suspicious transactions 3x faster while reducing false positives by 28%, saving millions in potential losses.",
     testimonee: "James Chen, Risk Manager at Prudential"
   },
   {
-    logoImg: "assets/logo3.svg",
+    logoImg: "assets/icons/rhenus-logo.svg",
     quote: "Rubik Labs' supply chain analytics helped us optimize our delivery networks across 50+ distribution centers. We reduced logistics costs by $12M annually while improving delivery times by 18%.",
-    testimonee: "Jakub Musial, Regional Manager at Amazon Logistics"
+    testimonee: "Jakub Musial, Regional Manager at Rhenus Logistics"
   }
 ];
 
@@ -438,3 +438,23 @@ function setupAccordion() {
   
   // Initialize accordion when DOM is ready
   document.addEventListener('DOMContentLoaded', setupAccordion);
+
+
+
+    /**
+ * Video Stopper
+ * Stops video from 'about-section' after 7s to convert into a static image
+ */
+
+function pauseVideoAtFrame() {
+    const video = document.getElementById('about-video');
+    
+    video.addEventListener('timeupdate', function() {
+        if (video.currentTime >= 7) {
+            video.pause();
+        }
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', pauseVideoAtFrame);
