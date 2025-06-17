@@ -72,46 +72,28 @@ body {
     background-image: $green-gradient;
 }
 
+ .nav-logo {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 999;
+    display: inline-block;
+    background: transparent; /* Ensure nothing's blocking */
+    isolation: isolate;
+  
+  
+   img {
+    width: 240px;
+    height: auto;
+    fill: rgb(255, 255, 255);
+  }
 
-
-.hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    height: 115vh;
-    width: 100%;
-    position: relative;
-
-
-
-    &-content {
-        gap: 4em;
-        padding-left: $space-4x;
-        padding-bottom: 12rem;
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url('../assets/hero_bg.jpg');
-        background-size: cover;
-        background-position: right 100%;
-        opacity: 0.75; 
-        z-index: -1; /* Place behind content */
-        filter: saturate(200%);
-    }
 }
+
 
 main {
     margin-block: $space-8x;
 }
-
-
-
 
 
 //LAYOUT CLASSES & RULES
@@ -227,14 +209,92 @@ section + section {  /* Default spacing between all sections */
 
 
 
+//HERO SECTION
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+
+
+
+    &-content {
+        gap: 4em;
+        padding-left: $space-4x;
+        padding-bottom: 6rem;
+
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('../assets/hero_bg7.jpg');
+        background-size: cover;
+        opacity: 0.75;
+        background-position: left 50%; 
+        z-index: -1; /* Place behind content */
+          mask-image: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 80%, 
+        rgba(0,0,0,0));
+
+    }
+}
+
+
+
+
+
 
 // ABOUT
 
-   .media-wrapper {
+.media-wrapper {
     width: 100%;
     margin-top: 1rem;
+    position: relative; // Add this - required for ::before positioning
+    display: inline-block; // Add this - ensures wrapper fits content
     @include hide-on-desktop;
-   }
+
+
+    &::before {
+        content: ''; // Add this - required for pseudo-elements
+        position: absolute; // Add this - positions overlay over image
+        top: 0; // Add these positioning properties
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg,rgb(11, 190, 65) 0%, rgba(58, 232, 142, 0.9) 45%, rgba(214, 255, 6, 0.8) 100%);
+        mix-blend-mode: overlay;
+        background-size: 400% 200%; 
+        animation: gradientWave 3s ease-in-out infinite; // Move animation here
+        pointer-events: none;
+    }
+
+    img {
+        width: 100%; // Ensure image fills wrapper
+        height: auto;
+        background-color: transparent;
+   
+    }
+
+    @keyframes gradientWave {
+        0%, 100% { 
+            background-position: 0% 50%;
+        }
+        50% { 
+            background-position: 100% 50%;
+        }
+    }
+
+
+
+}
 
    #about-video {
     object-fit: contain;
@@ -282,7 +342,7 @@ section + section {  /* Default spacing between all sections */
   /* Background styling */
   background-color: #000000;
   background-image: url('../assets/service-bg.png');
-  background-position: left 50%;
+  background-position: left 30%;
   background-size: cover;
   background-repeat: no-repeat;
   
@@ -916,8 +976,12 @@ section + section {  /* Default spacing between all sections */
 
   .site-footer {
     background-color: rgb(0, 0, 0);
-    background-image: url('/assets/noise-bg.svg');
+    background-image: url('/assets/footer-bg2.png');
     /* Subtle brightness adjustment to enhance pattern visibility */
+    
+    background-size: cover; /* Exact dimensions */
+    background-position: left 90%;
+    background-repeat: no-repeat;
     color: $headline;
     display: flex;
     flex-direction: column;
@@ -948,21 +1012,22 @@ section + section {  /* Default spacing between all sections */
     justify-content: space-between;
     align-items: flex-start;
     padding-right: $space-4x;
-  
+
+
+
     
-      .footer-logo {
-        width: 100%;
-        justify-self: center;
-        height: auto;
-  
-      }
+  .footer-logo {
+    width: 300px;
+    justify-self: center;
+    height: auto;
+  }
 
       @include tablet {
         padding-right: $space-2x;
         flex-direction: column;
         gap: 3rem;
       }
-    }
+}
 
 
 // SCSS for footer-right section
@@ -970,7 +1035,7 @@ section + section {  /* Default spacing between all sections */
 .footer-right {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 35%;
   gap: $space-1x;
 
   h2 {
@@ -980,7 +1045,7 @@ section + section {  /* Default spacing between all sections */
   }
 
   .description {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     line-height: 1.5;
     opacity: 0.9;
     margin-bottom: $space-md;
