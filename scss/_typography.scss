@@ -57,24 +57,9 @@ p {
 .content {
   font-size: 1.6rem;
   color: $text-primary;
-  max-width: 100%;
+   max-width: clamp(300px, 70vw + 5%, 80%);
   line-height: 1.4; 
 
-  @include desktop {
-    max-width: 90%;
-
-  }
-
-
-    @include tablet {
-    font-size: 1.25rem;
-    
-  }
-
-   @include mobile {
-    max-width: 100%; 
-
-  }
 
 
 }
@@ -95,9 +80,7 @@ h2 {
     font-weight: $font-bold;
     color: $headline;
 
-  @include mobile {
-    font-size: $size-3;
-  }
+
 }
 
  
@@ -168,6 +151,13 @@ h4 {
 @media (min-width: 1250px) {
   //Adds a line break only when viewport is over 1250px
     .large-break {
+        display: block;
+    }
+}
+
+@media (max-width: 1250px) {
+  //Adds a line break only when viewport is below 1250px
+    .low-break {
         display: block;
     }
 }

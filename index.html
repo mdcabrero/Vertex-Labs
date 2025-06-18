@@ -14,6 +14,42 @@
      <img src="/assets/logo.svg" alt="Voxel Labs" class="voxel">
     </a>
 
+       <div class="modal-overlay" id="modalOverlay"></div>
+
+<div class="Contact__Drawer" id="contactModal">
+    <div class="drawer__inner">
+        <div class="drawer__top">
+            <button class="drawer__close" id="closeBtn" aria-label="Close modal">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <h1 class="drawer__title">Let's talk</h1>
+        
+        <div class="drawer__details">
+            <div class="caps">ADDRESS</div>
+            <p>218 Main Street, Suite 954<br>Kirkland, WA 98033</p>
+        </div>
+        
+        <div class="drawer__details">
+            <div class="caps">TELEPHONE</div>
+            <p>(425) 358-8198</p>
+        </div>
+        
+        <div class="drawer__details">
+            <div class="caps">EMAIL</div>
+            <div class="c2c" id="copyEmailWrapper">
+                <p>Click to copy</p>
+                <svg viewBox="0 0 24 24" width="16" height="16">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
+
     <width-tracker></width-tracker>
     <div class="fuzzy-overlay"></div>
 
@@ -22,6 +58,8 @@
             <h1> Making data your <br>most valuable asset </h1>
         </div>
     </header>
+
+    <a id="connect-btn">Connect</a>
 
 
   <main> 
@@ -54,7 +92,7 @@
 
     <section class="services-section content-island"> 
 
-        <header class="section-header text-measure"> 
+        <header class="section-header "> 
             <span class="eyebrow"> SERVICES</span>
         <h2> Solving real business challenges <br> through targeted expertise  </h2>
         </header>
@@ -86,7 +124,7 @@
             <span class="service-icon"> 
         <svg width="100%" height="100%" viewBox="0 0 1173 1173" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><path id="Shape" d="M1153.96,637.346c15.131,-0.214 22.855,18.074 12.152,28.769l-106.692,106.638c-3.035,3.036 -7.113,4.797 -11.403,4.929l-96.351,10.806c-4.292,0.131 -8.371,1.893 -11.407,4.928l-144.547,144.547c-3.035,3.036 -4.797,7.116 -4.927,11.406l-10.808,96.352c-0.129,4.289 -1.892,8.369 -4.926,11.403l-106.638,106.693c-10.698,10.702 -28.985,2.979 -28.771,-12.152l3.854,-272.806l0.503,0.003l-0.253,-0.25l25.921,-13.511c5.338,-2.783 10.22,-6.365 14.477,-10.621l172.631,-172.632c4.258,-4.256 7.839,-9.141 10.622,-14.477l13.509,-25.921l0.254,0.252l-0.002,-0.502l272.802,-3.854Zm-647.857,-631.24c10.696,-10.703 28.985,-2.977 28.77,12.152l-3.855,272.803l-0.501,-0.002l0.253,0.254l-25.921,13.509c-5.339,2.782 -10.223,6.365 -14.479,10.621l-172.631,172.631c-4.256,4.257 -7.838,9.14 -10.62,14.477l-13.51,25.921l-0.253,-0.251l0.001,0.501l-272.802,3.856c-15.13,0.214 -22.856,-18.074 -12.153,-28.772l106.693,-106.637c3.035,-3.035 7.114,-4.796 11.404,-4.926l96.349,-10.809c4.293,-0.129 8.373,-1.892 11.408,-4.928l144.548,-144.548c3.033,-3.037 4.797,-7.115 4.927,-11.404l10.807,-96.352c0.129,-4.289 1.892,-8.368 4.926,-11.402l106.639,-106.694Zm20.986,876.184l0.501,0l3.853,272.805c0.216,15.128 -18.073,22.852 -28.769,12.15l-106.639,-106.692c-3.034,-3.035 -4.797,-7.114 -4.925,-11.404l-10.808,-96.352c-0.131,-4.29 -1.893,-8.368 -4.929,-11.404l-144.547,-144.548c-3.035,-3.036 -7.115,-4.798 -11.407,-4.929l-96.35,-10.806c-4.289,-0.13 -8.369,-1.892 -11.403,-4.926l-106.694,-106.639c-10.702,-10.697 -2.976,-28.985 12.154,-28.773l272.802,3.856l-0.001,0.503l0.253,-0.252l13.51,25.921c2.78,5.339 6.364,10.22 10.62,14.476l172.631,172.633c4.258,4.257 9.14,7.837 14.478,10.62l25.92,13.511l-0.25,0.25Zm118.04,-592.361l-0.502,0.002l-3.854,-272.806c-0.215,-15.128 18.073,-22.853 28.77,-12.149l106.639,106.692c3.035,3.035 4.796,7.114 4.925,11.402l10.808,96.353c0.131,4.29 1.893,8.37 4.928,11.406l144.548,144.545c3.036,3.037 7.116,4.799 11.407,4.928l96.351,10.809c4.288,0.129 8.367,1.891 11.402,4.925l106.691,106.639c10.704,10.696 2.979,28.986 -12.149,28.77l-272.805,-3.854l0.001,-0.5l-0.252,0.251l-13.51,-25.921c-2.781,-5.338 -6.364,-10.221 -10.621,-14.479l-172.63,-172.631c-4.256,-4.256 -9.139,-7.837 -14.478,-10.619l-25.92,-13.512l0.251,-0.251Z" style="fill:#7be152;"/></svg>
         </span>
-                    <h3 class="service-title">Machine Learning & AI</h3>
+                    <h3 class="service-title">Machine Learning &&nbsp;AI</h3>
                     <p class="service-description">Custom ML models and training datasets that automate processes and cut down costs </p>
             </div>    
 
@@ -112,7 +150,7 @@
         <div class="service-bio">
             <span class="service-icon"> 
 <svg width="100%" height="100%" viewBox="0 0 1375 935" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="_22" serif:id="22"><path id="Shape" d="M0,934.248l0,-273.821l179.528,-0l0,273.821l-179.528,0Zm238.995,0l-0,-389.476l179.528,-0l-0,389.476l-179.528,0Zm238.994,0l-0,-778.954l179.53,-0l-0,778.954l-179.53,0Zm238.996,0l0,-547.643l179.529,-0l0,547.643l-179.529,0Zm238.993,0l0,-934.248l179.529,0l0,934.248l-179.529,0Zm238.995,-229.474l179.53,-0l-0,229.474l-179.53,0l-0,-229.474Z" style="fill:#7be152;"/></g></svg>            </span>
-            <h3 class="service-title">Market Analysis & Intelligence</h3>
+            <h3 class="service-title">Market Analysis &&nbsp;Intelligence</h3>
             <p class="service-description">Competitive intelligence and market research that&nbsp;informs critical business decisions</p>
 
         </div>    
@@ -325,8 +363,8 @@
     </div>
 
   <div class="footer-right">
-  <h2>Are you ready to make <br class="large-break"> better business decisions?</h2>
-  <p class="description">Join 200+ companies getting weekly expert insights and strategic recommendations, and a complimentary data audit.</p>
+  <h2>Are you ready to make <br> better business decisions?</h2>
+  <p class="description">Join 200+ companies getting weekly expert insights and recommendations, along with a&nbsp;complimentary business data audit.</p>
   
   <form class="email-form">
     <input type="email" class="email-input" placeholder="EMAIL" required>

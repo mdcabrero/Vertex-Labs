@@ -1,5 +1,7 @@
 @use './scss/variables' as *;
 @use './scss/typography' as *;
+@use './scss/modal' as *;
+
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -43,7 +45,7 @@ button {
 }
 
 
-//MAIN STYLES
+//MAIN STYLES & ELEMENTS
 
 body {
     font-family: 'Helixa', sans-serif;
@@ -73,9 +75,9 @@ body {
 }
 
  .nav-logo {
-    position: fixed;
+    position: absolute;
     top: 2rem;
-    left: 2rem;
+    left: $space-4x;
     z-index: 999;
     display: inline-block;
     background: transparent; /* Ensure nothing's blocking */
@@ -83,7 +85,7 @@ body {
   
   
    img {
-    width: 240px;
+    width: 16rem;
     height: auto;
     fill: rgb(255, 255, 255);
   }
@@ -93,6 +95,26 @@ body {
 
 main {
     margin-block: $space-8x;
+}
+
+#connect-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(0, 1, 0, 0.9);
+  border: 2px solid var(--brand-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--brand-primary);
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(100, 247, 100, 0.4);
+  z-index: 1000;
 }
 
 
@@ -123,21 +145,14 @@ section + section {  /* Default spacing between all sections */
 
 
 .section-header {
-    display: flex;
-    flex-direction: column;
-    gap: $space-3q;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3q;
+  
 
-    @include desktop {
-      max-width: 80%;
-    }
-
-
-  @include tablet {
-    max-width: 70%;
-  }
-
-    @include mobile {
-    max-width: 90%;
+  h2 {
+    max-width: clamp(320px, 50vw + 15%, 90%);
+    line-height: 1.1; // Tighter line height for better visual hierarchy
   }
 }
 
@@ -333,48 +348,63 @@ section + section {  /* Default spacing between all sections */
 }
 
 
-.service-card--wide {
+// =============================================================================
+// SERVICE CARDS STYLES
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// SHARED MIXINS
+// -----------------------------------------------------------------------------
+@mixin card-base-styles {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  grid-column: 1 / -1; /* Spans from first to last column */
   overflow: hidden;
-  /* Background styling */
-  background-color: #000000;
-  background-image: url('../assets/service-bg.png');
-  background-position: left 30%;
-  background-size: cover;
-  background-repeat: no-repeat;
-  
-  /* Layout & spacing */
-  height: 60vh;
-  padding: $space-3x;
   border-radius: 1rem;
-  
-  /* Visual effects */
   border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #000000;
+  
+  // Consistent shadow across all cards
   box-shadow: 
     0 12px 40px rgba(0, 0, 0, 0.6),
     0 6px 20px rgba(0, 0, 0, 0.4),
     0 2px 8px rgba(9, 74, 35, 0.25),
     inset 0 1px 0 rgba(0, 201, 67, 0.1),
     inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+}
 
-  /* Service variant */
-  &[data-service="data-consulting"] {
-    background-image: url('../assets/service-bg3.png');
-    background-position: left 10%;
-  }
+@mixin pseudo-element-base {
+  content: '';
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  pointer-events: none;
+}
 
-  /* Content area */
+// -----------------------------------------------------------------------------
+// WIDE CARD LAYOUT
+// -----------------------------------------------------------------------------
+.service-card--wide {
+  @include card-base-styles;
+  
+  display: flex;
+  justify-content: space-between;
+  grid-column: 1 / -1;
+  height: 60vh;
+  padding: $space-3x;
+
+  // Content positioning
   .service-bio {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: $space-lite;
-    max-width: 40%;
+    max-width: clamp(320px, 40vw + 20%, 500px);   
     align-self: end;
     z-index: 2;
+
+    .service-description {
+    max-width: clamp(280px, 35vw + 25%, 450px);
+  }
 
     .service-icon {
       display: inline-flex;
@@ -387,137 +417,93 @@ section + section {  /* Default spacing between all sections */
         fill: #7be152;
       }
     }
-
-    @include tablet {
-      max-width: 65%;
-      gap: $space-md;
-    }
-
-    @include mobile {
-      width: 95%;
-    }
   }
 
-  /* Tablet breakpoint - overlay starts here */
+  // Service-specific backgrounds (desktop)
+  &[data-service="data-consulting"] {
+    background-image: url('../assets/service-bg3.png');
+    background-position: left 10%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  &[data-service="market-analysis"] {
+    background-image: url('../assets/service-bg.png');
+    background-position: left 30%;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  // Tablet adjustments
   @include tablet {
-    height: 45vh;
+    height: 400px;
     padding: 2rem;
     
-    /* Data consulting card - remove background and add pseudo-element */
+    .service-bio {
+      gap: $space-md;
+      width: 100%;
+    }
+    
     &[data-service="data-consulting"] {
       background-image: none;
       
       &::before {
-        content: '';
-        position: absolute;
+        @include pseudo-element-base;
         top: -20%;
         left: 30%;
         width: 110%;
-        height: 130%;
+        height: 125%;
         background-image: url('../assets/card-shape-m1.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        pointer-events: none;
       }
     }
     
-    /* Market analysis card - remove background and add pseudo-element */
     &[data-service="market-analysis"] {
       background-image: none;
       
       &::before {
-        content: '';
-        position: absolute;
+        @include pseudo-element-base;
         top: -20%;
         left: 30%;
         width: 110%;
-        height: 130%;
+        height: 125%;
         background-image: url('../assets/card-shape-m4.svg');
-        background-repeat: no-repeat;
-        background-position: center;
-        pointer-events: none;
       }
     }
   }
 
-  /* Mobile breakpoint */
-  @include tablet {
-    height: 400px;
+  // Mobile adjustments
+  @include mobile {
+    height: 240px;
     padding: 2rem;
-  }
-
-    @include tablet {
-    height: 320px;
   }
 }
 
-
-// Vertical card
+// -----------------------------------------------------------------------------
+// VERTICAL CARD LAYOUT
+// -----------------------------------------------------------------------------
 .service-card--vertical {
-  position: relative;
+  @include card-base-styles;
+  
   display: flex;
   flex-direction: column;
   justify-content: end;
   grid-column: span 1;
-  overflow: hidden; /* Clips pseudo-element backgrounds */
-  
-  /* Background styling */
-  background-color: #000000;
-  
-  /* Layout & spacing */
   height: 70vh;
   padding: $space-3x;
-  border-radius: 1rem;
-  
-  /* Visual effects */
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.6),
-    0 6px 20px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(9, 74, 35, 0.25),
-    inset 0 1px 0 rgba(0, 201, 67, 0.1),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.5);
 
-  /* Service variants with background graphics */
-  &[data-service="machine-learning"] {
-    &::before {
-      content: '';
-      position: absolute;
-      top: -15%;
-      left: 0%;
-      width: 100%;
-      height: 100%;
-      background-image: url('../assets/card-shape2.svg');
-      background-repeat: no-repeat;
-      background-position: center;
-      pointer-events: none;
-    }
-  }
-
-  &[data-service="predictive-analysis"] {
-    &::before {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: 25%;
-      width: 100%;
-      height: 100%;
-      background-image: url('../assets/card-shape3.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      pointer-events: none;
-    }
-  }
-
-  /* Content area */
+  // Content positioning
   .service-bio {
     position: relative;
     display: flex;
     flex-direction: column;
     gap: $space-lite;
-    max-width: 60%;
+    max-width: clamp(320px, 40vw + 20%, 500px);    
     z-index: 2;
+
+    .service-description {
+    // Even more aggressive scaling for description text
+    max-width: clamp(280px, 35vw + 25%, 450px);
+  }
 
     .service-icon {
       display: inline-flex;
@@ -531,54 +517,80 @@ section + section {  /* Default spacing between all sections */
         fill: #95e152;
       }
     }
+  }
 
-    @include desktop {
-      max-width: 90%;
-    }
-
-    @include tablet {
-      max-width: 60%;
-      gap: $space-md;
-    }
-
-     @include mobile {
-      max-width: 100%;
+  &[data-service="machine-learning"] {
+    &::before {
+      @include pseudo-element-base;
+      top: -15%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      background-image: url('../assets/card-shape2.svg');
     }
   }
 
-  /* Tablet breakpoint - darken pseudo-elements */
+  &[data-service="predictive-analysis"] {
+    &::before {
+      @include pseudo-element-base;
+      top: -20%;
+      left: 25%;
+      width: 100%;
+      height: 100%;
+      background-image: url('../assets/card-shape3.svg');
+    }
+  }
+
+ 
+
   @include tablet {
     height: 400px;
     padding: 2rem;
 
+    .service-bio {
+      gap: $space-md;
+    }
     
     &[data-service="machine-learning"] {
       &::before {
-         top: -20%;
+        background-image: url('../assets/card-shape-m3.svg');
+        top: -20%;
         left: 30%;
-        width: 120%;
-        height: 120%;
-        background-image: url('../assets/card-shape-m3.svg'); /* Darken the background graphics */
+        width: 110%;
+        height: 125%;
       }     
     }
 
-     &[data-service="predictive-analysis"] {
+    &[data-service="predictive-analysis"] {
       &::before {
-      background-image: url('../assets/card-shape-m2.svg'); /* Darken the background graphics */
-       top: -20%;
+        background-image: url('../assets/card-shape-m2.svg');
+        top: -20%;
         left: 30%;
-        width: 120%;
-        height: 120%;
+        width: 110%;
+        height: 125%;
       }     
     }
-
-
   }
 
-  /* Mobile breakpoint */
   @include mobile {
-    height: 320px;
-    
+    height: 240px;
+    padding: 2rem;
+  }
+}
+
+//Opacity adjustments for readability in all cards
+
+@media (max-width: 750px) {
+  .service-card--wide,
+  .service-card--vertical {
+    &[data-service="data-consulting"],
+    &[data-service="market-analysis"],
+    &[data-service="machine-learning"],
+    &[data-service="predictive-analysis"] {
+      &::before {
+        opacity: 0.6;
+      }
+    }
   }
 }
 
@@ -982,7 +994,6 @@ section + section {  /* Default spacing between all sections */
     background-size: cover; /* Exact dimensions */
     background-position: left 90%;
     background-repeat: no-repeat;
-    color: $headline;
     display: flex;
     flex-direction: column;
     margin-inline: auto;
@@ -1011,22 +1022,22 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding-right: $space-4x;
+      gap: 3.5rem;
 
-
-
+    @include tablet {
+      padding-right: $space-2x;
+      flex-direction: column;
+  
+      }
     
+
   .footer-logo {
     width: 300px;
     justify-self: center;
-    height: auto;
+
   }
 
-      @include tablet {
-        padding-right: $space-2x;
-        flex-direction: column;
-        gap: 3rem;
-      }
+
 }
 
 
@@ -1035,29 +1046,41 @@ section + section {  /* Default spacing between all sections */
 .footer-right {
   display: flex;
   flex-direction: column;
-  width: 35%;
   gap: $space-1x;
+  max-width: 500px;
+
+   @include tablet {
+    max-width: 550px;
+  }
 
   h2 {
-    font-size: $size-2;
+    font-size: 1.8rem;
     font-weight: 500;
     color: $headline;
+
+    @include tablet {
+      line-height: 1.25;
+      margin-bottom: 0.25rem;
+      font-size: 1.9rem;
+    }
   }
 
   .description {
-    font-size: 1.15rem;
+    font-size: 1.3rem;
     line-height: 1.5;
-    opacity: 0.9;
+    max-width: clamp(95%, 30vw, 100%);
     margin-bottom: $space-md;
 
     @include tablet {
-    margin-bottom: $space-3x;
-  }
+
+    color: $text-secondary;
+    font-size: 1.4rem;
+    margin-bottom: $space-4x;
   }
 
-  @include tablet {
-    width: 90%;
   }
+
+
 
    @include mobile {
     width: 100%;
@@ -1070,7 +1093,7 @@ section + section {  /* Default spacing between all sections */
   .email-form {
     position: relative;
     margin-bottom: $space-3x;
-    width: 90%;
+     max-width: 420px;
     
     .email-input {
       width: 100%;
@@ -1080,12 +1103,12 @@ section + section {  /* Default spacing between all sections */
       padding-bottom: 1rem;
       letter-spacing: 1.5px;
       color: $headline;
-      font-size: 14px;
+      font-size: 1rem;
       outline: none;
       
       &::placeholder {
         color: $brand-primary;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         font-weight: $font-bold;
   
       }

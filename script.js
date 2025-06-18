@@ -441,7 +441,7 @@ function setupAccordion() {
 
 
 
-    /**
+  /**
  * Video Stopper
  * Stops video from 'about-section' after 7s to convert into a static image
  */
@@ -458,3 +458,167 @@ function pauseVideoAtFrame() {
 
 // Initialize when DOM is ready
 document.addEventListener('DOMContentLoaded', pauseVideoAtFrame);
+
+
+
+/**
+ * Contact Modal Functionality
+ * Handles opening/closing of contact modal with smooth animations
+ */
+
+// Configuration
+const CONTACT_EMAIL = 'contact@yourcompany.com'; // Update this with your actual email
+
+/**
+ * Initialize contact modal functionality
+ */
+function initContactModal() {
+    // Get DOM elements
+    const elements = {
+        connectBtn: document.getElementById('connect-btn'),
+        overlay: document.getElementById('modalOverlay'),
+        modal: document.getElementById('contactModal'),
+        closeBtn: document.getElementById('closeBtn'),
+        copyWrapper: document.getElementById('copyEmailWrapper')
+    };
+
+    // Verify all elements exist
+    if (!elements.connectBtn || !elements.overlay || !elements.modal) {
+        console.warn('Contact modal elements not found');
+        return;
+    }
+
+    // Modal state
+    let isModalOpen = false;
+    let copyTimeout = null;
+
+    /**
+     * Opens the contact modal
+     */
+    function openModal() {
+        if (isModalOpen) return;
+        
+        elements.overlay.classList.add('active');
+        elements.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        isModalOpen = true;
+        
+        // Reset copy state when opening
+        if (elements.copyWrapper) {
+            elements.copyWrapper.classList.remove('success');
+        }
+        
+        // Focus management for accessibility
+        if (elements.closeBtn) {
+            elements.closeBtn.focus();
+        }
+    }
+
+    /**
+     * Closes the contact modal
+     */
+    function closeModal() {
+        if (!isModalOpen) return;
+        
+        elements.overlay.classList.remove('active');
+        elements.modal.classList.remove('active');
+        document.body.style.overflow = '';
+        isModalOpen = false;
+        
+        // Return focus to trigger element
+        elements.connectBtn.focus();
+    }
+
+    /**
+     * Copies email to clipboard with inline feedback
+     */
+    async function copyEmailToClipboard() {
+        try {
+            await navigator.clipboard.writeText(CONTACT_EMAIL);
+            showCopySuccess();
+        } catch (err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = CONTACT_EMAIL;
+            textArea.style.position = 'fixed';
+            textArea.style.opacity = '0';
+            textArea.style.pointerEvents = 'none';
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                showCopySuccess();
+            } catch (copyErr) {
+                console.error('Failed to copy email:', copyErr);
+            } finally {
+                document.body.removeChild(textArea);
+            }
+        }
+    }
+
+    /**
+     * Shows copy success state
+     */
+    function showCopySuccess() {
+        if (!elements.copyWrapper) return;
+        
+        // Clear any existing timeout
+        if (copyTimeout) {
+            clearTimeout(copyTimeout);
+        }
+        
+        // Add success class
+        elements.copyWrapper.classList.add('success');
+        
+        // Reset after 2 seconds
+        copyTimeout = setTimeout(() => {
+            elements.copyWrapper.classList.remove('success');
+            copyTimeout = null;
+        }, 2000);
+    }
+
+    /**
+     * Handles keyboard events
+     */
+    function handleKeydown(e) {
+        if (e.key === 'Escape' && isModalOpen) {
+            closeModal();
+        }
+    }
+
+    /**
+     * Prevents modal from closing when clicking inside it
+     */
+    function handleModalClick(e) {
+        e.stopPropagation();
+    }
+
+    // Event Listeners
+    elements.connectBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
+    
+    if (elements.closeBtn) {
+        elements.closeBtn.addEventListener('click', closeModal);
+    }
+    
+    elements.overlay.addEventListener('click', closeModal);
+    
+    if (elements.copyWrapper) {
+        elements.copyWrapper.addEventListener('click', copyEmailToClipboard);
+    }
+    
+    elements.modal.addEventListener('click', handleModalClick);
+    document.addEventListener('keydown', handleKeydown);
+
+    // Return public API if needed
+    return {
+        open: openModal,
+        close: closeModal
+    };
+}
+
+// Initialize contact modal when DOM is ready
+document.addEventListener('DOMContentLoaded', initContactModal);

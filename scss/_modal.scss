@@ -1,0 +1,194 @@
+// _modal.scss - Contact Modal Component
+@use 'variables' as *;
+
+// Modal Overlay
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba($bg-dark, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.25s ease;
+    z-index: 999;
+    
+    &.active {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+// Contact Drawer
+.Contact__Drawer {
+    position: fixed;
+    top: $space-1x;
+    right: $space-1x;
+    width: min(90vw, clamp(22rem, 26.042vw, 28rem));
+    background: $green-gradient;
+    border-radius: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translate(100%, -100%) scale(0.3);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 1000;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    
+    &.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(0, 0) scale(1);
+    }
+    
+    @include mobile {
+        width: calc(100vw - 2rem);
+        max-width: none;
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+// Drawer Inner Container
+.drawer__inner {
+    padding: $space-4x;
+    color: $bg-dark;
+    position: relative;
+    
+    @include mobile {
+        padding: $space-3x;
+    }
+}
+
+// Drawer Top Section
+.drawer__top {
+    position: absolute;
+    top: $space-2x;
+    right: $space-2x;
+}
+
+// Close Button
+.drawer__close {
+    width: 2.5rem;
+    height: 2.5rem;
+    background: transparent;
+    border: 1.5px solid $bg-dark;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.9;
+    
+    &:hover {
+        opacity: 1;
+        transform: rotate(90deg);
+        background: rgba($bg-dark, 0.05);
+    }
+    
+    svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        fill: $bg-dark;
+    }
+}
+
+// Drawer Title
+.drawer__title {
+    font-size: $size-6;
+    font-weight: $font-regular;
+    margin-bottom: $space-4x;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: $bg-dark;
+    
+    @include mobile {
+        font-size: $size-5;
+        margin-bottom: $space-3x;
+    }
+}
+
+// Drawer Details Sections
+.drawer__details {
+    margin-bottom: clamp(1.75rem, 2.604vw, 2.5rem);
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+    
+    p {
+        font-size: $size-1;
+        font-weight: $font-regular;
+        line-height: 1.5;
+        letter-spacing: -0.01em;
+        color: $bg-dark;
+        margin: 0;
+    }
+}
+
+// Caps Labels
+.caps {
+    font-size: 0.75rem;
+    font-weight: $font-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    opacity: 0.8;
+    color: $bg-dark;
+}
+
+// Click to Copy Component
+.c2c {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    position: relative;
+    
+    &:hover {
+        opacity: 0.8;
+    }
+    
+    p {
+        font-size: $size-1;
+        font-weight: $font-regular;
+        letter-spacing: -0.01em;
+        color: $bg-dark;
+        margin: 0;
+        transition: opacity 0.15s ease;
+    }
+    
+    svg {
+        width: 1rem;
+        height: 1rem;
+        fill: $bg-dark;
+        opacity: 0.8;
+        flex-shrink: 0;
+        transition: opacity 0.15s ease;
+    }
+    
+    // Success state
+    &.success {
+        p {
+            &::before {
+                content: 'Copied to clipboard!';
+            }
+            
+            // Hide original text
+            color: transparent;
+            position: relative;
+            
+            &::before {
+                position: absolute;
+                left: 0;
+                color: $bg-dark;
+            }
+        }
+        
+        svg {
+            // Change to checkmark path
+            path {
+                d: path('M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z');
+            }
+        }
+    }
+}
