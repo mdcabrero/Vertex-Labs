@@ -127,108 +127,104 @@ cite {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(1, 0, 5, 0.5);
+  background: rgba(1, 0, 5, 0.7);
   opacity: 0;
   visibility: hidden;
   transition: all 0.25s ease;
   z-index: 999;
+  backdrop-filter: blur(4px);
 }
 .modal-overlay.active {
   opacity: 1;
   visibility: visible;
 }
 
-.Contact__Drawer {
+.contact-modal {
   position: fixed;
-  top: clamp(0.35rem, 1.041667vw, 1.15rem);
-  right: clamp(0.35rem, 1.041667vw, 1.15rem);
+  top: 0;
+  right: 0;
   width: min(90vw, clamp(22rem, 26.042vw, 28rem));
   background: linear-gradient(90deg, rgb(41, 228, 41) 0%, rgb(111, 237, 111) 45%, rgb(199, 247, 110) 100%);
-  border-radius: 1.2rem;
+  border-radius: 0 0 0 1.2rem;
   opacity: 0;
   visibility: hidden;
-  transform: translate(100%, -100%) scale(0.3);
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform: translateY(-100%);
+  transition: all 0.3s ease-in;
   z-index: 1000;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+  color: #010005;
 }
-.Contact__Drawer.active {
+.contact-modal.active {
   opacity: 1;
   visibility: visible;
-  transform: translate(0, 0) scale(1);
+  transform: translateY(0);
 }
 @media (max-width: 601px) {
-  .Contact__Drawer {
-    width: calc(100vw - 2rem);
+  .contact-modal {
+    width: 100vw;
     max-width: none;
-    top: 1rem;
-    right: 1rem;
+    border-radius: 0;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.3);
   }
 }
 
-.drawer__inner {
-  padding: clamp(2rem, 4.166668vw, 4.6rem);
-  color: #010005;
-  position: relative;
-}
-@media (max-width: 601px) {
-  .drawer__inner {
-    padding: clamp(1rem, 3.125001vw, 3.45rem);
-  }
+.modal-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(1rem, 3.125001vw, 3.45rem);
 }
 
-.drawer__top {
-  position: absolute;
-  top: clamp(0.75rem, 2.083334vw, 2.3rem);
-  right: clamp(0.75rem, 2.083334vw, 2.3rem);
+.modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: clamp(3rem, 8.333336vw, 9.2rem);
 }
 
-.drawer__close {
-  width: 2.5rem;
-  height: 2.5rem;
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.close-btn {
+  width: 2rem;
+  height: 2rem;
   background: transparent;
-  border: 1.5px solid #010005;
+  border: 2px solid #010005;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  opacity: 0.9;
+  opacity: 0.8;
+  flex-shrink: 0;
 }
-.drawer__close:hover {
+.close-btn:hover {
   opacity: 1;
   transform: rotate(90deg);
-  background: rgba(1, 0, 5, 0.05);
+  background: rgba(1, 0, 5, 0.1);
 }
-.drawer__close svg {
+.close-btn svg {
   width: 1.25rem;
   height: 1.25rem;
   fill: #010005;
 }
 
-.drawer__title {
-  font-size: clamp(2.6127rem, 2.2592rem + 1.6161vw, 3.8147rem);
+.modal-title {
+  font-size: clamp(2.1773rem, 1.9201rem + 1.1758vw, 3.0518rem);
   font-weight: 400;
-  margin-bottom: clamp(2rem, 4.166668vw, 4.6rem);
   line-height: 1;
   letter-spacing: -0.02em;
   color: #010005;
 }
-@media (max-width: 601px) {
-  .drawer__title {
-    font-size: clamp(2.1773rem, 1.9201rem + 1.1758vw, 3.0518rem);
-    margin-bottom: clamp(1rem, 3.125001vw, 3.45rem);
-  }
-}
 
-.drawer__details {
-  margin-bottom: clamp(1.75rem, 2.604vw, 2.5rem);
+.contact-details {
+  margin: 0;
 }
-.drawer__details:last-child {
-  margin-bottom: 0;
-}
-.drawer__details p {
+.contact-details p {
   font-size: clamp(1.05rem, 0.9912rem + 0.28vw, 1.25rem);
   font-weight: 400;
   line-height: 1.5;
@@ -237,7 +233,7 @@ cite {
   margin: 0;
 }
 
-.caps {
+.section-label {
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -247,7 +243,7 @@ cite {
   color: #010005;
 }
 
-.c2c {
+.copy-email {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -255,10 +251,10 @@ cite {
   transition: opacity 0.2s ease;
   position: relative;
 }
-.c2c:hover {
+.copy-email:hover {
   opacity: 0.8;
 }
-.c2c p {
+.copy-email p {
   font-size: clamp(1.05rem, 0.9912rem + 0.28vw, 1.25rem);
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -266,7 +262,7 @@ cite {
   margin: 0;
   transition: opacity 0.15s ease;
 }
-.c2c svg {
+.copy-email svg {
   width: 1rem;
   height: 1rem;
   fill: #010005;
@@ -274,19 +270,10 @@ cite {
   flex-shrink: 0;
   transition: opacity 0.15s ease;
 }
-.c2c.success p {
-  color: transparent;
-  position: relative;
+.copy-email.success svg {
+  flex-shrink: 0;
 }
-.c2c.success p::before {
-  content: "Copied to clipboard!";
-}
-.c2c.success p::before {
-  position: absolute;
-  left: 0;
-  color: #010005;
-}
-.c2c.success svg path {
+.copy-email.success svg path {
   d: path("M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z");
 }
 
@@ -376,20 +363,38 @@ main {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: rgba(0, 1, 0, 0.9);
-  border: 2px solid var(--brand-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: var(--brand-primary);
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(100, 247, 100, 0.4);
-  z-index: 1000;
+  font-size: 1.5rem;
+  padding: 1rem 2rem;
+  --green: #72fd1b;
+  letter-spacing: 0.06em;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+  font-family: inherit;
+  border-radius: 0.6em;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+  line-height: 1;
+  border: 2px solid var(--green);
+  color: var(--green);
+  box-shadow: inset 0 0 10px rgba(91, 253, 27, 0.4), 0 0 9px 3px rgba(82, 214, 6, 0.1);
+}
+#connect-btn:hover {
+  color: #82ffc9;
+  box-shadow: inset 0 0 10px rgba(117, 253, 27, 0.6), 0 0 9px 3px rgba(27, 253, 57, 0.2);
+}
+#connect-btn:hover::before {
+  transform: translateX(15em);
+}
+#connect-btn::before {
+  content: "";
+  position: absolute;
+  left: -4em;
+  width: 4em;
+  height: 100%;
+  top: 0;
+  transition: transform 0.4s ease-in-out;
+  background: linear-gradient(to right, transparent 1%, rgba(27, 253, 156, 0.1) 40%, rgba(27, 253, 156, 0.1) 60%, transparent 100%);
 }
 
 section + section { /* Default spacing between all sections */
