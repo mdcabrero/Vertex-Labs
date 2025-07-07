@@ -144,7 +144,7 @@ cite {
   top: 0;
   right: 0;
   width: min(90vw, clamp(22rem, 26.042vw, 28rem));
-  background: linear-gradient(90deg, rgb(41, 228, 41) 0%, rgb(111, 237, 111) 45%, rgb(199, 247, 110) 100%);
+  background: #64F764;
   border-radius: 0 0 0 1.2rem;
   opacity: 0;
   visibility: hidden;
@@ -350,7 +350,7 @@ body {
   isolation: isolate;
 }
 .nav-logo img {
-  width: 16rem;
+  width: 4rem;
   height: auto;
   fill: rgb(255, 255, 255);
 }
@@ -361,10 +361,10 @@ main {
 
 #connect-btn {
   position: fixed;
-  bottom: 2rem;
+  bottom: 2.5rem;
   right: 2rem;
   font-size: 1.5rem;
-  padding: 1rem 2rem;
+  padding: 0.75rem 1.5rem;
   --green: #72fd1b;
   letter-spacing: 0.06em;
   z-index: 100;
@@ -374,14 +374,15 @@ main {
   overflow: hidden;
   transition: all 0.3s;
   cursor: pointer;
-  line-height: 1;
+  line-height: 1.5;
   border: 2px solid var(--green);
   color: var(--green);
-  box-shadow: inset 0 0 10px rgba(91, 253, 27, 0.4), 0 0 9px 3px rgba(82, 214, 6, 0.1);
+  box-shadow: inset 0 0 6px rgba(83, 236, 23, 0.687), 0 0 4px 1px rgba(82, 214, 6, 0.1);
 }
 #connect-btn:hover {
-  color: #82ffc9;
-  box-shadow: inset 0 0 10px rgba(117, 253, 27, 0.6), 0 0 9px 3px rgba(27, 253, 57, 0.2);
+  color: rgb(157, 222, 113);
+  border: 2px solid rgb(146, 227, 92);
+  box-shadow: inset 0 0 10px rgba(19, 186, 53, 0.6), 0 0 9px 3px rgba(27, 253, 57, 0.2);
 }
 #connect-btn:hover::before {
   transform: translateX(15em);
@@ -504,21 +505,20 @@ section + section { /* Default spacing between all sections */
 .hero-content {
   gap: 4em;
   padding-left: clamp(2rem, 4.166668vw, 4.6rem);
-  padding-bottom: 6rem;
+  padding-bottom: 3rem;
 }
 .hero::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: -20%;
+  right: -10%;
+  width: 50%;
   height: 100%;
-  background-image: url("../assets/hero_bg7.jpg");
+  background-image: url("../assets/hero-vertex.svg");
   background-size: cover;
-  opacity: 0.75;
-  background-position: left 50%;
+  background-repeat: no-repeat;
+  background-position: left 100%;
   z-index: -1; /* Place behind content */
-  mask-image: linear-gradient(to bottom, rgb(0, 0, 0) 80%, rgba(0, 0, 0, 0));
 }
 
 .media-wrapper {
