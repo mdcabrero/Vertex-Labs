@@ -433,7 +433,6 @@ section + section { /* Default spacing between all sections */
 .two-col {
   display: grid;
   grid-template-columns: 1fr 0.6fr;
-  gap: clamp(1rem, 3.125001vw, 3.45rem);
   padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
 }
 @media (max-width: 1240px) {
@@ -479,7 +478,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
-  max-width: 80%;
+  max-width: 90%;
 }
 @media (max-width: 1240px) {
   .content-block {
@@ -525,7 +524,6 @@ section + section { /* Default spacing between all sections */
   width: 100%;
   margin-top: 1rem;
   position: relative;
-  display: inline-block;
 }
 @media (max-width: 1240px) {
   .media-wrapper {
@@ -547,7 +545,7 @@ section + section { /* Default spacing between all sections */
 }
 .media-wrapper img {
   width: 100%;
-  height: auto;
+  height: 90%;
   background-color: transparent;
 }
 @keyframes gradientWave {

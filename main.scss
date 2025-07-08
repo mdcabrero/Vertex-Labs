@@ -183,7 +183,7 @@ section + section {  /* Default spacing between all sections */
 .two-col {
     display: grid;
     grid-template-columns: 1fr 0.6fr;
-    gap: $space-3x;
+
     padding-inline: $space-4x;
 
     @include desktop {
@@ -233,7 +233,7 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     gap: $space-md;
-    max-width: 80%;
+    max-width: 90%;
 
     @include desktop {
     max-width: 85%;
@@ -294,8 +294,7 @@ section + section {  /* Default spacing between all sections */
 .media-wrapper {
     width: 100%;
     margin-top: 1rem;
-    position: relative; // Add this - required for ::before positioning
-    display: inline-block; // Add this - ensures wrapper fits content
+    position: relative; 
     @include hide-on-desktop;
 
 
@@ -315,7 +314,7 @@ section + section {  /* Default spacing between all sections */
 
     img {
         width: 100%; // Ensure image fills wrapper
-        height: auto;
+        height: 90%;
         background-color: transparent;
    
     }
