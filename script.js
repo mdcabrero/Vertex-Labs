@@ -204,7 +204,7 @@ function initSliders() {
 const testimonials = [
   {
     logoImg: "assets/icons/kohls-logo.svg",
-    quote: "Rubik Labs helped us consolidate disperse customer data from all our selling outlets. Their predictive models increased our inventory accuracy by 34% and reduced stockouts during peak seasons.",
+    quote: "Vertex Labs helped us consolidate disperse customer data from all our selling outlets. Their predictive models increased our inventory accuracy by 34% and reduced stockouts during peak seasons.",
     testimonee: "Sarah Martinez, VP of Sales at Kohl's"
   },
   {
@@ -214,7 +214,7 @@ const testimonials = [
   },
   {
     logoImg: "assets/icons/rhenus-logo.svg",
-    quote: "Rubik Labs' supply chain analytics helped us optimize our delivery networks across 50+ distribution centers. We reduced logistics costs by $12M annually while improving delivery times by 18%.",
+    quote: "Vertex Labs' supply chain analytics helped us optimize our delivery networks across 50+ distribution centers. We reduced logistics costs by $12M annually while improving delivery times by 18%.",
     testimonee: "Jakub Musial, Regional Manager at Rhenus Logistics"
   }
 ];
