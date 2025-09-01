@@ -270,16 +270,28 @@ section + section {  /* Default spacing between all sections */
       &::before {
         content: '';
         position: absolute;
-        top: -20%;
-        right: -10%;
-        width: 50%;
-        height: 100%;
-        background-image: url('../assets/hero-vertex.svg');
+        inset: 0;
+        background-image: url('../assets/hero_bg.jpg');
         background-size: cover;
         background-repeat: no-repeat;
-     
+        mix-blend-mode: screen;
+  
         background-position: left 100%; 
         z-index: -1; /* Place behind content */
+
+          /* Transparency mask */
+       mask: linear-gradient(to bottom, 
+    rgba(0,0,0,1) 0%, 
+    rgba(0,0,0,1) 50%, 
+    rgba(0,0,0,0.25) 90%,
+    rgba(0,0,0,0) 100%
+);
+-webkit-mask: linear-gradient(to bottom, 
+    rgba(0,0,0,1) 0%, 
+    rgba(0,0,0,1) 75%, 
+    rgba(0,0,0,0.3) 90%,
+    rgba(0,0,0,0) 100%
+);
 
     }
 }
