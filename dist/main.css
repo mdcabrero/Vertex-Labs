@@ -517,8 +517,8 @@ section + section { /* Default spacing between all sections */
   background-position: left 100%;
   z-index: -1; /* Place behind content */
   /* Transparency mask */
-  mask: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 50%, rgba(0, 0, 0, 0.25) 90%, rgba(0, 0, 0, 0) 100%);
-  -webkit-mask: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 75%, rgba(0, 0, 0, 0.3) 90%, rgba(0, 0, 0, 0) 100%);
+  mask: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.25) 75%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask: linear-gradient(to bottom, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 85%, rgba(0, 0, 0, 0) 100%);
 }
 
 .media-wrapper {

@@ -280,18 +280,16 @@ section + section {  /* Default spacing between all sections */
         z-index: -1; /* Place behind content */
 
           /* Transparency mask */
-       mask: linear-gradient(to bottom, 
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 50%, 
-    rgba(0,0,0,0.25) 90%,
-    rgba(0,0,0,0) 100%
-);
--webkit-mask: linear-gradient(to bottom, 
-    rgba(0,0,0,1) 0%, 
-    rgba(0,0,0,1) 75%, 
-    rgba(0,0,0,0.3) 90%,
-    rgba(0,0,0,0) 100%
-);
+        mask: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,0.25) 75%, 
+                rgba(0,0,0,0) 100%
+            );
+            -webkit-mask: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 85%, 
+                rgba(0,0,0,0) 100%
+            );
 
     }
 }
