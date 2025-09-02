@@ -85,7 +85,7 @@ body {
   
   
    img {
-    width: 4rem;
+    width: 3.5rem;
     height: auto;
     fill: rgb(255, 255, 255);
   }
@@ -251,50 +251,174 @@ section + section {  /* Default spacing between all sections */
 //HERO SECTION
 
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    height: 100vh;
-    width: 100%;
-    position: relative;
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-image: url('/assets/hero-bg2.png');
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  padding-left: $space-4x;
+  padding-top: 3.25rem; /* Same as logo's size */
+  overflow: hidden;
+
+/* Transparency mask */
+mask: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,0.25) 75%, 
+        rgba(0,0,0,0) 100%
+    );
+    -webkit-mask: linear-gradient(to bottom, 
+        rgba(0,0,0,1) 0%, 
+        rgba(0,0,0,1) 85%, 
+        rgba(0,0,0,0) 100%
+    );
 
 
 
-    &-content {
-        gap: 4em;
-        padding-left: $space-4x;
-        padding-bottom: 3rem;
-
-      }
-
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background-image: url('../assets/hero_bg9.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        mix-blend-mode: screen;
-  
-        background-position: left 20%; 
-        z-index: -1; /* Place behind content */
-
-          /* Transparency mask */
-        mask: linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,0.25) 75%, 
-                rgba(0,0,0,0) 100%
-            );
-            -webkit-mask: linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 85%, 
-                rgba(0,0,0,0) 100%
-            );
-
+      h1 {
+      font-size: $size-6;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
     }
 }
 
 
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: $brand-primary;
+  margin-bottom: 1.25rem;
+  opacity: 0.9;
+}
+
+.badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4ade80;
+  box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
+  animation: pulse 2s infinite;
+}
+
+
+.hero-description {
+  font-size: $size-2;
+  line-height: 1.5;
+  color: rgba(239, 243, 232, 0.9);
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Realistic Button Design */
+.btn {
+  position: relative;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  
+  /* Realistic depth and shadows */
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateX(0deg);
+}
+
+/* Primary button - Green accent */
+.btn-primary {
+  background: linear-gradient(180deg, #5eeb8c 0%, #4ade80 100%);
+  color: #0a2e1c;
+  box-shadow: 
+      0 4px 8px rgba(74, 222, 128, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #6ff09a 0%, #5ae88a 100%);
+  transform: perspective(1000px) rotateX(5deg) translateY(-2px);
+  box-shadow: 
+      0 6px 12px rgba(74, 222, 128, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+}
+
+
+/* Secondary button - Dark with border */
+.btn-secondary {
+  background: linear-gradient(180deg, 
+      rgba(255, 255, 255, 0.08) 0%, 
+      rgba(255, 255, 255, 0.04) 100%);
+  color: #fff;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  box-shadow: 
+      0 4px 8px rgba(0, 0, 0, 0.3),
+      0 1px 3px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(180deg, 
+      rgba(255, 255, 255, 0.12) 0%, 
+      rgba(255, 255, 255, 0.06) 100%);
+  border-color: rgba(74, 222, 128, 0.5);
+  transform: perspective(1000px) rotateX(5deg) translateY(-2px);
+  box-shadow: 
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      0 2px 4px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15),
+      inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+      0 0 20px rgba(74, 222, 128, 0.1);
+}
+
+    
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        
 
 
 
