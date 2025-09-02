@@ -271,12 +271,12 @@ section + section {  /* Default spacing between all sections */
         content: '';
         position: absolute;
         inset: 0;
-        background-image: url('../assets/hero_bg.jpg');
+        background-image: url('../assets/hero_bg9.jpg');
         background-size: cover;
         background-repeat: no-repeat;
         mix-blend-mode: screen;
   
-        background-position: left 100%; 
+        background-position: left 20%; 
         z-index: -1; /* Place behind content */
 
           /* Transparency mask */
