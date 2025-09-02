@@ -813,31 +813,31 @@ mask: linear-gradient(to bottom,
     border-radius: calc($radius/2);
 
      &[data-industry="telecommunications"] {
-        background-image: url('../assets/media.png');
+        background-image: url('../assets/media.jpg');
 
     }
     
     &[data-industry="manufacturing"] {
-        background-image: url('../assets/manufacturing2.png');
+        background-image: url('../assets/manufacturing2.jpg');
 
     }
     
 
     
     &[data-industry="finance"] {
-        background-image: url('../assets/finance.png');
+        background-image: url('../assets/finance.jpg');
     }
     
     &[data-industry="aviation"] {
-        background-image: url('../assets/aviation.png');
+        background-image: url('../assets/aviation.jpg');
     }
     
     &[data-industry="retail"] {
-        background-image: url('../assets/retail.png');
+        background-image: url('../assets/retail.jpg');
     }
     
     &[data-industry="supply-chain"] {
-        background-image: url('../assets/supply-chain2.png');
+        background-image: url('../assets/supply-chain2.jpg');
     }
 
 

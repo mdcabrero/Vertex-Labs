@@ -933,22 +933,22 @@ section + section { /* Default spacing between all sections */
   border-radius: 0.75rem;
 }
 .industry-card[data-industry=telecommunications] {
-  background-image: url("../assets/media.png");
+  background-image: url("../assets/media.jpg");
 }
 .industry-card[data-industry=manufacturing] {
-  background-image: url("../assets/manufacturing2.png");
+  background-image: url("../assets/manufacturing2.jpg");
 }
 .industry-card[data-industry=finance] {
-  background-image: url("../assets/finance.png");
+  background-image: url("../assets/finance.jpg");
 }
 .industry-card[data-industry=aviation] {
-  background-image: url("../assets/aviation.png");
+  background-image: url("../assets/aviation.jpg");
 }
 .industry-card[data-industry=retail] {
-  background-image: url("../assets/retail.png");
+  background-image: url("../assets/retail.jpg");
 }
 .industry-card[data-industry=supply-chain] {
-  background-image: url("../assets/supply-chain2.png");
+  background-image: url("../assets/supply-chain2.jpg");
 }
 .industry-card__bio {
   position: relative;
