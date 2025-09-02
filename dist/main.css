@@ -500,7 +500,7 @@ section + section { /* Default spacing between all sections */
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-image: url("/assets/hero-bg2.png");
+  background-image: url("/assets/hero-bg2.jpg");
   background-size: cover;
   background-position: center right;
   background-repeat: no-repeat;
