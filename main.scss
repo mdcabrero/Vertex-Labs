@@ -208,39 +208,19 @@ section + section {  /* Default spacing between all sections */
     margin-inline: auto;
     width: calc(100vw - $space-2x);
   /* Drop Shadow with glossy effect */
-   --bg-color: hsl(120, 100%, 0%);
-            --lighter: rgba(12, 22, 13, 0.5);
-            --darker: rgba(0, 0, 0, 0.35);
-            --grain: rgba(10, 18, 18, 0.125);
-            
-            background: 
-                repeating-linear-gradient(90deg,
-                    transparent,
-                    transparent 2px,
-                    var(--grain) 2px,
-                    var(--grain) 4px),
-                linear-gradient(105deg,
-                    var(--bg-color) 0%,
-                    var(--lighter) 30%,
-                    var(--bg-color) 45%,
-                    var(--darker) 60%,
-                    var(--lighter) 80%,
-                    var(--bg-color) 100%),
-                var(--bg-color);
-            background-size: 100% 100%, 150% 150%, 100% 100%;
-            box-shadow: 
-                inset 0 2px 4px rgba(255, 255, 255, 0.06),
-                inset 0 -2px 4px rgba(0, 0, 0, 0.7),
-                inset 20px 0 40px -20px rgba(0, 0, 0, 0.3),
-                inset -20px 0 40px -20px rgba(0, 0, 0, 0.3),
-                0 8px 24px rgba(0, 0, 0, 0.4),
-                0 2px 6px rgba(0, 0, 0, 0.35);
-            color: #e8e8e8;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
-            border: 1px solid rgba(5, 35, 12, 0.4);
-            position: relative;
-     
-        }
+    box-shadow: 
+        inset 0 2px 4px rgba(255, 255, 255, 0.06),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.7),
+        inset 20px 0 40px -20px rgba(0, 0, 0, 0.3),
+        inset -20px 0 40px -20px rgba(0, 0, 0, 0.3),
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 2px 6px rgba(0, 0, 0, 0.35);
+    color: #e8e8e8;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(5, 35, 12, 0.4);
+    position: relative;
+
+}
 
       
 
@@ -292,25 +272,9 @@ section + section {  /* Default spacing between all sections */
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  background-image: url('/assets/hero-bg2.jpg');
-  background-size: cover;
-  background-position: center right;
-  background-repeat: no-repeat;
   padding-left: $space-4x;
   padding-top: 3.25rem; /* Same as logo's size */
   overflow: hidden;
-
-/* Transparency mask */
-mask: linear-gradient(to bottom, 
-        rgba(0,0,0,1) 0%, 
-        rgba(0,0,0,0.25) 75%, 
-        rgba(0,0,0,0) 100%
-    );
-    -webkit-mask: linear-gradient(to bottom, 
-        rgba(0,0,0,1) 0%, 
-        rgba(0,0,0,1) 85%, 
-        rgba(0,0,0,0) 100%
-    );
 
 
 
@@ -321,6 +285,30 @@ mask: linear-gradient(to bottom,
       margin-bottom: 0.5rem;
       letter-spacing: -0.02em;
     }
+
+  &::after {
+    content: '';
+    inset: 0;
+     background-image: url('/assets/hero-bg2.jpg');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0.8; 
+    filter: saturate(180%);
+    
+    /* Transparency mask */
+       mask: linear-gradient(to bottom, 
+          rgba(0,0,0,1) 0%, 
+          rgba(0,0,0,0.75) 50%, 
+          rgba(0,0,0,0) 100%
+      );
+      -webkit-mask: linear-gradient(to bottom, 
+          rgba(0,0,0,1) 0%, 
+          rgba(0,0,0,1) 50%, 
+          rgba(0,0,0,0) 100%
+      );
+  }
 }
 
 
@@ -350,7 +338,7 @@ mask: linear-gradient(to bottom,
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: #4ade80;
+  background-color: $brand-primary;
   box-shadow: 0 0 12px rgba(74, 222, 128, 0.5);
   animation: pulse 2s infinite;
 }
@@ -360,25 +348,25 @@ mask: linear-gradient(to bottom,
   font-size: $size-2;
   line-height: 1.5;
   color: rgba(239, 243, 232, 0.9);
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   font-weight: 400;
 }
 
 .button-group {
   display: flex;
-  gap: 16px;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
 /* Realistic Button Design */
 .btn {
   position: relative;
-  padding: 14px 32px;
+  padding: 1rem 2rem;
   font-size: 16px;
   font-weight: 500;
   letter-spacing: 0.02em;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
@@ -391,21 +379,24 @@ mask: linear-gradient(to bottom,
 
 /* Primary button - Green accent */
 .btn-primary {
-  background: linear-gradient(180deg, #5eeb8c 0%, #4ade80 100%);
-  color: #0a2e1c;
+  background: $green-gradient;
+  color: #04120b;
+  font-size: 1.25rem;
+  line-height: 1;
   box-shadow: 
-      0 4px 8px rgba(74, 222, 128, 0.3),
+      0 2px 4px rgba(74, 222, 128, 0.3),
       0 1px 3px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2),
       inset 0 -2px 0 rgba(0, 0, 0, 0.1);
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.2);
+   transition: all 0.35s;
 }
 
 .btn-primary:hover {
-  background: linear-gradient(180deg, #6ff09a 0%, #5ae88a 100%);
+  filter: saturate(140%);
   transform: perspective(1000px) rotateX(5deg) translateY(-2px);
   box-shadow: 
-      0 6px 12px rgba(74, 222, 128, 0.4),
+      0 3px 8px rgba(74, 222, 128, 0.4),
       0 2px 4px rgba(0, 0, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.3),
       inset 0 -2px 0 rgba(0, 0, 0, 0.1);
@@ -424,14 +415,17 @@ mask: linear-gradient(to bottom,
       0 1px 3px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.1),
       inset 0 -2px 0 rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(3px);
+   font-size: 1.25rem;
+  line-height: 1;
+  transition: all 0.35s;
 }
 
 .btn-secondary:hover {
   background: linear-gradient(180deg, 
-      rgba(255, 255, 255, 0.12) 0%, 
-      rgba(255, 255, 255, 0.06) 100%);
-  border-color: rgba(74, 222, 128, 0.5);
+      rgba(232, 225, 225, 0.2) 0%, 
+      rgba(0, 0, 0, 0.3) 100%);
+  border-color: rgba(74, 222, 128, 0.75);
   transform: perspective(1000px) rotateX(5deg) translateY(-2px);
   box-shadow: 
       0 6px 12px rgba(0, 0, 0, 0.4),
@@ -439,6 +433,7 @@ mask: linear-gradient(to bottom,
       inset 0 1px 0 rgba(255, 255, 255, 0.15),
       inset 0 -2px 0 rgba(0, 0, 0, 0.2),
       0 0 20px rgba(74, 222, 128, 0.1);
+  backdrop-filter: blur(15px);
 }
 
     
