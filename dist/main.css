@@ -448,8 +448,6 @@ section + section { /* Default spacing between all sections */
 }
 
 .content-island {
-  background-image: url("/assets/noise-bg.svg");
-  background-size: contain;
   background-color: #000100;
   border-radius: 1.5rem;
   padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
@@ -459,7 +457,17 @@ section + section { /* Default spacing between all sections */
   margin-inline: auto;
   width: calc(100vw - clamp(0.75rem, 2.083334vw, 2.3rem));
   /* Drop Shadow with glossy effect */
-  box-shadow: 0px 0px 4px 0 rgba(2, 96, 51, 0.2); /* Subtle light from top-left */
+  --bg-color: hsl(120, 100%, 0%);
+  --lighter: rgba(12, 22, 13, 0.5);
+  --darker: rgba(0, 0, 0, 0.35);
+  --grain: rgba(10, 18, 18, 0.125);
+  background: repeating-linear-gradient(90deg, transparent, transparent 2px, var(--grain) 2px, var(--grain) 4px), linear-gradient(105deg, var(--bg-color) 0%, var(--lighter) 30%, var(--bg-color) 45%, var(--darker) 60%, var(--lighter) 80%, var(--bg-color) 100%), var(--bg-color);
+  background-size: 100% 100%, 150% 150%, 100% 100%;
+  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.06), inset 0 -2px 4px rgba(0, 0, 0, 0.7), inset 20px 0 40px -20px rgba(0, 0, 0, 0.3), inset -20px 0 40px -20px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.35);
+  color: #e8e8e8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(5, 35, 12, 0.4);
+  position: relative;
 }
 
 .content-island::after {
@@ -469,9 +477,10 @@ section + section { /* Default spacing between all sections */
   left: 0;
   right: 0;
   bottom: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 1px, rgba(255, 255, 255, 0.02) 1px, rgba(255, 255, 255, 0.02) 2px);
   pointer-events: none;
-  border-radius: 1.5rem;
-  box-shadow: inset 3px 6px 10px 0 rgba(2, 34, 15, 0.2); /* Inner shadow */
+  border-radius: inherit;
+  z-index: -1;
 }
 
 .content-block {
@@ -621,6 +630,17 @@ section + section { /* Default spacing between all sections */
     transform: translateY(0);
   }
 }
+.about-intro {
+  padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
+  width: 90%;
+}
+.about-intro h2 {
+  font-size: clamp(2.6127rem, 2.2592rem + 1.6161vw, 3.8147rem);
+  line-height: 1.1;
+  font-weight: 400;
+  margin-top: 1rem;
+}
+
 .media-wrapper {
   width: 100%;
   margin-top: 1rem;
@@ -683,6 +703,34 @@ section + section { /* Default spacing between all sections */
   }
 }
 
+.service-card--wide[data-service=data-consulting] {
+  background-image: url("../assets/material4.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.service-card--wide[data-service=market-analysis] {
+  background-image: url("../assets/material1.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.service-card--vertical[data-service=machine-learning] {
+  background-image: url("../assets/material3.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.service-card--vertical[data-service=predictive-analysis] {
+  background-image: url("../assets/material5.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .service-card--wide {
   position: relative;
   overflow: hidden;
@@ -718,18 +766,6 @@ section + section { /* Default spacing between all sections */
   width: 3.25rem;
   fill: #7be152;
 }
-.service-card--wide[data-service=data-consulting] {
-  background-image: url("../assets/service-bg3.png");
-  background-position: left 10%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-.service-card--wide[data-service=market-analysis] {
-  background-image: url("../assets/service-bg.png");
-  background-position: left 30%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
 @media (max-width: 999px) {
   .service-card--wide {
     height: 400px;
@@ -738,38 +774,6 @@ section + section { /* Default spacing between all sections */
   .service-card--wide .service-bio {
     gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
     width: 100%;
-  }
-  .service-card--wide[data-service=data-consulting] {
-    background-image: none;
-  }
-  .service-card--wide[data-service=data-consulting]::before {
-    content: "";
-    position: absolute;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    pointer-events: none;
-    top: -20%;
-    left: 30%;
-    width: 110%;
-    height: 125%;
-    background-image: url("../assets/card-shape-m1.svg");
-  }
-  .service-card--wide[data-service=market-analysis] {
-    background-image: none;
-  }
-  .service-card--wide[data-service=market-analysis]::before {
-    content: "";
-    position: absolute;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    pointer-events: none;
-    top: -20%;
-    left: 30%;
-    width: 110%;
-    height: 125%;
-    background-image: url("../assets/card-shape-m4.svg");
   }
 }
 @media (max-width: 601px) {
@@ -815,32 +819,6 @@ section + section { /* Default spacing between all sections */
   height: auto;
   fill: #95e152;
 }
-.service-card--vertical[data-service=machine-learning]::before {
-  content: "";
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  pointer-events: none;
-  top: -15%;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  background-image: url("../assets/card-shape2.svg");
-}
-.service-card--vertical[data-service=predictive-analysis]::before {
-  content: "";
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  pointer-events: none;
-  top: -20%;
-  left: 25%;
-  width: 100%;
-  height: 100%;
-  background-image: url("../assets/card-shape3.svg");
-}
 @media (max-width: 999px) {
   .service-card--vertical {
     height: 400px;
@@ -848,20 +826,6 @@ section + section { /* Default spacing between all sections */
   }
   .service-card--vertical .service-bio {
     gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
-  }
-  .service-card--vertical[data-service=machine-learning]::before {
-    background-image: url("../assets/card-shape-m3.svg");
-    top: -20%;
-    left: 30%;
-    width: 110%;
-    height: 125%;
-  }
-  .service-card--vertical[data-service=predictive-analysis]::before {
-    background-image: url("../assets/card-shape-m2.svg");
-    top: -20%;
-    left: 30%;
-    width: 110%;
-    height: 125%;
   }
 }
 @media (max-width: 601px) {
@@ -871,15 +835,6 @@ section + section { /* Default spacing between all sections */
   }
 }
 
-@media (max-width: 750px) {
-  .service-card--wide[data-service=data-consulting]::before, .service-card--wide[data-service=market-analysis]::before, .service-card--wide[data-service=machine-learning]::before, .service-card--wide[data-service=predictive-analysis]::before,
-  .service-card--vertical[data-service=data-consulting]::before,
-  .service-card--vertical[data-service=market-analysis]::before,
-  .service-card--vertical[data-service=machine-learning]::before,
-  .service-card--vertical[data-service=predictive-analysis]::before {
-    opacity: 0.6;
-  }
-}
 .industries {
   padding: clamp(2rem, 4.166668vw, 4.6rem);
 }
