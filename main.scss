@@ -202,7 +202,8 @@ section + section {  /* Default spacing between all sections */
     background-color: $modal;
     border-radius: $radius;
     padding-inline: $space-4x;
-    padding-block: $space-8x;
+    padding-top: $space-8x;
+    padding-bottom: $space-4x;
     position: relative;
     z-index: -2;
     margin-inline: auto;
@@ -538,7 +539,7 @@ section + section {  /* Default spacing between all sections */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto auto;
-  gap: $space-md;
+  gap: $space-2x;
   margin-top: $space-4x;
 
   @include tablet {
@@ -558,37 +559,7 @@ section + section {  /* Default spacing between all sections */
 // -----------------------------------------------------------------------------
 // INDIVIDUAL CARD BACKGROUNDS
 // -----------------------------------------------------------------------------
-// Data Consulting (wide card)
-.service-card--wide[data-service="data-consulting"] {
-  background-image: url('../assets/material4.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
-// Market Analysis (wide card)
-.service-card--wide[data-service="market-analysis"] {
-  background-image: url('../assets/material1.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-// Machine Learning (vertical card)
-.service-card--vertical[data-service="machine-learning"] {
-  background-image: url('../assets/material3.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-// Predictive Analysis (vertical card)
-.service-card--vertical[data-service="predictive-analysis"] {
-  background-image: url('../assets/material5.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 // -----------------------------------------------------------------------------
 // SHARED MIXINS
@@ -618,77 +589,39 @@ section + section {  /* Default spacing between all sections */
   pointer-events: none;
 }
 
-// -----------------------------------------------------------------------------
-// WIDE CARD LAYOUT
-// -----------------------------------------------------------------------------
-.service-card--wide {
-  @include card-base-styles;
-  
-  display: flex;
-  justify-content: space-between;
-  grid-column: 1 / -1;
-  height: 60vh;
-  padding: $space-3x;
-  
+@mixin grid-pattern {
+   background: #000000;
+  --gap: 5em;
+  --line: 1px;
+  --color: hsla(120, 90%, 68%, 0.25);
 
-  // Content positioning
-  .service-bio {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: $space-lite;
-    max-width: clamp(320px, 40vw + 20%, 500px);   
-    align-self: end;
-    z-index: 2;
-
-    .service-description {
-    max-width: clamp(280px, 35vw + 25%, 450px);
-  }
-
-    .service-icon {
-      display: inline-flex;
-      justify-content: center;
-      width: 3.25rem;
-      margin-bottom: $space-3q;
-
-      svg {
-        width: 3.25rem;
-        fill: #7be152;
-      }
-    }
-  }
-
-
-  // Tablet adjustments
-  @include tablet {
-    height: 400px;
-    padding: 2rem;
-    
-    .service-bio {
-      gap: $space-md;
-      width: 100%;
-    }
-    
-  }
-
-  // Mobile adjustments
-  @include mobile {
-    height: 240px;
-    padding: 2rem;
-  }
+  background-image: linear-gradient(
+      -90deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    ),
+    linear-gradient(
+      0deg,
+      transparent calc(var(--gap) - var(--line)),
+      var(--color) calc(var(--gap) - var(--line) + 1px),
+      var(--color) var(--gap)
+    );
+  background-size: var(--gap) var(--gap);
 }
 
+
 // -----------------------------------------------------------------------------
-// VERTICAL CARD LAYOUT
+//  CARD LAYOUT
 // -----------------------------------------------------------------------------
 .service-card--vertical {
   @include card-base-styles;
-  
+   @include grid-pattern;
   display: flex;
   flex-direction: column;
   justify-content: end;
   grid-column: span 1;
-  height: 70vh;
+  height: 55vh;
   padding: $space-3x;
   
 
@@ -698,13 +631,10 @@ section + section {  /* Default spacing between all sections */
     display: flex;
     flex-direction: column;
     gap: $space-lite;
-    max-width: clamp(320px, 40vw + 20%, 500px);    
+    max-width: 90%;  
     z-index: 2;
 
-    .service-description {
-    // Even more aggressive scaling for description text
-    max-width: clamp(280px, 35vw + 25%, 450px);
-  }
+
 
     .service-icon {
       display: inline-flex;

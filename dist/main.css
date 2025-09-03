@@ -451,7 +451,8 @@ section + section { /* Default spacing between all sections */
   background-color: #000100;
   border-radius: 1.5rem;
   padding-inline: clamp(2rem, 4.166668vw, 4.6rem);
-  padding-block: clamp(3rem, 8.333336vw, 9.2rem);
+  padding-top: clamp(3rem, 8.333336vw, 9.2rem);
+  padding-bottom: clamp(2rem, 4.166668vw, 4.6rem);
   position: relative;
   z-index: -2;
   margin-inline: auto;
@@ -701,93 +702,13 @@ section + section { /* Default spacing between all sections */
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto auto auto;
-  gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
+  gap: clamp(0.75rem, 2.083334vw, 2.3rem);
   margin-top: clamp(2rem, 4.166668vw, 4.6rem);
 }
 @media (max-width: 999px) {
   .services-container {
     grid-template-columns: 1fr;
     gap: clamp(0.75rem, 2.083334vw, 2.3rem);
-  }
-}
-
-.service-card--wide[data-service=data-consulting] {
-  background-image: url("../assets/material4.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.service-card--wide[data-service=market-analysis] {
-  background-image: url("../assets/material1.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.service-card--vertical[data-service=machine-learning] {
-  background-image: url("../assets/material3.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.service-card--vertical[data-service=predictive-analysis] {
-  background-image: url("../assets/material5.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.service-card--wide {
-  position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: #000000;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: space-between;
-  grid-column: 1/-1;
-  height: 60vh;
-  padding: clamp(1rem, 3.125001vw, 3.45rem);
-}
-.service-card--wide .service-bio {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(0.167rem, 0.5208335vw, 0.575rem);
-  max-width: clamp(320px, 40vw + 20%, 500px);
-  align-self: end;
-  z-index: 2;
-}
-.service-card--wide .service-bio .service-description {
-  max-width: clamp(280px, 35vw + 25%, 450px);
-}
-.service-card--wide .service-bio .service-icon {
-  display: inline-flex;
-  justify-content: center;
-  width: 3.25rem;
-  margin-bottom: clamp(0.25rem, 0.78125025vw, 0.863rem);
-}
-.service-card--wide .service-bio .service-icon svg {
-  width: 3.25rem;
-  fill: #7be152;
-}
-@media (max-width: 999px) {
-  .service-card--wide {
-    height: 400px;
-    padding: 2rem;
-  }
-  .service-card--wide .service-bio {
-    gap: clamp(0.5rem, 1.5625005vw, 1.725rem);
-    width: 100%;
-  }
-}
-@media (max-width: 601px) {
-  .service-card--wide {
-    height: 240px;
-    padding: 2rem;
   }
 }
 
@@ -798,11 +719,17 @@ section + section { /* Default spacing between all sections */
   border: 1px solid rgba(255, 255, 255, 0.05);
   background-color: #000000;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 6px 20px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(9, 74, 35, 0.25), inset 0 1px 0 rgba(0, 201, 67, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+  background: #000000;
+  --gap: 5em;
+  --line: 1px;
+  --color: hsla(120, 90%, 68%, 0.25);
+  background-image: linear-gradient(-90deg, transparent calc(var(--gap) - var(--line)), var(--color) calc(var(--gap) - var(--line) + 1px), var(--color) var(--gap)), linear-gradient(0deg, transparent calc(var(--gap) - var(--line)), var(--color) calc(var(--gap) - var(--line) + 1px), var(--color) var(--gap));
+  background-size: var(--gap) var(--gap);
   display: flex;
   flex-direction: column;
   justify-content: end;
   grid-column: span 1;
-  height: 70vh;
+  height: 55vh;
   padding: clamp(1rem, 3.125001vw, 3.45rem);
 }
 .service-card--vertical .service-bio {
@@ -810,11 +737,8 @@ section + section { /* Default spacing between all sections */
   display: flex;
   flex-direction: column;
   gap: clamp(0.167rem, 0.5208335vw, 0.575rem);
-  max-width: clamp(320px, 40vw + 20%, 500px);
+  max-width: 90%;
   z-index: 2;
-}
-.service-card--vertical .service-bio .service-description {
-  max-width: clamp(280px, 35vw + 25%, 450px);
 }
 .service-card--vertical .service-bio .service-icon {
   display: inline-flex;
