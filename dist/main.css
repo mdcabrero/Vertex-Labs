@@ -320,7 +320,7 @@ body {
   font-family: "Helixa", sans-serif;
   background: #000000;
   color: white;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: hidden;
 }
 
 .fuzzy-overlay {

@@ -24,9 +24,10 @@ function initSliders() {
       const getCurrentTranslate = () => {
         const transform = cardSlider.style.transform;
         if (!transform || !transform.includes('translateX')) return 0;
-        
-        const match = transform.match(/translateX\((-?\d+)px\)/);
-        return match ? parseInt(match[1]) : 0;
+
+        // Support integer and decimal pixel values
+        const match = transform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/);
+        return match ? parseFloat(match[1]) : 0;
       };
       
       // Helper function to apply bounded translation
@@ -34,7 +35,10 @@ function initSliders() {
         // Calculate the maximum scrollable distance
         const maxScroll = -(cardSlider.offsetWidth - sliderWrapper.offsetWidth);
         // Apply bounds to prevent over-scrolling
-        const boundedTranslate = Math.max(maxScroll, Math.min(0, newTranslate));
+        // Round to whole pixels to avoid subpixel values that can break parsing
+        const boundedTranslate = Math.round(
+          Math.max(maxScroll, Math.min(0, newTranslate))
+        );
         
         // Apply the transform with or without transition
         cardSlider.style.transition = withTransition ? 'transform 0.3s ease-out' : 'none';
@@ -164,9 +168,11 @@ function initSliders() {
                       parseInt(cardStyle.marginLeft || 0) + 
                       parseInt(cardStyle.marginRight || 0);
         
-        // Get current translation value
-        const currentTranslate = cardSlider.style.transform ? 
-            parseInt(cardSlider.style.transform.match(/translateX\((-?\d+)px\)/)?.[1] || 0) : 0;
+        // Get current translation value (supports integers and decimals)
+        const currentTranslate = cardSlider.style.transform ?
+            parseFloat(
+              cardSlider.style.transform.match(/translateX\((-?\d+(?:\.\d+)?)px\)/)?.[1] || 0
+            ) : 0;
         
         // Calculate new translation value based on direction
         let newTranslate;

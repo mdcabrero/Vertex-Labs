@@ -51,7 +51,8 @@ body {
     font-family: 'Helixa', sans-serif;
     background: #000000;
     color: white;
-    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    overflow-x: hidden;
+
 
 }
 
@@ -733,6 +734,7 @@ section + section {  /* Default spacing between all sections */
     overflow: visible; // Let cards be visible outside the wrapper, so they don't get cropped by any padding attributes
     // Improve touch interaction on mobile: allow vertical panning by the UA while we handle horizontal drags
     touch-action: pan-y;
+
   }
 
 
