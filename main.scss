@@ -60,9 +60,13 @@ body {
     position: fixed;
     inset: -200%;
     background-image: url('../assets/noise.svg');
-    opacity: 12.5%;
+    opacity: 11%;
     z-index: -10;
      pointer-events: none !important;
+
+     @include tablet {
+      display: none;
+     }
 }
 
 
