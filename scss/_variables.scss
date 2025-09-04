@@ -86,7 +86,7 @@ $gap-section: 4rem;
 }
 
 @mixin mobile {
-  @media (max-width: 601px) { 
+  @media (max-width: 690px) { 
     @content;
   }
 }

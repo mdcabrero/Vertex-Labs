@@ -51,7 +51,7 @@ body {
     font-family: 'Helixa', sans-serif;
     background: #000000;
     color: white;
-    overflow-x: hidden; // Prevent slider content overflowing and making the page wider than it needs to
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
 
 }
 
@@ -62,7 +62,7 @@ body {
     background-image: url('../assets/noise.svg');
     opacity: 12.5%;
     z-index: -10;
-    /* No CSS animation here, we'll use GSAP */
+     pointer-events: none !important;
 }
 
 
@@ -148,14 +148,16 @@ section + section {  /* Default spacing between all sections */
     margin-top: 10rem;
 
   @include mobile {
-   margin-top: 5rem;
+   margin-top: 6rem;
 }    
 
   }
 
   .text-measure {
     max-width: 60%;
-  
+    @include mobile {
+      max-width: 100%;
+    }
   }
 
   .vertical-margin {
@@ -177,6 +179,13 @@ section + section {  /* Default spacing between all sections */
   h2 {
     max-width: clamp(320px, 50vw + 15%, 90%);
     line-height: 1.1; // Tighter line height for better visual hierarchy
+  }
+
+  @include mobile {
+    // Give section headings full width on mobile to prevent awkward wrapping
+    h2 {
+      max-width: 100%;
+    }
   }
 }
 
@@ -222,6 +231,8 @@ section + section {  /* Default spacing between all sections */
     position: relative;
 
 }
+
+  
 
       
 
@@ -468,6 +479,16 @@ section + section {  /* Default spacing between all sections */
     font-weight: 400;
     margin-top: 1rem;
   }
+
+  @include mobile {
+    // On mobile, use the full width and slightly smaller heading
+    width: 100%;
+
+
+    h2 {
+      font-size: 2rem;
+    }
+  }
 }
 
 
@@ -682,6 +703,8 @@ section + section {  /* Default spacing between all sections */
 
 }
 
+
+
 .separator {
     display: flex;
     justify-content: space-between;
@@ -704,6 +727,8 @@ section + section {  /* Default spacing between all sections */
 .slider-wrapper {
     width: 100%;
     overflow: visible; // Let cards be visible outside the wrapper, so they don't get cropped by any padding attributes
+    // Improve touch interaction on mobile: allow vertical panning by the UA while we handle horizontal drags
+    touch-action: pan-y;
   }
 
 
@@ -719,6 +744,13 @@ section + section {  /* Default spacing between all sections */
     cursor: grabbing;
   }
 
+  // Keep desktop-like spacing between cards on mobile
+  @include mobile {
+    .card-slider {
+      gap: 1rem; // match desktop feel
+    }
+  }
+
 
 
   .industry-card {
@@ -728,7 +760,8 @@ section + section {  /* Default spacing between all sections */
     width: 370px;
     aspect-ratio: 4/5;
     border: 1px solid rgb(55, 128, 0);
- 
+    overflow: hidden;
+
     background-size: cover;
     background-position: right center;
     border-radius: calc($radius/2);
@@ -800,6 +833,20 @@ section + section {  /* Default spacing between all sections */
     @include mobile {
     font-size: 1.65rem;
   }
+
+      // Ensure long titles wrap within the card bounds
+      &.industry-title {
+        display: block;
+        white-space: normal;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        hyphens: auto;
+
+        @include mobile {
+          font-size: 1.5rem;
+          line-height: 1.2;
+        }
+      }
     }
 
      @include tablet {
@@ -814,7 +861,8 @@ section + section {  /* Default spacing between all sections */
   }
 
     @include mobile {
-    max-width: 250px;
+      width: min(88vw, 340px);
+      max-width: none;
   
   }
 
@@ -949,6 +997,7 @@ section + section {  /* Default spacing between all sections */
 
     @include mobile {
       grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+      margin-top: 10rem;
     }
 }
 
@@ -1113,6 +1162,12 @@ section + section {  /* Default spacing between all sections */
 
   }
 
+  @include mobile {
+    .footer-logo {
+      width: 240px;
+    }
+  }
+
 
 }
 
@@ -1139,6 +1194,11 @@ section + section {  /* Default spacing between all sections */
       margin-bottom: 0.25rem;
       font-size: 1.9rem;
     }
+
+    @include mobile {
+      font-size: 1.6rem;
+      line-height: 1.25;
+    }
   }
 
   .description {
@@ -1153,6 +1213,11 @@ section + section {  /* Default spacing between all sections */
     font-size: 1.4rem;
     margin-bottom: $space-4x;
   }
+
+    @include mobile {
+      font-size: 1.15rem;
+      max-width: 100%;
+    }
 
   }
 
@@ -1247,7 +1312,11 @@ section + section {  /* Default spacing between all sections */
       display: grid;
       grid-template-columns: repeat(2, 120px);
       grid-gap: $space-3q;
- 
+
+      @include mobile {
+        grid-gap: $space-md;
+      }
+
       
       a {
         color: $text-primary;

@@ -107,10 +107,12 @@ function initSliders() {
         scrollLeft = getCurrentTranslate();
         
         cardSlider.style.transition = 'none';
-      }, { passive: true });
+      }, { passive: false });
       
       document.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
+        // prevent page from scrolling while dragging horizontally
+        e.preventDefault();
         
         const x = e.touches[0].pageX - sliderWrapper.offsetLeft;
         const walk = x - startX;
@@ -121,7 +123,7 @@ function initSliders() {
         
         const newTranslate = scrollLeft + walk;
         applyTranslation(newTranslate);
-      }, { passive: true });
+      }, { passive: false });
       
       document.addEventListener('touchend', () => {
         if (!isDragging) return;
