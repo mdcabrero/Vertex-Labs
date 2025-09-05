@@ -677,15 +677,16 @@ section + section { /* Default spacing between all sections */
 }
 .about-intro h2 {
   font-size: clamp(2.6127rem, 2.2592rem + 1.6161vw, 3.8147rem);
-  line-height: 1.1;
+  line-height: 1.15;
   font-weight: 400;
+  margin-top: 1rem;
 }
 @media (max-width: 690px) {
   .about-intro {
     width: 100%;
   }
   .about-intro h2 {
-    font-size: 2rem;
+    font-size: 2.15rem;
   }
 }
 
@@ -1385,6 +1386,11 @@ section + section { /* Default spacing between all sections */
   }
   main {
     margin-block: 8rem;
+  }
+  .slider-wrapper {
+    max-width: 100%;
+    overflow-x: clip;
+    contain: layout;
   }
 }
 

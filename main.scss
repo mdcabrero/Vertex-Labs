@@ -492,8 +492,9 @@ section + section {  /* Default spacing between all sections */
 
   h2 {
     font-size: $size-6;
-    line-height: 1.1;
+    line-height: 1.15;
     font-weight: 400;
+    margin-top: 1rem;
   }
 
   @include mobile {
@@ -502,7 +503,7 @@ section + section {  /* Default spacing between all sections */
 
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.15rem;
     }
   }
 }
@@ -1424,4 +1425,11 @@ section + section {  /* Default spacing between all sections */
   main {
     margin-block: 8rem;
   }
+
+  .slider-wrapper {
+    max-width: 100%;
+    overflow-x: clip;
+    contain: layout;
+}
+
 }
