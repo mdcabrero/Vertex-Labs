@@ -320,7 +320,14 @@ body {
   font-family: "Helixa", sans-serif;
   background: #000000;
   color: white;
-  overflow-x: hidden;
+  /* Prevent horizontal page scrolling on mobile as well */
+  overflow-x: clip;
+  max-width: 100%;
+}
+@supports not (overflow: clip) {
+  body {
+    overflow-x: hidden;
+  }
 }
 
 .fuzzy-overlay {
@@ -362,6 +369,11 @@ body {
 
 main {
   margin-block: clamp(3rem, 8.333336vw, 9.2rem);
+}
+@media (max-width: 690px) {
+  main {
+    margin-block: 0;
+  }
 }
 
 #connect-btn {
@@ -408,12 +420,12 @@ section + section { /* Default spacing between all sections */
 }
 @media (max-width: 690px) {
   section + section {
-    margin-top: 6rem;
+    margin-top: 8rem;
   }
 }
 
 .text-measure {
-  max-width: 60%;
+  max-width: 75%;
 }
 @media (max-width: 690px) {
   .text-measure {
@@ -513,7 +525,7 @@ section + section { /* Default spacing between all sections */
 }
 
 .hero {
-  height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   position: relative;
   display: flex;
@@ -774,6 +786,13 @@ section + section { /* Default spacing between all sections */
   height: auto;
   fill: #95e152;
 }
+@media (max-width: 690px) {
+  .service-card--vertical .service-bio .service-icon svg {
+    width: 2.5rem;
+    margin-bottom: clamp(0.35rem, 1.041667vw, 1.15rem);
+    padding-top: clamp(1rem, 3.125001vw, 3.45rem);
+  }
+}
 @media (max-width: 999px) {
   .service-card--vertical {
     height: 400px;
@@ -785,13 +804,18 @@ section + section { /* Default spacing between all sections */
 }
 @media (max-width: 690px) {
   .service-card--vertical {
-    height: 240px;
+    height: auto;
     padding: 2rem;
   }
 }
 
 .industries {
   padding: clamp(2rem, 4.166668vw, 4.6rem);
+}
+@media (max-width: 690px) {
+  .industries {
+    padding-right: 0;
+  }
 }
 
 .separator {
@@ -817,8 +841,19 @@ section + section { /* Default spacing between all sections */
 
 .slider-wrapper {
   width: 100%;
-  overflow: visible;
+  /* Prevent the slider from expanding the page width on mobile
+     while still allowing vertical overflow for shadows/overlays. */
   touch-action: pan-y;
+}
+@supports not (overflow: clip) {
+  .slider-wrapper {
+    overflow-x: hidden;
+  }
+}
+@media (max-width: 690px) {
+  .slider-wrapper {
+    overflow-x: hidden;
+  }
 }
 
 .card-slider {
@@ -1338,6 +1373,12 @@ section + section { /* Default spacing between all sections */
 }
 .footer-legal small {
   font-size: clamp(0.7392rem, 0.7183rem + 0.0952vw, 0.8rem);
+}
+
+@media (max-height: 450px) and (orientation: landscape) {
+  .hero-content {
+    margin-top: 6rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

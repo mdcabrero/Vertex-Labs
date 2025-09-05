@@ -51,7 +51,14 @@ body {
     font-family: 'Helixa', sans-serif;
     background: #000000;
     color: white;
-    overflow-x: hidden;
+    /* Prevent horizontal page scrolling on mobile as well */
+    overflow-x: clip; // modern browsers incl. iOS 16.4+
+    max-width: 100%;
+
+    // Fallback for older browsers where clip isn't supported
+    @supports not (overflow: clip) {
+      overflow-x: hidden;
+    }
 
 
 }
@@ -95,11 +102,16 @@ body {
     fill: rgb(255, 255, 255);
   }
 
+
 }
 
 
 main {
     margin-block: $space-8x;
+
+    @include mobile {
+      margin-block: 0;
+    }
 }
 
 #connect-btn {
@@ -153,13 +165,13 @@ section + section {  /* Default spacing between all sections */
     margin-top: 10rem;
 
   @include mobile {
-   margin-top: 6rem;
+   margin-top: 8rem;
 }    
 
   }
 
   .text-measure {
-    max-width: 60%;
+    max-width: 75%;
     @include mobile {
       max-width: 100%;
     }
@@ -283,7 +295,7 @@ section + section {  /* Default spacing between all sections */
 //HERO SECTION
 
 .hero {
-  height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   position: relative;
   display: flex;
@@ -660,6 +672,8 @@ section + section {  /* Default spacing between all sections */
     max-width: 90%;  
     z-index: 2;
 
+    
+
 
 
     .service-icon {
@@ -672,6 +686,12 @@ section + section {  /* Default spacing between all sections */
         width: 3.25rem;
         height: auto;
         fill: #95e152;
+
+        @include mobile {
+          width: 2.5rem;
+          margin-bottom: $space-1x;
+          padding-top: $space-3x;
+        }
       }
     }
   }
@@ -690,7 +710,7 @@ section + section {  /* Default spacing between all sections */
   }
 
   @include mobile {
-    height: 240px;
+    height: auto;
     padding: 2rem;
   }
 }
@@ -704,8 +724,10 @@ section + section {  /* Default spacing between all sections */
 
 .industries {
     padding: $space-4x;
-    
 
+    @include mobile {
+      padding-right: 0;
+    }
 }
 
 
@@ -731,9 +753,18 @@ section + section {  /* Default spacing between all sections */
 
 .slider-wrapper {
     width: 100%;
-    overflow: visible; // Let cards be visible outside the wrapper, so they don't get cropped by any padding attributes
+    /* Prevent the slider from expanding the page width on mobile
+       while still allowing vertical overflow for shadows/overlays. */
     // Improve touch interaction on mobile: allow vertical panning by the UA while we handle horizontal drags
     touch-action: pan-y;
+
+    @supports not (overflow: clip) {
+      overflow-x: hidden; // Safari < 16.4 fallback
+    }
+
+    @include mobile {
+      overflow-x: hidden;
+    }
 
   }
 
@@ -1382,3 +1413,12 @@ section + section {  /* Default spacing between all sections */
       }
   }
   
+
+
+
+//Edge case for landscape phones
+  @media (max-height: 450px) and (orientation: landscape) {
+  .hero-content {
+     margin-top: 6rem;
+  }
+}
