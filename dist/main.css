@@ -1379,6 +1379,9 @@ section + section { /* Default spacing between all sections */
   .hero-content {
     margin-top: 6rem;
   }
+  main {
+    margin-block: 8rem;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */
