@@ -121,6 +121,9 @@ h4 {
     font-size: $size-0;
     color: $brand-primary;
 
+    @include tablet {
+      margin-bottom: 0.75rem;
+    }
    }
 
 

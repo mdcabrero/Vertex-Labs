@@ -93,6 +93,11 @@ h4 {
   font-size: clamp(0.875rem, 0.8382rem + 0.1681vw, 1rem);
   color: #64F764;
 }
+@media (max-width: 999px) {
+  .eyebrow {
+    margin-bottom: 0.75rem;
+  }
+}
 
 cite {
   font-style: normal;
@@ -674,7 +679,6 @@ section + section { /* Default spacing between all sections */
   font-size: clamp(2.6127rem, 2.2592rem + 1.6161vw, 3.8147rem);
   line-height: 1.1;
   font-weight: 400;
-  margin-top: 1rem;
 }
 @media (max-width: 690px) {
   .about-intro {
